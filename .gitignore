@@ -4,24 +4,38 @@ __pycache__/
 *.pyo
 *.pyd
 
-# Env
-.env
-.env.*
-
-# Models / AI cache
-torch_cache/
-cache/
-*.pt
-*.pth
-*.onnx
-*.bin
+# Virtual env
+venv/
+env/
+.venv/
 
 # IDE
 .idea/
 .vscode/
 
+# Secrets
+.env
+.env.*
+
 # Logs
 *.log
+
+# Cache
+cache/
+torch_cache/
+.cache/
+
+# AI models
+*.pt
+*.pth
+*.bin
+*.onnx
+models/
+model/
+weights/
+
+# Jupyter
+.ipynb_checkpoints/
 
 # OS
 .DS_Store
