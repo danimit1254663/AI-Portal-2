@@ -1,10 +1,7 @@
 @echo off
-title AI Portal
 
-cd /d C:\Users\Admin\Music
+cd /d %~dp0
 
-echo Starting AI Portal...
-
-C:\Users\Admin\Music\venv\Scripts\python.exe main.py
+python main.py
 
 pause
