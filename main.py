@@ -32,6 +32,63 @@ from ai.giga import GigaAI
 
 
 from ai.memory import remember
+import os
+import sys
+import subprocess
+
+
+VENV_DIR = "venv"
+
+
+def create_venv():
+    print("Создание виртуального окружения...")
+
+    subprocess.check_call([
+        sys.executable,
+        "-m",
+        "venv",
+        VENV_DIR
+    ])
+
+
+def get_venv_python():
+    if os.name == "nt":
+        return os.path.join(VENV_DIR, "Scripts", "python.exe")
+    else:
+        return os.path.join(VENV_DIR, "bin", "python")
+
+
+def install_requirements():
+    python = get_venv_python()
+
+    print("Установка зависимостей...")
+
+    subprocess.check_call([
+        python,
+        "-m",
+        "pip",
+        "install",
+        "-r",
+        "requirements.txt"
+    ])
+
+
+def check_environment():
+    python = get_venv_python()
+
+    if not os.path.exists(python):
+        create_venv()
+
+    install_requirements()
+
+
+if __name__ == "__main__":
+
+    check_environment()
+
+    print("AI Portal запущен")
+
+    # дальше твой код
 SESSION_TIME = 20
 
 
