@@ -6,3 +6,4 @@ PyAudio
 pygame
 torch
 soundfile
+dotenv
