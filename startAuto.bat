@@ -1,7 +1,12 @@
 @echo off
+title AI Portal
 
-cd /d C:\Users\Admin\Music
+cd /d C:\Users\Admin\PycharmProjects\AI-Portal-2
 
-call .venv\Scripts\activate
+echo Starting AI Portal...
 
-python "Python Script.py"
+call venv\Scripts\activate
+
+python main.py
+
+pause
