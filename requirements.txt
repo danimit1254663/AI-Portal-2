@@ -7,3 +7,4 @@ pygame
 torch
 soundfile
 dotenv
+num2words
