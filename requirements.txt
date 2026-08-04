@@ -24,3 +24,4 @@ torch==2.8.0
 torchaudio==2.8.0
 vosk==0.3.45
 python-dotenv==1.1.1
+'omegaconf
