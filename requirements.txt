@@ -9,3 +9,4 @@ soundfile
 dotenv
 num2words
 customtkinter
+sounddevice
