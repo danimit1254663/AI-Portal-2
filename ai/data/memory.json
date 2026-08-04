@@ -1,0 +1,87 @@
+{
+    "user": {
+        "name": "алекс"
+    },
+    "history": [
+        {
+            "role": "user",
+            "content": "f"
+        },
+        {
+            "role": "user",
+            "content": "f"
+        },
+        {
+            "role": "user",
+            "content": "в"
+        },
+        {
+            "role": "user",
+            "content": "а"
+        },
+        {
+            "role": "user",
+            "content": "а"
+        },
+        {
+            "role": "user",
+            "content": "п"
+        },
+        {
+            "role": "user",
+            "content": "авыф"
+        },
+        {
+            "role": "user",
+            "content": "ц"
+        },
+        {
+            "role": "user",
+            "content": ""
+        },
+        {
+            "role": "user",
+            "content": "а"
+        },
+        {
+            "role": "user",
+            "content": "ц"
+        },
+        {
+            "role": "user",
+            "content": "ы"
+        },
+        {
+            "role": "user",
+            "content": "ц"
+        },
+        {
+            "role": "user",
+            "content": "в"
+        },
+        {
+            "role": "user",
+            "content": "h"
+        },
+        {
+            "role": "user",
+            "content": "w"
+        },
+        {
+            "role": "user",
+            "content": "w"
+        },
+        {
+            "role": "assistant",
+            "content": "Привет, Алекс! Похоже, ты набрал случайные буквы. Чем займёмся?"
+        },
+        {
+            "role": "user",
+            "content": "привет ура ты туту"
+        },
+        {
+            "role": "assistant",
+            "content": "Привет! Да, я здесь. Чем займемся?"
+        }
+    ]
+}

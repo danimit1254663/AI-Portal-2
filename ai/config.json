@@ -1,0 +1,14 @@
+{
+    "voice": "kseniya",
+    "activation": [
+        "джарвис",
+        "ассистент"
+    ],
+    "language": "ru",
+    "gigachat": {
+        "enabled": true,
+        "client_id": "019f223b-65f2-71a2-bdb3-73314f9babbc",
+        "client_secret": "c983dc28-38e5-41b9-a491-c346ee2b368e",
+        "scope": "GIGACHAT_API_PERS"
+    }
+}
