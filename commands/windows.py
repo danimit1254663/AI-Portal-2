@@ -334,7 +334,7 @@ def search_web(text):
 def youtube_control(text):
 
 
-    if "ютуб пауза" in text:
+    if "youtubeпауза" in text:
 
         pyautogui.press(
             "space"
@@ -344,7 +344,7 @@ def youtube_control(text):
 
 
 
-    if "ютуб продолжи" in text:
+    if "youtube продолжи" in text:
 
         pyautogui.press(
             "space"
@@ -354,7 +354,7 @@ def youtube_control(text):
 
 
 
-    if "ютуб полный экран" in text:
+    if "youtube полный экран" in text:
 
         pyautogui.press(
             "f"
