@@ -186,7 +186,7 @@ def open_program(text):
         "командная строка":
             "cmd.exe",
 
-        "ютуб":
+        "youtube":
         "start https://youtube.com",
 
     "почта":
@@ -219,7 +219,7 @@ def open_program(text):
 
     sites={
 
-        "ютуб":
+        "youtube":
             "https://youtube.com",
 
         "гугл":
@@ -334,7 +334,7 @@ def search_web(text):
 def youtube_control(text):
 
 
-    if "youtubeпауза" in text:
+    if "youtube пауза" in text:
 
         pyautogui.press(
             "space"

@@ -1,7 +1,7 @@
 import time
 import logging
 import traceback
-from core.config import setup_env
+from core.config import first_start_setup
 from ui.hud import (
     open_hud,
     set_status,
@@ -593,8 +593,7 @@ def voice_loop():
 
 
 def main():
-    setup_env()
-
+    first_start_setup()
     print(
 
         """

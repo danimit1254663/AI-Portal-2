@@ -37,21 +37,6 @@ def first_start_setup():
     try:
 
         speak(
-            "Как мне вас называть?"
-        )
-
-    except:
-        pass
-
-
-    name = input(
-        "Ваше имя: "
-    )
-
-
-    try:
-
-        speak(
             "Введите API ключ"
         )
 
@@ -62,38 +47,6 @@ def first_start_setup():
     api_key = input(
         "API ключ: "
     )
-
-
-    try:
-
-        speak(
-            "Включить интерфейс HUD при запуске?"
-        )
-
-    except:
-        pass
-
-
-    hud = input(
-        "HUD да или нет: "
-    )
-
-
-    try:
-
-        speak(
-            "Включить постоянное прослушивание микрофона?"
-        )
-
-    except:
-        pass
-
-
-    microphone = input(
-        "Микрофон да или нет: "
-    )
-
-
     with open(
         ENV_FILE,
         "w",
@@ -102,10 +55,10 @@ def first_start_setup():
 
 
         f.write(
-f"""USERNAME={name}
-API_KEY={api_key}
-HUD={hud}
-MICROPHONE={microphone}
+f"""
+GIGACHAT_CREDENTIALS={api_key}
+GIGACHAT_API_PERS=GIGACHAT_API_PERS
+GIGACHAT_MODEL=GigaChat-2
 """
         )
 
@@ -113,7 +66,7 @@ MICROPHONE={microphone}
     try:
 
         speak(
-            "Настройка завершена. Я готов к работе."
+            "Настройка завершена. Я готов к работе. Рекомендую перезагрузить меня , для завершения наастройки."
         )
 
     except:
@@ -236,49 +189,5 @@ from pathlib import Path
 from dotenv import load_dotenv
 
 
-ENV_FILE = Path(".env")
 
-
-def setup_env():
-
-    if not ENV_FILE.exists():
-
-        print("==============================")
-        print(" JARVIS FIRST START ")
-        print("==============================")
-
-        print(
-            "Файл .env не найден."
-        )
-
-        api_key = input(
-            "Введите API ключ: "
-        )
-
-
-        with open(
-            ENV_FILE,
-            "w",
-            encoding="utf-8"
-        ) as f:
-
-            f.write(
-                f"API_KEY={api_key}\n"
-            )
-
-
-        print(
-            "Настройка завершена."
-        )
-
-
-    load_dotenv()
-
-
-
-def get_api_key():
-
-    return os.getenv(
-        "API_KEY"
-    )
 load_config()

@@ -9,10 +9,6 @@
         },
         {
             "role": "user",
-            "content": "f"
-        },
-        {
-            "role": "user",
             "content": "в"
         },
         {
@@ -82,6 +78,11 @@
         {
             "role": "assistant",
             "content": "Привет! Да, я здесь. Чем займемся?"
+        },
+        {
+            "role": "user",
+            "content": "Привет Джарвис"
         }
-    ]
+    ],
+    "name": "алекс"
 }
