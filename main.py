@@ -20,7 +20,7 @@ from core.config import config
 
 
 from voice.vosk_engine import listen
-
+import core.state as state
 
 from voice.tts import speak
 
