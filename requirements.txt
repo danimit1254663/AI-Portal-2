@@ -26,3 +26,4 @@ vosk==0.3.45
 python-dotenv==1.1.1
 scipy==1.15.2
 omegaconf==2.3.0
+openai

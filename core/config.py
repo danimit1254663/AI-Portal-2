@@ -11,6 +11,7 @@ import os
 ENV_FILE = Path(".env")
 
 
+
 def first_start_setup():
 
     if ENV_FILE.exists():
@@ -37,7 +38,7 @@ def first_start_setup():
     try:
 
         speak(
-            "Введите API ключ"
+            "Введите API ключ GigaChat"
         )
 
     except:
@@ -45,6 +46,18 @@ def first_start_setup():
 
 
     api_key = input(
+        "API ключ: "
+    )
+    try:
+
+        speak(
+            "Введите API ключ Grok (xAI)"
+        )
+
+    except:
+        pass
+
+    api_key2 = input(
         "API ключ: "
     )
     with open(
@@ -56,6 +69,7 @@ def first_start_setup():
 
         f.write(
 f"""
+XAI_API_KEY={api_key2}
 GIGACHAT_CREDENTIALS={api_key}
 GIGACHAT_API_PERS=GIGACHAT_API_PERS
 GIGACHAT_MODEL=GigaChat-2

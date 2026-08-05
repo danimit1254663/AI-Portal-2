@@ -1,6 +1,9 @@
 import time
 import logging
 import traceback
+from dotenv import load_dotenv
+
+load_dotenv()
 from core.config import first_start_setup
 from ui.hud import (
     open_hud,

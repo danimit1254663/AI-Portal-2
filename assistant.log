@@ -22896,3 +22896,34 @@ NameError: name 'check_environment' is not defined
 2026-08-05 14:54:38,974 INFO HTTP Request: POST https://api.giga.chat/v1/chat/completions "HTTP/1.1 200 OK"
 2026-08-05 14:54:49,167 INFO HTTP Request: POST https://api.giga.chat/v1/chat/completions "HTTP/1.1 200 OK"
 2026-08-05 14:55:41,187 INFO HTTP Request: POST https://api.giga.chat/v1/chat/completions "HTTP/1.1 200 OK"
+2026-08-05 16:52:11,405 INFO HTTP Request: POST https://ngw.devices.sberbank.ru:9443/api/v2/oauth "HTTP/1.1 200 OK"
+2026-08-05 16:52:11,721 INFO HTTP Request: POST https://api.giga.chat/v1/chat/completions "HTTP/1.1 200 OK"
+2026-08-05 16:53:28,698 INFO HTTP Request: POST https://api.giga.chat/v1/chat/completions "HTTP/1.1 200 OK"
+2026-08-05 16:56:39,812 INFO HTTP Request: POST https://api.giga.chat/v1/chat/completions "HTTP/1.1 200 OK"
+2026-08-05 17:40:56,232 INFO HTTP Request: POST https://ngw.devices.sberbank.ru:9443/api/v2/oauth "HTTP/1.1 200 OK"
+2026-08-05 17:40:56,544 INFO HTTP Request: POST https://api.giga.chat/v1/chat/completions "HTTP/1.1 200 OK"
+2026-08-05 17:42:31,124 INFO HTTP Request: POST https://api.giga.chat/v1/chat/completions "HTTP/1.1 200 OK"
+2026-08-05 17:46:33,588 INFO HTTP Request: POST https://ngw.devices.sberbank.ru:9443/api/v2/oauth "HTTP/1.1 200 OK"
+2026-08-05 19:06:16,518 INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-08-05 19:06:16,519 INFO Retrying request to /chat/completions in 0.469958 seconds
+2026-08-05 19:06:17,407 INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-08-05 19:06:17,407 INFO Retrying request to /chat/completions in 0.966958 seconds
+2026-08-05 19:06:18,863 INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-08-05 19:08:20,264 INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-08-05 19:08:20,264 INFO Retrying request to /chat/completions in 0.484043 seconds
+2026-08-05 19:08:21,171 INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-08-05 19:08:21,171 INFO Retrying request to /chat/completions in 0.761960 seconds
+2026-08-05 19:08:22,329 INFO HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
+2026-08-05 19:20:55,220 INFO AFC is enabled with max remote calls: 10.
+2026-08-05 19:20:55,587 INFO HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 404 Not Found"
+2026-08-05 19:22:01,217 INFO AFC is enabled with max remote calls: 10.
+2026-08-05 19:22:01,515 INFO HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent "HTTP/1.1 429 Too Many Requests"
+2026-08-05 19:56:51,746 INFO HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 403 Forbidden"
+2026-08-05 19:56:51,747 ERROR 'GigaAI' object has no attribute 'local'
+2026-08-05 19:57:55,190 INFO HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 403 Forbidden"
+2026-08-05 19:58:51,379 INFO HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 403 Forbidden"
+2026-08-05 19:59:02,832 INFO HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 403 Forbidden"
+2026-08-05 19:59:34,468 INFO HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 403 Forbidden"
+2026-08-05 20:00:44,444 INFO HTTP Request: POST https://api.x.ai/v1/chat/completions "HTTP/1.1 403 Forbidden"
+2026-08-05 20:01:16,873 INFO HTTP Request: POST https://ngw.devices.sberbank.ru:9443/api/v2/oauth "HTTP/1.1 200 OK"
+2026-08-05 20:01:17,348 INFO HTTP Request: POST https://api.giga.chat/v1/chat/completions "HTTP/1.1 200 OK"

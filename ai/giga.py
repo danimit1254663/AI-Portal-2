@@ -1,7 +1,7 @@
-
 from gigachat import GigaChat
+import os
 
-from core.config import get_gigachat_config
+from ai.grok import GrokAI
 
 from ai.memory import (
     add_history,
@@ -10,70 +10,117 @@ from ai.memory import (
 )
 
 
-
 class GigaAI:
+
 
     def __init__(self):
 
-        giga = get_gigachat_config()
-
-        self.client = GigaChat(
-
-            credentials=giga["credentials"],
-
-            scope=giga["scope"],
-
-            model=giga["model"],
-
-            verify_ssl_certs=False
-
-        )
-
-
-    def ask(self, text):
+        # =====================
+        # GIGACHAT
+        # =====================
 
         try:
 
+            key = os.getenv(
+                "GIGACHAT_CREDENTIALS"
+            )
 
-            # сохраняем вопрос пользователя
+            if key:
 
-            add_history(
+                self.giga = GigaChat(
+                    credentials=os.getenv("GIGACHAT_CREDENTIALS"),
+                    model="GigaChat-2",
+                    verify_ssl_certs=False
+                )
 
-                "user",
+                print(
+                    "GigaChat готов"
+                )
 
-                text
+            else:
 
+                self.giga = None
+
+                print(
+                    "GigaChat ключ отсутствует"
+                )
+
+
+        except Exception as e:
+
+            print(
+                "GigaChat ошибка:",
+                e
+            )
+
+            self.giga = None
+
+
+
+        # =====================
+        # GROK
+        # =====================
+
+        try:
+
+            self.grok = GrokAI()
+
+            print(
+                "Grok готов"
             )
 
 
+        except Exception as e:
 
-            messages = []
+            print(
+                "Grok отключён:",
+                e
+            )
+
+            self.grok = None
 
 
 
-            system_text = (
+
+
+
+    def ask(self,text):
+
+
+        add_history(
+            "user",
+            text
+        )
+
+
+        messages=[
+
+            {
+                "role":"system",
+
+                "content":
 
                 "Ты голосовой помощник Jarvis. "
-
-                "Отвечай кратко и понятно. "
-
-                "Используй информацию о пользователе.\n\n"
+                "Отвечай кратко и понятно.\n\n"
 
                 +
 
                 context()
 
-            )
+            }
+
+        ]
 
 
+        for item in get_history():
 
             messages.append(
 
                 {
 
-                    "role": "system",
+                    "role":item["role"],
 
-                    "content": system_text
+                    "content":item["content"]
 
                 }
 
@@ -81,64 +128,92 @@ class GigaAI:
 
 
 
-            for item in get_history():
+        # =====================
+        # 1 GIGACHAT
+        # =====================
+
+        if self.giga:
 
 
-                messages.append(
+            try:
+
+                response=self.giga.chat(
 
                     {
-
-                        "role": item["role"],
-
-                        "content": item["content"]
-
+                        "messages":messages
                     }
 
                 )
 
 
-
-            response = self.client.chat(
-
-                {
-
-                    "messages": messages
-
-                }
-
-            )
+                answer=response.choices[0].message.content
 
 
+                add_history(
 
-            answer = response.choices[0].message.content
+                    "assistant",
+
+                    answer
+
+                )
 
 
+                print(
+                    "Ответ: GigaChat"
+                )
 
-            add_history(
 
-                "assistant",
-
-                answer
-
-            )
+                return answer
 
 
 
-            return answer
+            except Exception as e:
+
+                print(
+                    "GigaChat недоступен:",
+                    e
+                )
 
 
 
-        except Exception as e:
+        # =====================
+        # 2 GROK
+        # =====================
+
+        if self.grok:
 
 
-            print(
+            try:
 
-                "GigaChat error:",
-
-                e
-
-            )
+                answer=self.grok.ask(
+                    text
+                )
 
 
-            return "Ошибка связи с искусственным интеллектом."
+                add_history(
+                    "assistant",
+                    answer
+                )
 
+
+                print(
+                    "Ответ: Grok"
+                )
+
+
+                return answer
+
+
+
+            except Exception as e:
+
+                print(
+                    "Grok ошибка:",
+                    e
+                )
+
+
+
+
+
+        return "Все системы ИИ недоступны"

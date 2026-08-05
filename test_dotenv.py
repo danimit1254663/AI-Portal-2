@@ -1,9 +1,8 @@
-from core.config import get_gigachat_config
+import os
+from dotenv import load_dotenv
 
+load_dotenv()
 
-giga = get_gigachat_config()
-
-
-print("CLIENT:", giga["client_id"])
-print("SECRET:", giga["client_secret"])
-print("SCOPE:", giga["scope"])
+print(
+    os.getenv("XAI_API_KEY")
+)
