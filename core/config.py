@@ -60,6 +60,18 @@ def first_start_setup():
     api_key2 = input(
         "API ключ: "
     )
+    try:
+
+        speak(
+            "Введите API ключ TG (xAI)"
+        )
+
+    except:
+        pass
+
+    api_key3 = input(
+        "API ключ: "
+    )
     with open(
         ENV_FILE,
         "w",
@@ -73,6 +85,7 @@ XAI_API_KEY={api_key2}
 GIGACHAT_CREDENTIALS={api_key}
 GIGACHAT_API_PERS=GIGACHAT_API_PERS
 GIGACHAT_MODEL=GigaChat-2
+"Telegram_CREDENTIALS"={api_key3}
 """
         )
 

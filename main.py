@@ -2,7 +2,7 @@ import time
 import logging
 import traceback
 from dotenv import load_dotenv
-
+from Telegram_bot import Tg_bot
 load_dotenv()
 from core.config import first_start_setup
 from ui.hud import (
@@ -597,6 +597,7 @@ def voice_loop():
 
 def main():
     first_start_setup()
+    Tg_bot()
     print(
 
         """
