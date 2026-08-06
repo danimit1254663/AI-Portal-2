@@ -4,10 +4,12 @@ import telebot
 from ai.giga import GigaAI
 
 load_dotenv()
-def Tg_bot:
+
+
+def Tg_bot():
     token = os.getenv("Telegram_CREDENTIALS")
     if not token:
-        raise ValueError("Токен не найден! Проверь файл .env и переменную Telegram_CREDENTIALS.")
+        raise ValueError("Не найден Telegram_CREDENTIALS")
 
     bot = telebot.TeleBot(token)
 
@@ -19,37 +21,50 @@ def Tg_bot:
     def handle_text(message):
         text = message.text.strip().lower()
 
-    # Вариант 1: просто «джарвис»
+        # Просто Джарвис
         if text == "джарвис":
-            bot.send_message(message.chat.id, "Да, Сэр!")
             bot.send_message(
-            message.chat.id,
-            "Если хотите что-то спросить, просто скажите: «Джарвис узнай <вопрос>»"
-        )
-            return  # чтобы не идти дальше
+                message.chat.id,
+                "Да, Сэр!\nНапишите:\nДжарвис узнай <вопрос>"
+            )
+            return
 
-    # Вариант 2: «джарвис узнай …»
+        # Вопрос ИИ
         if text.startswith("джарвис узнай"):
-            bot.send_message(message.chat.id, "Да, Сэр! Сейчас узнаю…")
-
-        # Извлекаем сам вопрос (убираем «джарвис узнай»)
             question = text.replace("джарвис узнай", "", 1).strip()
+
             if not question:
-                bot.send_message(message.chat.id, "Сэр, вы не задали вопрос после «Джарвис узнай».")
+                bot.send_message(message.chat.id, "После команды нет вопроса.")
                 return
 
-             try:
+            bot.send_message(message.chat.id, "Да, Сэр! Сейчас узнаю...")
+
+            try:
                 ai = GigaAI()
-                answer = ai.ask(question)  # убедись, что ask принимает именно строку
-                response = f"Надеюсь, я помог, Сэр. Jarvis:\n{answer}"
-                bot.send_message(message.chat.id, response)
+                answer = ai.ask(question)
+                bot.send_message(message.chat.id, answer)
             except Exception as e:
+                bot.send_message(message.chat.id, str(e))
 
-        if text.startswith("джарвис выключи комп"):
-            bot.send_message(message.chat.id, "Да, Сэр! Сейчас")
+            return
 
-            os.system(
-                "shutdown /s /t 5"
+        # Выключение ПК
+        if text == "джарвис выключи комп":
+            msg = bot.send_message(
+                message.chat.id,
+                "Введите ключ доступа:"
             )
 
-    bot.infinity_polling()
+            bot.register_next_step_handler(msg, check_password)
+            return
+
+    def check_password(message):
+        password = message.text.strip()
+
+        if password == "12546633":
+            bot.send_message(message.chat.id, "Ключ принят. Выключаю компьютер.")
+            os.system("shutdown /s /t 5")
+        else:
+            bot.send_message(message.chat.id, "Неверный ключ доступа.")
+
+    bot.infinity_polling(skip_pending=True)

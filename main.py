@@ -597,7 +597,7 @@ def voice_loop():
 
 def main():
     first_start_setup()
-    Tg_bot()
+
     print(
 
         """
@@ -631,7 +631,7 @@ def main():
 
 
     voice_loop()
-
+    Tg_bot()
 
 
 
