@@ -1,105 +1,117 @@
+# telegram_bot.py
 import os
 import telebot
 from dotenv import load_dotenv
-from ai.giga import GigaAI
+from ai.giga_ai import GigaAI
 from commands.windows import windows_command
+from ai.memory import remember
 
 load_dotenv()
 
 token = os.getenv("Telegram_CREDENTIALS")
 if not token:
-    raise ValueError("Токен не найден! Проверь файл .env и переменную Telegram_CREDENTIALS.")
+    raise ValueError("Токен не найден! Проверь .env (Telegram_CREDENTIALS)")
+
+password = os.getenv("SHUTDOWN_PASSWORD")
+if not password:
+    # Если пароля нет, ставим заглушку, чтобы бот не падал
+    password = "NO_PASSWORD_SET"
+    print("⚠️ ВНИМАНИЕ: SHUTDOWN_PASSWORD не задан в .env!")
 
 bot = telebot.TeleBot(token)
-
-PASSWORD = "12546633"  # Лучше вынести в .env, но пока оставим так для наглядности
-
+ai = GigaAI()
 
 @bot.message_handler(commands=["start"])
 def start(message):
     bot.send_message(
         message.chat.id,
-        "Здравствуйте, Сэр!\n\n"
-        "Доступные команды:\n"
-        "- «Джарвис» — приветствие и подсказки\n"
-        "- «Джарвис узнай <вопрос>» — спросить ИИ\n"
-        "- «Джарвис выключи комп» — запрос на выключение (нужен пароль)\n"
+        "Я здесь, Сэр!\n\n"
+        "Теперь для ЛЮБОЙ команды нужен пароль.\n"
+        "Напиши пароль — и дальше сможешь отправлять любые команды."
     )
 
+# Состояние: ждём пароль или уже авторизован
+user_state = {}  # chat_id -> "waiting_password" / "authorized"
 
 @bot.message_handler(func=lambda m: True)
-def handle(message):
+def handle_message(message):
+    chat_id = message.chat.id
     text = message.text.strip().lower()
 
-    # 1. Просто «джарвис»
-    if text == "джарвис":
-        bot.send_message(
-            message.chat.id,
-            "Да, Сэр!\nНапишите:\n- «Джарвис узнай <вопрос>», чтобы спросить ИИ\n- «Джарвис выключи комп», чтобы выключить компьютер (нужен пароль)"
-        )
+    # Инициализация состояния
+    if chat_id not in user_state:
+        user_state[chat_id] = "waiting_password"
+        bot.send_message(chat_id, "Введите пароль для доступа к ассистенту:")
         return
 
-    # 2. Запрос к ИИ
-    if text.startswith("джарвис узнай"):
-        question = text.replace("джарвис узнай", "", 1).strip()
-        if not question:
-            bot.send_message(message.chat.id, "После «Джарвис узнай» нет вопроса. Напишите вопрос.")
+    # Если ждём пароль
+    if user_state[chat_id] == "waiting_password":
+        if text == password:
+            user_state[chat_id] = "authorized"
+            bot.send_message(chat_id, "✅ Доступ разрешён. Теперь можно отправлять любые команды.")
+            return
+        else:
+            bot.send_message(chat_id, "❌ Неверный пароль. Попробуйте ещё раз.")
             return
 
-        try:
-            ai = GigaAI()
-            answer = ai.ask(question)
-            bot.send_message(message.chat.id, answer)
-        except Exception as e:
-            bot.send_message(message.chat.id, f"Ошибка при запросе к ИИ: {e}")
+    # Если уже авторизован — обрабатываем команды
+    triggers = ["джарвис", "ассистент"]
+    clean_text = text
+    for t in triggers:
+        clean_text = clean_text.replace(t, "").strip()
+
+    if not clean_text:
+        bot.send_message(chat_id, "Слушаю, Сэр.")
         return
 
-    # 3. Выключение компьютера
-    if text == "джарвис выключи комп":
-        bot.send_message(message.chat.id, "Введите ключ доступа для выключения компьютера:")
-        bot.register_next_step_handler(message, check_shutdown_password)
-        return
+    # Сначала проверяем, не является ли команда опасной (для единообразия логики)
+    danger_res = windows_command(clean_text)
 
-    # 4. Любая другая команда с «джарвис» (например, «джарвис открой блокнот»)
-    if text.startswith("джарвис "):
-        command_text = text.replace("джарвис", "", 1).strip()
-        bot.send_message(message.chat.id, "Введите ключ доступа для выполнения команды:")
-        # Сохраняем команду в сообщение, чтобы передать дальше
-        message.custom_command = command_text
-        bot.register_next_step_handler(message, check_windows_password)
-        return
-
-
-def check_shutdown_password(message):
-    if message.text == PASSWORD:
-        bot.send_message(message.chat.id, "Компьютер будет выключен через 5 секунд. Отмена невозможна.")
+    # В текущей версии windows_command опасные команды возвращают маркеры
+    # Но даже если они их выполнят, у нас уже есть авторизация — так что всё ок.
+    if danger_res == "__SHUTDOWN_REQUEST__":
+        bot.send_message(chat_id, "Выключение через 5 секунд… Отмена невозможна.")
         os.system("shutdown /s /t 5")
-    else:
-        bot.send_message(message.chat.id, "Неверный ключ доступа.")
-
-
-def check_windows_password(message):
-    # Получаем сохранённую команду
-    command_text = getattr(message, "custom_command", None)
-    if not command_text:
-        bot.send_message(message.chat.id, "Ошибка: команда не сохранена.")
+        return
+    elif danger_res == "__REBOOT_REQUEST__":
+        bot.send_message(chat_id, "Перезагрузка через 5 секунд.")
+        os.system("shutdown /r /t 5")
         return
 
-    if message.text == PASSWORD:
+    # Обычные команды
+    if clean_text.startswith("узнай "):
+        question = clean_text.replace("узнай ", "", 1).strip()
+        if not question:
+            bot.send_message(chat_id, "Что нужно узнать? Напиши после «узнай».")
+            return
         try:
-            # windows_command должен принимать строку, а не message
-            result = windows_command(command_text)
-            bot.send_message(message.chat.id, result)
+            answer = ai.ask(question)
+            bot.send_message(chat_id, answer)
         except Exception as e:
-            bot.send_message(message.chat.id, f"Ошибка выполнения команды: {e}")
-    else:
-        bot.send_message(message.chat.id, "Неверный ключ доступа.")
+            bot.send_message(chat_id, f"Ошибка ИИ: {e}")
+        return
 
+    mem = remember(clean_text)
+    if mem:
+        bot.send_message(chat_id, mem)
+        return
 
-def Tg_bot():
-    print("Telegram бот запущен")
-    bot.infinity_polling(skip_pending=True)
+    res = windows_command(clean_text)
+    if res:
+        # Если windows_command вернул текст (не маркер выключения) — отправляем
+        # Маркеры выключения мы уже обработали выше
+        if res not in ("__SHUTDOWN_REQUEST__", "__REBOOT_REQUEST__"):
+            bot.send_message(chat_id, res)
+        return
+
+    # Если ничего не подошло — в ИИ
+    try:
+        answer = ai.ask(clean_text)
+        bot.send_message(chat_id, answer)
+    except Exception as e:
+        bot.send_message(chat_id, str(e))
 
 
 if __name__ == "__main__":
-    Tg_bot()
+    print("Telegram бот запущен (все команды требуют пароль)...")
+    bot.infinity_polling(skip_pending=True, timeout=30, long_polling_timeout=40)
