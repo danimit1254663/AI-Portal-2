@@ -628,10 +628,9 @@ def main():
 
     )
 
-
-
-    voice_loop()
     Tg_bot()
+    voice_loop()
+
 
 
 
