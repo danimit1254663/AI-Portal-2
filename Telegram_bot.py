@@ -2,7 +2,7 @@
 import os
 import telebot
 from dotenv import load_dotenv
-from ai.giga_ai import GigaAI
+from ai.giga import GigaAI
 from commands.windows import windows_command
 from ai.memory import remember
 
@@ -12,12 +12,7 @@ token = os.getenv("Telegram_CREDENTIALS")
 if not token:
     raise ValueError("Токен не найден! Проверь .env (Telegram_CREDENTIALS)")
 
-password = os.getenv("SHUTDOWN_PASSWORD")
-if not password:
-    # Если пароля нет, ставим заглушку, чтобы бот не падал
-    password = "NO_PASSWORD_SET"
-    print("⚠️ ВНИМАНИЕ: SHUTDOWN_PASSWORD не задан в .env!")
-
+password ='12546633'
 bot = telebot.TeleBot(token)
 ai = GigaAI()
 
@@ -110,8 +105,8 @@ def handle_message(message):
         bot.send_message(chat_id, answer)
     except Exception as e:
         bot.send_message(chat_id, str(e))
-
-
-if __name__ == "__main__":
+def Tg_bot():
     print("Telegram бот запущен (все команды требуют пароль)...")
     bot.infinity_polling(skip_pending=True, timeout=30, long_polling_timeout=40)
+if __name__ == "__main__":
+   Tg_bot()

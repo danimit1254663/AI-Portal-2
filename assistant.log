@@ -23591,3 +23591,7 @@ requests.exceptions.ProxyError: HTTPSConnectionPool(host='api.telegram.org', por
 2026-08-07 13:54:35,796 INFO HTTP Request: POST https://gigachat.devices.sberbank.ru/api/v1/chat/completions "HTTP/1.1 200 OK"
 2026-08-07 13:55:18,797 INFO HTTP Request: POST https://ngw.devices.sberbank.ru:9443/api/v2/oauth "HTTP/1.1 200 OK"
 2026-08-07 13:55:23,246 INFO HTTP Request: POST https://gigachat.devices.sberbank.ru/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-08-07 23:00:10,400 INFO HTTP Request: POST https://ngw.devices.sberbank.ru:9443/api/v2/oauth "HTTP/1.1 200 OK"
+2026-08-07 23:00:10,788 INFO HTTP Request: POST https://gigachat.devices.sberbank.ru/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-08-07 23:00:26,585 INFO HTTP Request: POST https://gigachat.devices.sberbank.ru/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-08-08 19:40:00,709 ERROR Voice Loop Error: 
