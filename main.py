@@ -66,14 +66,18 @@ def process_command(text):
 
     # Windows команды
     win_res = windows_command(text)
-    if win_res!="__SHUTDOWN_REQUEST__"or "__REBOOT_REQUEST__":
-        return win_res
-    elif win_res!="__SHUTDOWN_REQUEST__":
-        os.system("shutdown /s /t 5")
-        speak('Выключаюсь')
-    elif win_res!="__REBOOT_REQUEST__":
-        os.system("shutdown /r /t 5")
-        speak('Перезапуск')
+    if win_res:
+
+        if win_res == "__SHUTDOWN_REQUEST__":
+            os.system("shutdown /s /t 5")
+            speak('Выключаюсь')
+        elif win_res == "__REBOOT_REQUEST__":
+            os.system("shutdown /r /t 5")
+            speak('Рестарт')
+        # AI
+        else:
+            return win_res
+
     # AI
     return ai.ask(text)
 

@@ -85,8 +85,8 @@ def open_program(text):
     sites = {
         "youtube": "https://youtube.com",
         "гугл": "https://google.com",
-        "почта": "https://mail.yandex.ru",
-        "музыка": "https://music.yandex.ru",
+        "почту": "https://mail.yandex.ru",
+        "музыку": "https://music.yandex.ru",
     }
     for name, url in sites.items():
         if name in text:
