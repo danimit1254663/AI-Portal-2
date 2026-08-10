@@ -99,7 +99,7 @@ def search_web(text):
     if "ищи" not in text and "поиск" not in text:
         return None
     query = text
-    for word in ["джарвис найди", "джарвис поиск", "джарвис в интернете", "джарвис в браузере"]:
+    for word in ["джарвис гугли", "джарвис поиск", "джарвис в интернете", "джарвис в браузере"]:
         query = query.replace(word, "")
     query = query.strip()
     if query:
@@ -189,9 +189,9 @@ def windows_command(text):
     # Время и дата
     if any(x in text for x in ["который час", "сколько времени"]):
         now = datetime.now().strftime("%H:%M:%S")
-        if state.hud_visible:
-            show_time(now)
-        return f"Сейчас {now}"
+        if any(x in text for x in ["который час", "сколько времени"]):
+            now = datetime.now().strftime("%H:%M:%S")
+            return f"Сейчас {now}"
     if "какая дата" in text:
         import time
         return time.strftime("%d.%m.%Y")

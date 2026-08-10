@@ -63,8 +63,8 @@ def reactor_animation():
                 x1 = x + math.cos(angle)*r
                 y1 = y + math.sin(angle)*r
 
-                x2 = x + math.cos(angle)*(r+15)
-                y2 = y + math.sin(angle)*(r+15)
+                x2 = x + math.cos(angle)*(r+40)
+                y2 = y + math.sin(angle)*(r+40)
 
 
                 canvas.create_line(
@@ -79,10 +79,10 @@ def reactor_animation():
 
 
             canvas.create_oval(
-                x-35,
-                y-35,
-                x+35,
-                y+35,
+                x-45,
+                y-45,
+                x+45,
+                y+45,
                 outline="#00ffff",
                 width=3,
                 tags="reactor"

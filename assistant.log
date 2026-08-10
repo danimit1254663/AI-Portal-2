@@ -23598,3 +23598,424 @@ requests.exceptions.ProxyError: HTTPSConnectionPool(host='api.telegram.org', por
 2026-08-08 22:57:33,853 ERROR Voice Loop Error: 
 2026-08-08 22:57:55,509 ERROR Voice Loop Error: 
 2026-08-08 22:58:28,198 ERROR Voice Loop Error: 
+2026-08-08 23:46:12,780 INFO HTTP Request: POST https://ngw.devices.sberbank.ru:9443/api/v2/oauth "HTTP/1.1 200 OK"
+2026-08-09 14:12:49,233 CRITICAL \u041e\u0448\u0438\u0431\u043a\u0430 Telegram \u0431\u043e\u0442\u0430: 'utf-8' codec can't decode byte 0xff in position 0: invalid start byte
+Traceback (most recent call last):
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\main.py", line 144, in run_telegram_bot
+    if ask_start():
+       ^^^^^^^^^^^
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\Telegram_bot.py", line 885, in ask_start
+    answer = input(
+             ^^^^^^
+  File "<frozen codecs>", line 322, in decode
+UnicodeDecodeError: 'utf-8' codec can't decode byte 0xff in position 0: invalid start byte
+2026-08-09 14:13:32,507 CRITICAL \u041e\u0448\u0438\u0431\u043a\u0430 Telegram \u0431\u043e\u0442\u0430: 'utf-8' codec can't decode byte 0xff in position 0: invalid start byte
+Traceback (most recent call last):
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\main.py", line 144, in run_telegram_bot
+    if ask_start():
+       ^^^^^^^^^^^
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\Telegram_bot.py", line 885, in ask_start
+    answer = input(
+             ^^^^^^
+  File "<frozen codecs>", line 322, in decode
+UnicodeDecodeError: 'utf-8' codec can't decode byte 0xff in position 0: invalid start byte
+2026-08-09 14:14:20,222 CRITICAL \u041e\u0448\u0438\u0431\u043a\u0430 Telegram \u0431\u043e\u0442\u0430: 'utf-8' codec can't decode byte 0xff in position 0: invalid start byte
+Traceback (most recent call last):
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\main.py", line 144, in run_telegram_bot
+    if ask_start():
+       ^^^^^^^^^^^
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\Telegram_bot.py", line 885, in ask_start
+    answer = input(
+             ^^^^^^
+  File "<frozen codecs>", line 322, in decode
+UnicodeDecodeError: 'utf-8' codec can't decode byte 0xff in position 0: invalid start byte
+2026-08-09 14:15:05,333 CRITICAL \u041e\u0448\u0438\u0431\u043a\u0430 Telegram \u0431\u043e\u0442\u0430: 'utf-8' codec can't decode byte 0xff in position 0: invalid start byte
+Traceback (most recent call last):
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\main.py", line 144, in run_telegram_bot
+    if ask_start():
+       ^^^^^^^^^^^
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\Telegram_bot.py", line 885, in ask_start
+    answer = input(
+             ^^^^^^
+  File "<frozen codecs>", line 322, in decode
+UnicodeDecodeError: 'utf-8' codec can't decode byte 0xff in position 0: invalid start byte
+2026-08-09 14:15:36,426 CRITICAL \u041e\u0448\u0438\u0431\u043a\u0430 Telegram \u0431\u043e\u0442\u0430: 'utf-8' codec can't decode byte 0xff in position 0: invalid start byte
+Traceback (most recent call last):
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\main.py", line 144, in run_telegram_bot
+    if ask_start():
+       ^^^^^^^^^^^
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\Telegram_bot.py", line 885, in ask_start
+    answer = input(
+             ^^^^^^
+  File "<frozen codecs>", line 322, in decode
+UnicodeDecodeError: 'utf-8' codec can't decode byte 0xff in position 0: invalid start byte
+2026-08-09 14:17:14,987 INFO HTTP Request: POST https://ngw.devices.sberbank.ru:9443/api/v2/oauth "HTTP/1.1 200 OK"
+2026-08-09 14:17:15,913 INFO HTTP Request: POST https://gigachat.devices.sberbank.ru/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-08-09 14:19:20,004 INFO HTTP Request: POST https://ngw.devices.sberbank.ru:9443/api/v2/oauth "HTTP/1.1 200 OK"
+2026-08-09 14:19:20,515 INFO HTTP Request: POST https://gigachat.devices.sberbank.ru/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-08-10 22:33:12,087 ERROR \u041e\u0448\u0438\u0431\u043a\u0430 \u043f\u043e\u0434\u043a\u043b\u044e\u0447\u0435\u043d\u0438\u044f Arduino: could not open port 'COM3': FileNotFoundError(2, '\u041d\u0435 \u0443\u0434\u0430\u0435\u0442\u0441\u044f \u043d\u0430\u0439\u0442\u0438 \u0443\u043a\u0430\u0437\u0430\u043d\u043d\u044b\u0439 \u0444\u0430\u0439\u043b.', None, 2)
+Traceback (most recent call last):
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\main.py", line 59, in connect_arduino
+    arduino = serial.Serial(
+              ^^^^^^^^^^^^^^
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\venv\Lib\site-packages\serial\serialwin32.py", line 33, in __init__
+    super(Serial, self).__init__(*args, **kwargs)
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\venv\Lib\site-packages\serial\serialutil.py", line 244, in __init__
+    self.open()
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\venv\Lib\site-packages\serial\serialwin32.py", line 64, in open
+    raise SerialException("could not open port {!r}: {!r}".format(self.portstr, ctypes.WinError()))
+serial.serialutil.SerialException: could not open port 'COM3': FileNotFoundError(2, '\u041d\u0435 \u0443\u0434\u0430\u0435\u0442\u0441\u044f \u043d\u0430\u0439\u0442\u0438 \u0443\u043a\u0430\u0437\u0430\u043d\u043d\u044b\u0439 \u0444\u0430\u0439\u043b.', None, 2)
+2026-08-10 22:34:00,051 INFO HTTP Request: POST https://ngw.devices.sberbank.ru:9443/api/v2/oauth "HTTP/1.1 200 OK"
+2026-08-10 22:34:00,679 INFO HTTP Request: POST https://gigachat.devices.sberbank.ru/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-08-10 22:34:16,257 INFO HTTP Request: POST https://gigachat.devices.sberbank.ru/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-08-10 22:35:15,260 INFO HTTP Request: POST https://gigachat.devices.sberbank.ru/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-08-10 22:35:16,264 ERROR Voice Loop Error: main thread is not in main loop
+Traceback (most recent call last):
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\main.py", line 370, in voice_loop
+    set_command(command)
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\ui\hud.py", line 259, in set_command
+    command_label.configure(
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\venv\Lib\site-packages\customtkinter\windows\widgets\ctk_label.py", line 206, in configure
+    self._label.configure(text=self._text)
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python311\Lib\tkinter\__init__.py", line 1702, in configure
+    return self._configure('configure', cnf, kw)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python311\Lib\tkinter\__init__.py", line 1692, in _configure
+    self.tk.call(_flatten((self._w, cmd)) + self._options(cnf))
+RuntimeError: main thread is not in main loop
+2026-08-10 22:37:38,267 INFO Arduino connected: COM4
+2026-08-10 22:39:28,079 INFO HTTP Request: POST https://ngw.devices.sberbank.ru:9443/api/v2/oauth "HTTP/1.1 200 OK"
+2026-08-10 22:39:28,478 INFO HTTP Request: POST https://gigachat.devices.sberbank.ru/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-08-10 22:39:55,240 ERROR Voice Loop Error: 'locale' codec can't encode character '\u0421' in position 0: encoding error
+Traceback (most recent call last):
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\main.py", line 664, in voice_loop
+    answer = process_command(
+             ^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\main.py", line 433, in process_command
+    return now.strftime(
+           ^^^^^^^^^^^^^
+UnicodeEncodeError: 'locale' codec can't encode character '\u0421' in position 0: encoding error
+2026-08-10 22:40:58,083 INFO Arduino connected: COM4
+2026-08-10 22:41:55,079 INFO HTTP Request: POST https://ngw.devices.sberbank.ru:9443/api/v2/oauth "HTTP/1.1 200 OK"
+2026-08-10 22:41:55,634 INFO HTTP Request: POST https://gigachat.devices.sberbank.ru/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-08-10 22:44:02,721 CRITICAL \u041e\u0448\u0438\u0431\u043a\u0430 Telegram \u0431\u043e\u0442\u0430: 'utf-8' codec can't decode byte 0xff in position 0: invalid start byte
+Traceback (most recent call last):
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\main.py", line 827, in run_telegram_bot
+    if ask_start():
+       ^^^^^^^^^^^
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\Telegram_bot.py", line 885, in ask_start
+    answer = input(
+             ^^^^^^
+  File "<frozen codecs>", line 322, in decode
+UnicodeDecodeError: 'utf-8' codec can't decode byte 0xff in position 0: invalid start byte
+2026-08-10 22:47:39,559 INFO Arduino connected: COM4
+2026-08-10 22:50:11,526 ERROR Arduino connection error: could not open port 'COM4': PermissionError(13, '\u041e\u0442\u043a\u0430\u0437\u0430\u043d\u043e \u0432 \u0434\u043e\u0441\u0442\u0443\u043f\u0435.', None, 5)
+Traceback (most recent call last):
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\main.py", line 88, in connect_arduino
+    arduino = serial.Serial(
+              ^^^^^^^^^^^^^^
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\venv\Lib\site-packages\serial\serialwin32.py", line 33, in __init__
+    super(Serial, self).__init__(*args, **kwargs)
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\venv\Lib\site-packages\serial\serialutil.py", line 244, in __init__
+    self.open()
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\venv\Lib\site-packages\serial\serialwin32.py", line 64, in open
+    raise SerialException("could not open port {!r}: {!r}".format(self.portstr, ctypes.WinError()))
+serial.serialutil.SerialException: could not open port 'COM4': PermissionError(13, '\u041e\u0442\u043a\u0430\u0437\u0430\u043d\u043e \u0432 \u0434\u043e\u0441\u0442\u0443\u043f\u0435.', None, 5)
+2026-08-10 22:50:49,919 INFO HTTP Request: POST https://ngw.devices.sberbank.ru:9443/api/v2/oauth "HTTP/1.1 200 OK"
+2026-08-10 22:50:50,534 INFO HTTP Request: POST https://gigachat.devices.sberbank.ru/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-08-10 22:53:08,215 ERROR Arduino connection error: could not open port 'COM4': PermissionError(13, '\u041e\u0442\u043a\u0430\u0437\u0430\u043d\u043e \u0432 \u0434\u043e\u0441\u0442\u0443\u043f\u0435.', None, 5)
+Traceback (most recent call last):
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\main.py", line 82, in connect_arduino
+    arduino = serial.Serial(
+              ^^^^^^^^^^^^^^
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\venv\Lib\site-packages\serial\serialwin32.py", line 33, in __init__
+    super(Serial, self).__init__(*args, **kwargs)
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\venv\Lib\site-packages\serial\serialutil.py", line 244, in __init__
+    self.open()
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\venv\Lib\site-packages\serial\serialwin32.py", line 64, in open
+    raise SerialException("could not open port {!r}: {!r}".format(self.portstr, ctypes.WinError()))
+serial.serialutil.SerialException: could not open port 'COM4': PermissionError(13, '\u041e\u0442\u043a\u0430\u0437\u0430\u043d\u043e \u0432 \u0434\u043e\u0441\u0442\u0443\u043f\u0435.', None, 5)
+2026-08-10 22:53:21,576 INFO HTTP Request: POST https://ngw.devices.sberbank.ru:9443/api/v2/oauth "HTTP/1.1 200 OK"
+2026-08-10 22:53:22,173 INFO HTTP Request: POST https://gigachat.devices.sberbank.ru/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-08-10 22:53:46,027 CRITICAL \u041e\u0448\u0438\u0431\u043a\u0430 Telegram \u0431\u043e\u0442\u0430: 'utf-8' codec can't decode byte 0xff in position 0: invalid start byte
+Traceback (most recent call last):
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\main.py", line 952, in run_telegram_bot
+    if ask_start():
+       ^^^^^^^^^^^
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\Telegram_bot.py", line 885, in ask_start
+    answer = input(
+             ^^^^^^
+  File "<frozen codecs>", line 322, in decode
+UnicodeDecodeError: 'utf-8' codec can't decode byte 0xff in position 0: invalid start byte
+2026-08-10 22:53:52,919 INFO Arduino connected: COM4
+2026-08-10 22:56:30,849 CRITICAL \u041e\u0448\u0438\u0431\u043a\u0430 Telegram \u0431\u043e\u0442\u0430: 'utf-8' codec can't decode byte 0xff in position 0: invalid start byte
+Traceback (most recent call last):
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\main.py", line 952, in run_telegram_bot
+    ============================
+               ^^^^^^^^^^^
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\Telegram_bot.py", line 885, in ask_start
+    answer = input(
+             ^^^^^^
+  File "<frozen codecs>", line 322, in decode
+UnicodeDecodeError: 'utf-8' codec can't decode byte 0xff in position 0: invalid start byte
+2026-08-10 22:56:37,910 INFO Arduino connected: COM4
+2026-08-10 22:56:49,924 INFO HTTP Request: POST https://ngw.devices.sberbank.ru:9443/api/v2/oauth "HTTP/1.1 200 OK"
+2026-08-10 22:56:50,317 INFO HTTP Request: POST https://gigachat.devices.sberbank.ru/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-08-10 23:02:06,254 CRITICAL \u041e\u0448\u0438\u0431\u043a\u0430 Telegram \u0431\u043e\u0442\u0430: 'utf-8' codec can't decode byte 0xff in position 0: invalid start byte
+Traceback (most recent call last):
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\main.py", line 914, in run_telegram_bot
+    if ask_start():
+       ^^^^^^^^^^^
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\Telegram_bot.py", line 885, in ask_start
+    answer = input(
+             ^^^^^^
+  File "<frozen codecs>", line 322, in decode
+UnicodeDecodeError: 'utf-8' codec can't decode byte 0xff in position 0: invalid start byte
+2026-08-10 23:02:13,031 INFO Arduino connected: COM4
+2026-08-10 23:02:29,177 INFO HTTP Request: POST https://ngw.devices.sberbank.ru:9443/api/v2/oauth "HTTP/1.1 200 OK"
+2026-08-10 23:02:29,596 INFO HTTP Request: POST https://gigachat.devices.sberbank.ru/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-08-10 23:05:40,045 ERROR Arduino connection error
+Traceback (most recent call last):
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\main.py", line 82, in connect_arduino
+    arduino = serial.Serial(
+              ^^^^^^^^^^^^^^
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\venv\Lib\site-packages\serial\serialwin32.py", line 33, in __init__
+    super(Serial, self).__init__(*args, **kwargs)
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\venv\Lib\site-packages\serial\serialutil.py", line 244, in __init__
+    self.open()
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\venv\Lib\site-packages\serial\serialwin32.py", line 64, in open
+    raise SerialException("could not open port {!r}: {!r}".format(self.portstr, ctypes.WinError()))
+serial.serialutil.SerialException: could not open port 'COM4': PermissionError(13, '\u041e\u0442\u043a\u0430\u0437\u0430\u043d\u043e \u0432 \u0434\u043e\u0441\u0442\u0443\u043f\u0435.', None, 5)
+2026-08-10 23:05:59,569 INFO HTTP Request: POST https://ngw.devices.sberbank.ru:9443/api/v2/oauth "HTTP/1.1 200 OK"
+2026-08-10 23:05:59,846 INFO HTTP Request: POST https://gigachat.devices.sberbank.ru/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-08-10 23:08:02,610 ERROR Arduino connection error
+Traceback (most recent call last):
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\main.py", line 78, in connect_arduino
+    arduino = serial.Serial(
+              ^^^^^^^^^^^^^^
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\venv\Lib\site-packages\serial\serialwin32.py", line 33, in __init__
+    super(Serial, self).__init__(*args, **kwargs)
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\venv\Lib\site-packages\serial\serialutil.py", line 244, in __init__
+    self.open()
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\venv\Lib\site-packages\serial\serialwin32.py", line 64, in open
+    raise SerialException("could not open port {!r}: {!r}".format(self.portstr, ctypes.WinError()))
+serial.serialutil.SerialException: could not open port 'COM4': PermissionError(13, '\u041e\u0442\u043a\u0430\u0437\u0430\u043d\u043e \u0432 \u0434\u043e\u0441\u0442\u0443\u043f\u0435.', None, 5)
+2026-08-10 23:08:11,874 CRITICAL \u041e\u0448\u0438\u0431\u043a\u0430 Telegram \u0431\u043e\u0442\u0430: 'utf-8' codec can't decode byte 0xff in position 0: invalid start byte
+Traceback (most recent call last):
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\main.py", line 939, in run_telegram_bot
+    if ask_start():
+       ^^^^^^^^^^^
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\Telegram_bot.py", line 885, in ask_start
+    answer = input(
+             ^^^^^^
+  File "<frozen codecs>", line 322, in decode
+UnicodeDecodeError: 'utf-8' codec can't decode byte 0xff in position 0: invalid start byte
+2026-08-10 23:08:18,348 INFO Arduino connected: COM4
+2026-08-10 23:08:37,618 INFO HTTP Request: POST https://ngw.devices.sberbank.ru:9443/api/v2/oauth "HTTP/1.1 200 OK"
+2026-08-10 23:08:38,135 INFO HTTP Request: POST https://gigachat.devices.sberbank.ru/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-08-10 23:08:38,139 ERROR Voice Loop Error: name 'lcd_answer' is not defined
+Traceback (most recent call last):
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\main.py", line 906, in voice_loop
+    lcd_answer(
+    ^^^^^^^^^^
+NameError: name 'lcd_answer' is not defined
+2026-08-10 23:09:20,655 INFO Arduino connected: COM4
+2026-08-10 23:09:32,478 INFO HTTP Request: POST https://ngw.devices.sberbank.ru:9443/api/v2/oauth "HTTP/1.1 200 OK"
+2026-08-10 23:18:08,987 INFO Arduino connected: COM4
+2026-08-10 23:18:32,354 INFO HTTP Request: POST https://ngw.devices.sberbank.ru:9443/api/v2/oauth "HTTP/1.1 200 OK"
+2026-08-10 23:18:32,966 INFO HTTP Request: POST https://gigachat.devices.sberbank.ru/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-08-10 23:19:46,606 CRITICAL \u041e\u0448\u0438\u0431\u043a\u0430 Telegram \u0431\u043e\u0442\u0430: 'utf-8' codec can't decode byte 0xff in position 0: invalid start byte
+Traceback (most recent call last):
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\main.py", line 950, in run_telegram_bot
+    if ask_start():
+       ^^^^^^^^^^^
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\Telegram_bot.py", line 885, in ask_start
+    answer = input(
+             ^^^^^^
+  File "<frozen codecs>", line 322, in decode
+UnicodeDecodeError: 'utf-8' codec can't decode byte 0xff in position 0: invalid start byte
+2026-08-10 23:20:38,516 INFO Arduino connected: COM4
+2026-08-10 23:22:45,250 CRITICAL \u041e\u0448\u0438\u0431\u043a\u0430 Telegram \u0431\u043e\u0442\u0430: 'utf-8' codec can't decode byte 0xff in position 0: invalid start byte
+Traceback (most recent call last):
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\main.py", line 950, in run_telegram_bot
+    if ask_start():
+       ^^^^^^^^^^^
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\Telegram_bot.py", line 885, in ask_start
+    answer = input(
+             ^^^^^^
+  File "<frozen codecs>", line 322, in decode
+UnicodeDecodeError: 'utf-8' codec can't decode byte 0xff in position 0: invalid start byte
+2026-08-10 23:26:01,039 ERROR Arduino connection error
+Traceback (most recent call last):
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\main.py", line 78, in connect_arduino
+    arduino = serial.Serial(
+              ^^^^^^^^^^^^^^
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\venv\Lib\site-packages\serial\serialwin32.py", line 33, in __init__
+    super(Serial, self).__init__(*args, **kwargs)
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\venv\Lib\site-packages\serial\serialutil.py", line 244, in __init__
+    self.open()
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\venv\Lib\site-packages\serial\serialwin32.py", line 64, in open
+    raise SerialException("could not open port {!r}: {!r}".format(self.portstr, ctypes.WinError()))
+serial.serialutil.SerialException: could not open port 'COM4': PermissionError(13, '\u041e\u0442\u043a\u0430\u0437\u0430\u043d\u043e \u0432 \u0434\u043e\u0441\u0442\u0443\u043f\u0435.', None, 5)
+2026-08-10 23:26:16,904 INFO HTTP Request: POST https://ngw.devices.sberbank.ru:9443/api/v2/oauth "HTTP/1.1 200 OK"
+2026-08-10 23:26:17,305 INFO HTTP Request: POST https://gigachat.devices.sberbank.ru/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-08-10 23:27:36,872 CRITICAL \u041e\u0448\u0438\u0431\u043a\u0430 Telegram \u0431\u043e\u0442\u0430: 'utf-8' codec can't decode byte 0xff in position 0: invalid start byte
+Traceback (most recent call last):
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\main.py", line 950, in run_telegram_bot
+    if ask_start():
+       ^^^^^^^^^^^
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\Telegram_bot.py", line 885, in ask_start
+    answer = input(
+             ^^^^^^
+  File "<frozen codecs>", line 322, in decode
+UnicodeDecodeError: 'utf-8' codec can't decode byte 0xff in position 0: invalid start byte
+2026-08-10 23:28:16,800 ERROR Arduino connection error
+Traceback (most recent call last):
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\main.py", line 78, in connect_arduino
+    arduino = serial.Serial(
+              ^^^^^^^^^^^^^^
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\venv\Lib\site-packages\serial\serialwin32.py", line 33, in __init__
+    super(Serial, self).__init__(*args, **kwargs)
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\venv\Lib\site-packages\serial\serialutil.py", line 244, in __init__
+    self.open()
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\venv\Lib\site-packages\serial\serialwin32.py", line 64, in open
+    raise SerialException("could not open port {!r}: {!r}".format(self.portstr, ctypes.WinError()))
+serial.serialutil.SerialException: could not open port 'COM4': PermissionError(13, '\u041e\u0442\u043a\u0430\u0437\u0430\u043d\u043e \u0432 \u0434\u043e\u0441\u0442\u0443\u043f\u0435.', None, 5)
+2026-08-10 23:29:11,118 INFO HTTP Request: POST https://ngw.devices.sberbank.ru:9443/api/v2/oauth "HTTP/1.1 200 OK"
+2026-08-10 23:29:11,421 INFO HTTP Request: POST https://gigachat.devices.sberbank.ru/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-08-10 23:30:37,389 CRITICAL \u041e\u0448\u0438\u0431\u043a\u0430 Telegram \u0431\u043e\u0442\u0430: 'utf-8' codec can't decode byte 0xff in position 0: invalid start byte
+Traceback (most recent call last):
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\main.py", line 950, in run_telegram_bot
+    if ask_start():
+       ^^^^^^^^^^^
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\Telegram_bot.py", line 885, in ask_start
+    answer = input(
+             ^^^^^^
+  File "<frozen codecs>", line 322, in decode
+UnicodeDecodeError: 'utf-8' codec can't decode byte 0xff in position 0: invalid start byte
+2026-08-10 23:30:41,958 ERROR Arduino connection error
+Traceback (most recent call last):
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\main.py", line 85, in connect_arduino
+    arduino = serial.Serial(
+              ^^^^^^^^^^^^^^
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\venv\Lib\site-packages\serial\serialwin32.py", line 33, in __init__
+    super(Serial, self).__init__(*args, **kwargs)
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\venv\Lib\site-packages\serial\serialutil.py", line 244, in __init__
+    self.open()
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\venv\Lib\site-packages\serial\serialwin32.py", line 64, in open
+    raise SerialException("could not open port {!r}: {!r}".format(self.portstr, ctypes.WinError()))
+serial.serialutil.SerialException: could not open port 'COM4': PermissionError(13, '\u041e\u0442\u043a\u0430\u0437\u0430\u043d\u043e \u0432 \u0434\u043e\u0441\u0442\u0443\u043f\u0435.', None, 5)
+2026-08-10 23:31:00,133 INFO HTTP Request: POST https://ngw.devices.sberbank.ru:9443/api/v2/oauth "HTTP/1.1 200 OK"
+2026-08-10 23:31:00,402 INFO HTTP Request: POST https://gigachat.devices.sberbank.ru/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-08-10 23:31:14,056 CRITICAL \u041e\u0448\u0438\u0431\u043a\u0430 Telegram \u0431\u043e\u0442\u0430: 'utf-8' codec can't decode byte 0xff in position 0: invalid start byte
+Traceback (most recent call last):
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\main.py", line 984, in run_telegram_bot
+    if ask_start():
+       ^^^^^^^^^^^
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\Telegram_bot.py", line 885, in ask_start
+    answer = input(
+             ^^^^^^
+  File "<frozen codecs>", line 322, in decode
+UnicodeDecodeError: 'utf-8' codec can't decode byte 0xff in position 0: invalid start byte
+2026-08-10 23:31:21,115 INFO Arduino connected: COM4 @ 9600
+2026-08-10 23:31:36,583 INFO HTTP Request: POST https://ngw.devices.sberbank.ru:9443/api/v2/oauth "HTTP/1.1 200 OK"
+2026-08-10 23:31:37,139 INFO HTTP Request: POST https://gigachat.devices.sberbank.ru/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-08-10 23:32:55,693 CRITICAL \u041e\u0448\u0438\u0431\u043a\u0430 Telegram \u0431\u043e\u0442\u0430: 'utf-8' codec can't decode byte 0xff in position 0: invalid start byte
+Traceback (most recent call last):
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\main.py", line 984, in run_telegram_bot
+    if ask_start():
+       ^^^^^^^^^^^
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\Telegram_bot.py", line 885, in ask_start
+    answer = input(
+             ^^^^^^
+  File "<frozen codecs>", line 322, in decode
+UnicodeDecodeError: 'utf-8' codec can't decode byte 0xff in position 0: invalid start byte
+2026-08-10 23:33:39,131 INFO Arduino connected: COM4 @ 9600
+2026-08-10 23:33:52,970 INFO HTTP Request: POST https://ngw.devices.sberbank.ru:9443/api/v2/oauth "HTTP/1.1 200 OK"
+2026-08-10 23:33:53,263 INFO HTTP Request: POST https://gigachat.devices.sberbank.ru/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-08-10 23:34:03,492 INFO HTTP Request: POST https://gigachat.devices.sberbank.ru/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-08-10 23:36:00,717 CRITICAL \u041e\u0448\u0438\u0431\u043a\u0430 Telegram \u0431\u043e\u0442\u0430: 'utf-8' codec can't decode byte 0xff in position 0: invalid start byte
+Traceback (most recent call last):
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\main.py", line 1108, in run_telegram_bot
+    if ask_start():
+       ^^^^^^^^^^^
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\Telegram_bot.py", line 885, in ask_start
+    answer = input(
+             ^^^^^^
+  File "<frozen codecs>", line 322, in decode
+UnicodeDecodeError: 'utf-8' codec can't decode byte 0xff in position 0: invalid start byte
+2026-08-10 23:36:07,333 INFO Arduino connected: COM4 @ 9600
+2026-08-10 23:36:18,894 INFO HTTP Request: POST https://ngw.devices.sberbank.ru:9443/api/v2/oauth "HTTP/1.1 200 OK"
+2026-08-10 23:36:19,156 INFO HTTP Request: POST https://gigachat.devices.sberbank.ru/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-08-10 23:36:26,795 INFO HTTP Request: POST https://gigachat.devices.sberbank.ru/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-08-10 23:37:14,354 CRITICAL \u041e\u0448\u0438\u0431\u043a\u0430 Telegram \u0431\u043e\u0442\u0430: 'utf-8' codec can't decode byte 0xff in position 0: invalid start byte
+Traceback (most recent call last):
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\main.py", line 1060, in run_telegram_bot
+    if ask_start():
+       ^^^^^^^^^^^
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\Telegram_bot.py", line 885, in ask_start
+    answer = input(
+             ^^^^^^
+  File "<frozen codecs>", line 322, in decode
+UnicodeDecodeError: 'utf-8' codec can't decode byte 0xff in position 0: invalid start byte
+2026-08-10 23:38:07,802 INFO Arduino connected: COM4 @ 9600
+2026-08-10 23:38:21,447 INFO HTTP Request: POST https://ngw.devices.sberbank.ru:9443/api/v2/oauth "HTTP/1.1 200 OK"
+2026-08-10 23:38:21,674 INFO HTTP Request: POST https://gigachat.devices.sberbank.ru/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-08-10 23:38:58,077 INFO HTTP Request: POST https://gigachat.devices.sberbank.ru/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-08-10 23:40:17,798 INFO HTTP Request: POST https://gigachat.devices.sberbank.ru/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-08-10 23:43:03,447 CRITICAL \u041e\u0448\u0438\u0431\u043a\u0430 Telegram \u0431\u043e\u0442\u0430: 'utf-8' codec can't decode byte 0xff in position 0: invalid start byte
+Traceback (most recent call last):
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\main.py", line 1060, in run_telegram_bot
+    if ask_start():
+       ^^^^^^^^^^^
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\Telegram_bot.py", line 885, in ask_start
+    answer = input(
+             ^^^^^^
+  File "<frozen codecs>", line 322, in decode
+UnicodeDecodeError: 'utf-8' codec can't decode byte 0xff in position 0: invalid start byte
+2026-08-10 23:44:20,641 CRITICAL \u041e\u0448\u0438\u0431\u043a\u0430 Telegram \u0431\u043e\u0442\u0430: 'utf-8' codec can't decode byte 0xff in position 0: invalid start byte
+Traceback (most recent call last):
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\main.py", line 1094, in run_telegram_bot
+    if ask_start():
+       ^^^^^^^^^^^
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\Telegram_bot.py", line 885, in ask_start
+    answer = input(
+             ^^^^^^
+  File "<frozen codecs>", line 322, in decode
+UnicodeDecodeError: 'utf-8' codec can't decode byte 0xff in position 0: invalid start byte
+2026-08-10 23:44:24,855 ERROR Arduino connection error
+Traceback (most recent call last):
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\main.py", line 334, in connect_arduino
+    arduino = serial.Serial(
+              ^^^^^^^^^^^^^^
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\venv\Lib\site-packages\serial\serialwin32.py", line 33, in __init__
+    super(Serial, self).__init__(*args, **kwargs)
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\venv\Lib\site-packages\serial\serialutil.py", line 244, in __init__
+    self.open()
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\venv\Lib\site-packages\serial\serialwin32.py", line 64, in open
+    raise SerialException("could not open port {!r}: {!r}".format(self.portstr, ctypes.WinError()))
+serial.serialutil.SerialException: could not open port 'COM4': FileNotFoundError(2, '\u041d\u0435 \u0443\u0434\u0430\u0435\u0442\u0441\u044f \u043d\u0430\u0439\u0442\u0438 \u0443\u043a\u0430\u0437\u0430\u043d\u043d\u044b\u0439 \u0444\u0430\u0439\u043b.', None, 2)
+2026-08-10 23:44:45,244 INFO HTTP Request: POST https://ngw.devices.sberbank.ru:9443/api/v2/oauth "HTTP/1.1 200 OK"
+2026-08-10 23:44:45,540 INFO HTTP Request: POST https://gigachat.devices.sberbank.ru/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-08-10 23:46:17,672 CRITICAL \u041e\u0448\u0438\u0431\u043a\u0430 Telegram \u0431\u043e\u0442\u0430: 'utf-8' codec can't decode byte 0xff in position 0: invalid start byte
+Traceback (most recent call last):
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\main.py", line 1094, in run_telegram_bot
+    global assistant_running
+           ^^^^^^^^^^^
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\Telegram_bot.py", line 885, in ask_start
+    answer = input(
+             ^^^^^^
+  File "<frozen codecs>", line 322, in decode
+UnicodeDecodeError: 'utf-8' codec can't decode byte 0xff in position 0: invalid start byte
+2026-08-10 23:47:03,774 ERROR Arduino connection error
+Traceback (most recent call last):
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\main.py", line 334, in connect_arduino
+    arduino = serial.Serial(
+              ^^^^^^^^^^^^^^
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\venv\Lib\site-packages\serial\serialwin32.py", line 33, in __init__
+    super(Serial, self).__init__(*args, **kwargs)
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\venv\Lib\site-packages\serial\serialutil.py", line 244, in __init__
+    self.open()
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\venv\Lib\site-packages\serial\serialwin32.py", line 64, in open
+    raise SerialException("could not open port {!r}: {!r}".format(self.portstr, ctypes.WinError()))
+serial.serialutil.SerialException: could not open port 'COM4': FileNotFoundError(2, '\u041d\u0435 \u0443\u0434\u0430\u0435\u0442\u0441\u044f \u043d\u0430\u0439\u0442\u0438 \u0443\u043a\u0430\u0437\u0430\u043d\u043d\u044b\u0439 \u0444\u0430\u0439\u043b.', None, 2)

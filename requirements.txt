@@ -28,3 +28,4 @@ scipy==1.15.2
 omegaconf==2.3.0
 openai
 telebot
+serial
