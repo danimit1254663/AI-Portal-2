@@ -24019,3 +24019,255 @@ Traceback (most recent call last):
   File "C:\Users\Admin\PycharmProjects\AI-Portal-2\venv\Lib\site-packages\serial\serialwin32.py", line 64, in open
     raise SerialException("could not open port {!r}: {!r}".format(self.portstr, ctypes.WinError()))
 serial.serialutil.SerialException: could not open port 'COM4': FileNotFoundError(2, '\u041d\u0435 \u0443\u0434\u0430\u0435\u0442\u0441\u044f \u043d\u0430\u0439\u0442\u0438 \u0443\u043a\u0430\u0437\u0430\u043d\u043d\u044b\u0439 \u0444\u0430\u0439\u043b.', None, 2)
+2026-08-10 23:47:49,642 INFO HTTP Request: POST https://ngw.devices.sberbank.ru:9443/api/v2/oauth "HTTP/1.1 200 OK"
+2026-08-10 23:47:49,891 INFO HTTP Request: POST https://gigachat.devices.sberbank.ru/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-08-10 23:47:54,500 CRITICAL \u041e\u0448\u0438\u0431\u043a\u0430 Telegram \u0431\u043e\u0442\u0430: 'utf-8' codec can't decode byte 0xff in position 0: invalid start byte
+Traceback (most recent call last):
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\main.py", line 1056, in run_telegram_bot
+    if ask_start():
+       ^^^^^^^^^^^
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\Telegram_bot.py", line 885, in ask_start
+    answer = input(
+             ^^^^^^
+  File "<frozen codecs>", line 322, in decode
+UnicodeDecodeError: 'utf-8' codec can't decode byte 0xff in position 0: invalid start byte
+2026-08-10 23:48:14,615 INFO HTTP Request: POST https://ngw.devices.sberbank.ru:9443/api/v2/oauth "HTTP/1.1 200 OK"
+2026-08-10 23:48:15,492 INFO HTTP Request: POST https://gigachat.devices.sberbank.ru/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-08-10 23:50:06,663 CRITICAL \u041e\u0448\u0438\u0431\u043a\u0430 Telegram \u0431\u043e\u0442\u0430: 'utf-8' codec can't decode byte 0xff in position 0: invalid start byte
+Traceback (most recent call last):
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\main.py", line 1056, in run_telegram_bot
+    if ask_start():
+       ^^^^^^^^^^^
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\Telegram_bot.py", line 885, in ask_start
+    answer = input(
+             ^^^^^^
+  File "<frozen codecs>", line 322, in decode
+UnicodeDecodeError: 'utf-8' codec can't decode byte 0xff in position 0: invalid start byte
+2026-08-10 23:50:11,700 ERROR Arduino connection error
+Traceback (most recent call last):
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\main.py", line 334, in connect_arduino
+    arduino = serial.Serial(
+              ^^^^^^^^^^^^^^
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\venv\Lib\site-packages\serial\serialwin32.py", line 33, in __init__
+    super(Serial, self).__init__(*args, **kwargs)
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\venv\Lib\site-packages\serial\serialutil.py", line 244, in __init__
+    self.open()
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\venv\Lib\site-packages\serial\serialwin32.py", line 64, in open
+    raise SerialException("could not open port {!r}: {!r}".format(self.portstr, ctypes.WinError()))
+serial.serialutil.SerialException: could not open port 'COM4': FileNotFoundError(2, '\u041d\u0435 \u0443\u0434\u0430\u0435\u0442\u0441\u044f \u043d\u0430\u0439\u0442\u0438 \u0443\u043a\u0430\u0437\u0430\u043d\u043d\u044b\u0439 \u0444\u0430\u0439\u043b.', None, 2)
+2026-08-10 23:50:26,910 INFO HTTP Request: POST https://ngw.devices.sberbank.ru:9443/api/v2/oauth "HTTP/1.1 200 OK"
+2026-08-10 23:50:27,279 INFO HTTP Request: POST https://gigachat.devices.sberbank.ru/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-08-10 23:50:36,638 CRITICAL \u041e\u0448\u0438\u0431\u043a\u0430 Telegram \u0431\u043e\u0442\u0430: 'utf-8' codec can't decode byte 0xff in position 0: invalid start byte
+Traceback (most recent call last):
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\main.py", line 1085, in run_telegram_bot
+    if ask_start():
+       ^^^^^^^^^^^
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\Telegram_bot.py", line 885, in ask_start
+    answer = input(
+             ^^^^^^
+  File "<frozen codecs>", line 322, in decode
+UnicodeDecodeError: 'utf-8' codec can't decode byte 0xff in position 0: invalid start byte
+2026-08-10 23:51:38,623 INFO HTTP Request: POST https://ngw.devices.sberbank.ru:9443/api/v2/oauth "HTTP/1.1 200 OK"
+2026-08-10 23:51:39,863 INFO HTTP Request: POST https://gigachat.devices.sberbank.ru/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-08-10 23:54:42,329 INFO HTTP Request: POST https://gigachat.devices.sberbank.ru/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-08-10 23:57:38,729 INFO HTTP Request: POST https://gigachat.devices.sberbank.ru/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-08-10 23:58:33,320 INFO HTTP Request: POST https://gigachat.devices.sberbank.ru/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-08-11 00:00:17,518 CRITICAL \u041e\u0448\u0438\u0431\u043a\u0430 Telegram \u0431\u043e\u0442\u0430: 'utf-8' codec can't decode byte 0xff in position 0: invalid start byte
+Traceback (most recent call last):
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\main.py", line 1085, in run_telegram_bot
+    if ask_start():
+       ^^^^^^^^^^^
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\Telegram_bot.py", line 885, in ask_start
+    answer = input(
+             ^^^^^^
+  File "<frozen codecs>", line 322, in decode
+UnicodeDecodeError: 'utf-8' codec can't decode byte 0xff in position 0: invalid start byte
+2026-08-11 00:00:24,173 INFO Arduino connected: COM4
+2026-08-11 00:00:44,162 INFO HTTP Request: POST https://ngw.devices.sberbank.ru:9443/api/v2/oauth "HTTP/1.1 200 OK"
+2026-08-11 00:00:47,134 INFO HTTP Request: POST https://gigachat.devices.sberbank.ru/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-08-11 00:00:49,004 ERROR Voice Loop Error: Model couldn't generate your text, probably it's too long
+Traceback (most recent call last):
+  File "<torch_package_0>.multi_acc_v3_package.py", line 518, in apply_tts
+    out, out_add = self.models[model_id](**model_kwargs)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\venv\Lib\site-packages\torch\nn\modules\module.py", line 1773, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\venv\Lib\site-packages\torch\nn\modules\module.py", line 1784, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: The following operation failed in the TorchScript interpreter.
+Traceback of TorchScript, serialized code (most recent call last):
+  File ".data/ts_code/code/__torch__/silero_vocoder/jit_model.py", line 211, in forward
+        pass
+    tacotron = self.tacotron
+    mel_outputs = (tacotron).forward(sequence, speaker_ids, orig_mask, dur_hat, pitch_hat, None, )
+                   ~~~~~~~~~~~~~~~~~ <--- HERE
+    if torch.__isnot__(symb_durs4, None):
+      symb_durs20 = unchecked_cast(Dict[int, int], symb_durs4)
+  File ".data/ts_code/code/__torch__/jit_forward_model.py", line 73, in forward
+      encoder_outputs_expanded0 = encoder_outputs_expanded
+    decoder = self.decoder
+    outputs_expanded = (decoder).forward(encoder_outputs_expanded0, None, None, )
+                        ~~~~~~~~~~~~~~~~ <--- HERE
+    lin = self.lin
+    mel_outputs = (lin).forward(outputs_expanded, )
+  File ".data/ts_code/code/__torch__/tacotron2/fastpitch_layers.py", line 129, in forward
+    x8 = torch.transpose(x, 0, 1)
+    pos_encoder = self.pos_encoder
+    x9 = (pos_encoder).forward(x8, )
+          ~~~~~~~~~~~~~~~~~~~~ <--- HERE
+    x10 = torch.transpose(x9, 0, 1)
+    pre_vanilla_layers = self.pre_vanilla_layers
+  File ".data/ts_code/code/__torch__/tacotron2/fastpitch_layers.py", line 44, in forward
+    _0 = torch.slice(pe, 0, None, torch.size(x, 0))
+    _1 = torch.mul(scale, torch.slice(_0, 1))
+    x7 = torch.add(x, _1)
+         ~~~~~~~~~ <--- HERE
+    dropout = self.dropout
+    return (dropout).forward(x7, )
+
+Traceback of TorchScript, original code (most recent call last):
+  File "../../silero_vocoder/jit_model.py", line 617, in forward
+    
+        if self.energy_predictor is None:
+            mel_outputs = self.tacotron(sequence, speaker_ids, orig_mask, dur_hat, pitch_hat)
+                          ~~~~~~~~~~~~~ <--- HERE
+        else:
+            mel_outputs = self.tacotron(sequence, speaker_ids, orig_mask, dur_hat, pitch_hat, energy_hat)
+  File "/home/junior/notebook/junior/orange_lime/silero_tts_train/silero_vocoder/tacotron2/jit_forward_model.py", line 124, in forward
+    
+        # [B, Lexp, Denc]
+        outputs_expanded = self.decoder(encoder_outputs_expanded,
+                           ~~~~~~~~~~~~ <--- HERE
+                                        src_pad_mask=None)
+    
+  File "../tacotron2/fastpitch_layers.py", line 424, in forward
+        x = x.transpose(0, 1)
+        # [L, B, d_m]
+        x = self.pos_encoder(x)
+            ~~~~~~~~~~~~~~~~ <--- HERE
+        # [B, L, d_m]
+        x = x.transpose(0, 1)
+  File "../tacotron2/fastpitch_layers.py", line 55, in forward
+    def forward(self, x: torch.Tensor) -> torch.Tensor:         # shape: [T, N]
+        x = x + self.scale * self.pe[:x.size(0), :]
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ <--- HERE
+        return self.dropout(x)
+RuntimeError: The size of tensor a (11942) must match the size of tensor b (5000) at non-singleton dimension 0
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\main.py", line 1072, in voice_loop
+    speak(
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\voice\tts.py", line 240, in speak
+    audio = tts_model.apply_tts(
+            ^^^^^^^^^^^^^^^^^^^^
+  File "<torch_package_0>.multi_acc_v3_package.py", line 35, in apply_tts
+    return self.packages[p_id].apply_tts(text=text,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<torch_package_0>.multi_acc_v3_package.py", line 520, in apply_tts
+    raise Exception("Model couldn't generate your text, probably it's too long")
+Exception: Model couldn't generate your text, probably it's too long
+2026-08-11 00:01:29,261 CRITICAL \u041e\u0448\u0438\u0431\u043a\u0430 Telegram \u0431\u043e\u0442\u0430: 'utf-8' codec can't decode byte 0xff in position 0: invalid start byte
+Traceback (most recent call last):
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\main.py", line 1100, in run_telegram_bot
+    if ask_start():
+       ^^^^^^^^^^^
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\Telegram_bot.py", line 885, in ask_start
+    answer = input(
+             ^^^^^^
+  File "<frozen codecs>", line 322, in decode
+UnicodeDecodeError: 'utf-8' codec can't decode byte 0xff in position 0: invalid start byte
+2026-08-11 00:01:35,763 INFO Arduino connected: COM4
+2026-08-11 00:01:50,579 INFO HTTP Request: POST https://ngw.devices.sberbank.ru:9443/api/v2/oauth "HTTP/1.1 200 OK"
+2026-08-11 00:01:51,552 INFO HTTP Request: POST https://gigachat.devices.sberbank.ru/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-08-11 00:03:06,617 INFO HTTP Request: POST https://gigachat.devices.sberbank.ru/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-08-11 00:03:07,014 ERROR Voice Loop Error: Model couldn't generate your text, probably it's too long
+Traceback (most recent call last):
+  File "<torch_package_0>.multi_acc_v3_package.py", line 518, in apply_tts
+    out, out_add = self.models[model_id](**model_kwargs)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\venv\Lib\site-packages\torch\nn\modules\module.py", line 1773, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\venv\Lib\site-packages\torch\nn\modules\module.py", line 1784, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: The following operation failed in the TorchScript interpreter.
+Traceback of TorchScript, serialized code (most recent call last):
+  File ".data/ts_code/code/__torch__/silero_vocoder/jit_model.py", line 211, in forward
+        pass
+    tacotron = self.tacotron
+    mel_outputs = (tacotron).forward(sequence, speaker_ids, orig_mask, dur_hat, pitch_hat, None, )
+                   ~~~~~~~~~~~~~~~~~ <--- HERE
+    if torch.__isnot__(symb_durs4, None):
+      symb_durs20 = unchecked_cast(Dict[int, int], symb_durs4)
+  File ".data/ts_code/code/__torch__/jit_forward_model.py", line 73, in forward
+      encoder_outputs_expanded0 = encoder_outputs_expanded
+    decoder = self.decoder
+    outputs_expanded = (decoder).forward(encoder_outputs_expanded0, None, None, )
+                        ~~~~~~~~~~~~~~~~ <--- HERE
+    lin = self.lin
+    mel_outputs = (lin).forward(outputs_expanded, )
+  File ".data/ts_code/code/__torch__/tacotron2/fastpitch_layers.py", line 129, in forward
+    x8 = torch.transpose(x, 0, 1)
+    pos_encoder = self.pos_encoder
+    x9 = (pos_encoder).forward(x8, )
+          ~~~~~~~~~~~~~~~~~~~~ <--- HERE
+    x10 = torch.transpose(x9, 0, 1)
+    pre_vanilla_layers = self.pre_vanilla_layers
+  File ".data/ts_code/code/__torch__/tacotron2/fastpitch_layers.py", line 44, in forward
+    _0 = torch.slice(pe, 0, None, torch.size(x, 0))
+    _1 = torch.mul(scale, torch.slice(_0, 1))
+    x7 = torch.add(x, _1)
+         ~~~~~~~~~ <--- HERE
+    dropout = self.dropout
+    return (dropout).forward(x7, )
+
+Traceback of TorchScript, original code (most recent call last):
+  File "../../silero_vocoder/jit_model.py", line 617, in forward
+    
+        if self.energy_predictor is None:
+            mel_outputs = self.tacotron(sequence, speaker_ids, orig_mask, dur_hat, pitch_hat)
+                          ~~~~~~~~~~~~~ <--- HERE
+        else:
+            mel_outputs = self.tacotron(sequence, speaker_ids, orig_mask, dur_hat, pitch_hat, energy_hat)
+  File "/home/junior/notebook/junior/orange_lime/silero_tts_train/silero_vocoder/tacotron2/jit_forward_model.py", line 124, in forward
+    
+        # [B, Lexp, Denc]
+        outputs_expanded = self.decoder(encoder_outputs_expanded,
+                           ~~~~~~~~~~~~ <--- HERE
+                                        src_pad_mask=None)
+    
+  File "../tacotron2/fastpitch_layers.py", line 424, in forward
+        x = x.transpose(0, 1)
+        # [L, B, d_m]
+        x = self.pos_encoder(x)
+            ~~~~~~~~~~~~~~~~ <--- HERE
+        # [B, L, d_m]
+        x = x.transpose(0, 1)
+  File "../tacotron2/fastpitch_layers.py", line 55, in forward
+    def forward(self, x: torch.Tensor) -> torch.Tensor:         # shape: [T, N]
+        x = x + self.scale * self.pe[:x.size(0), :]
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ <--- HERE
+        return self.dropout(x)
+RuntimeError: The size of tensor a (5250) must match the size of tensor b (5000) at non-singleton dimension 0
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\main.py", line 1072, in voice_loop
+    speak(
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\voice\tts.py", line 240, in speak
+    audio = tts_model.apply_tts(
+            ^^^^^^^^^^^^^^^^^^^^
+  File "<torch_package_0>.multi_acc_v3_package.py", line 35, in apply_tts
+    return self.packages[p_id].apply_tts(text=text,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<torch_package_0>.multi_acc_v3_package.py", line 520, in apply_tts
+    raise Exception("Model couldn't generate your text, probably it's too long")
+Exception: Model couldn't generate your text, probably it's too long

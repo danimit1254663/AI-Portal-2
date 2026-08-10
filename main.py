@@ -1,3 +1,4 @@
+
 # ============================================================
 # JARVIS - main.py
 # ============================================================
@@ -7,6 +8,7 @@ import logging
 import traceback
 import os
 import threading
+import queue
 import serial
 
 from datetime import datetime
@@ -52,6 +54,13 @@ arduino = None
 
 
 # ============================================================
+# LCD QUEUE
+# ============================================================
+
+lcd_queue = queue.Queue()
+
+
+# ============================================================
 # LOGGING
 # ============================================================
 
@@ -63,10 +72,7 @@ logging.basicConfig(
 
 
 # ============================================================
-# РУССКИЕ БУКВЫ, КОТОРЫЕ ТРЕБУЮТ CGRAM
-#
-# Эти буквы должны быть согласованы
-# с LCD_1602_RUS_ALL.h
+# РУССКИЕ БУКВЫ CGRAM
 # ============================================================
 
 CUSTOM_RUSSIAN = set(
@@ -77,60 +83,28 @@ CUSTOM_RUSSIAN = set(
 
 
 # ============================================================
-# ПРОВЕРКА:
-# сколько разных CGRAM-букв будет на странице
-# ============================================================
-
-def count_custom_letters(text):
-
-    result = set()
-
-    for char in text:
-
-        if char in CUSTOM_RUSSIAN:
-
-            result.add(char)
-
-    return len(result)
-
-
-# ============================================================
-# РАЗБИВКА ТЕКСТА
+# РАЗБИВКА ТЕКСТА НА LCD 16x2
 #
 # Максимум:
-#
-# 16 символов строка
-# 2 строки страница
-#
-# И НЕ БОЛЕЕ 8 разных CGRAM-букв
-# на одной странице.
+# 16 символов в строке
+# 2 строки
+# максимум 8 разных CGRAM-букв
 # ============================================================
 
 def make_lcd_pages(text):
 
     if not text:
-
         return []
-
 
     text = str(text)
 
-    text = text.replace(
-        "\r",
-        " "
-    )
-
-    text = text.replace(
-        "\n",
-        " "
-    )
+    text = text.replace("\r", " ")
+    text = text.replace("\n", " ")
 
     words = text.split()
 
     if not words:
-
         return []
-
 
     pages = []
 
@@ -138,15 +112,6 @@ def make_lcd_pages(text):
     current_line2 = ""
 
     current_glyphs = set()
-
-
-    def page_text():
-
-        return (
-            current_line1
-            + " "
-            + current_line2
-        ).strip()
 
 
     def flush_page():
@@ -169,13 +134,13 @@ def make_lcd_pages(text):
         current_glyphs = set()
 
 
-    def try_add_word(line, word):
+    def word_glyphs(word):
 
-        if not line:
-
-            return word
-
-        return line + " " + word
+        return {
+            c
+            for c in word
+            if c in CUSTOM_RUSSIAN
+        }
 
 
     for word in words:
@@ -186,30 +151,16 @@ def make_lcd_pages(text):
 
         if len(word) > 16:
 
-            # Сначала закрываем текущую страницу,
-            # чтобы не смешивать длинное слово
-            # с уже набранным текстом.
-
-            if current_line2:
+            if current_line1 or current_line2:
 
                 flush_page()
 
-            elif current_line1:
-
-                flush_page()
-
-
-            # Режем длинное слово по 16 Unicode-символов.
-            # Здесь Python работает именно с символами,
-            # а не с UTF-8 байтами.
 
             while len(word) > 16:
 
-                part = word[:16]
-
                 pages.append(
                     (
-                        part,
+                        word[:16],
                         ""
                     )
                 )
@@ -218,46 +169,41 @@ def make_lcd_pages(text):
 
 
             if not word:
-
                 continue
-
-
-        # ----------------------------------------------------
-        # Проверяем новые CGRAM-буквы
-        # ----------------------------------------------------
-
-        word_glyphs = {
-            c for c in word
-            if c in CUSTOM_RUSSIAN
-        }
 
 
         new_glyphs = (
             current_glyphs
-            | word_glyphs
+            | word_glyphs(word)
         )
 
 
         # ----------------------------------------------------
-        # Если больше 8 CGRAM-букв —
-        # новая страница.
+        # Больше 8 CGRAM-букв
         # ----------------------------------------------------
 
         if len(new_glyphs) > 8:
 
             flush_page()
 
-            new_glyphs = word_glyphs
+            new_glyphs = word_glyphs(word)
 
 
         # ----------------------------------------------------
-        # Пытаемся поставить слово в первую строку
+        # Первая строка
         # ----------------------------------------------------
 
-        candidate = try_add_word(
-            current_line1,
-            word
-        )
+        if current_line1:
+
+            candidate = (
+                current_line1
+                + " "
+                + word
+            )
+
+        else:
+
+            candidate = word
 
 
         if len(candidate) <= 16:
@@ -270,14 +216,20 @@ def make_lcd_pages(text):
 
 
         # ----------------------------------------------------
-        # Не помещается в первую строку.
-        # Пробуем вторую.
+        # Вторая строка
         # ----------------------------------------------------
 
-        candidate = try_add_word(
-            current_line2,
-            word
-        )
+        if current_line2:
+
+            candidate = (
+                current_line2
+                + " "
+                + word
+            )
+
+        else:
+
+            candidate = word
 
 
         if len(candidate) <= 16:
@@ -290,25 +242,14 @@ def make_lcd_pages(text):
 
 
         # ----------------------------------------------------
-        # Обе строки заняты.
-        # Закрываем страницу.
+        # Страница заполнена
         # ----------------------------------------------------
 
         flush_page()
 
-
-        # ----------------------------------------------------
-        # Начинаем новую страницу.
-        # ----------------------------------------------------
-
-        word_glyphs = {
-            c for c in word
-            if c in CUSTOM_RUSSIAN
-        }
-
         current_line1 = word
 
-        current_glyphs = word_glyphs
+        current_glyphs = word_glyphs(word)
 
 
     # --------------------------------------------------------
@@ -316,7 +257,6 @@ def make_lcd_pages(text):
     # --------------------------------------------------------
 
     flush_page()
-
 
     return pages
 
@@ -344,15 +284,18 @@ def connect_arduino():
         arduino.reset_output_buffer()
 
         print(
-            f"[ARDUINO] Подключена: "
-            f"{SERIAL_PORT}"
+            f"[ARDUINO] Подключена: {SERIAL_PORT}"
+        )
+
+        logging.info(
+            f"Arduino connected: {SERIAL_PORT}"
         )
 
     except Exception:
 
         arduino = None
 
-        # Не выводим ошибку в консоль.
+        # В консоль ничего не выводим.
         logging.error(
             "Arduino connection error",
             exc_info=True
@@ -362,23 +305,50 @@ def connect_arduino():
 # ============================================================
 # ОТПРАВКА ДВУХ СТРОК
 # ============================================================
+
 def send_lcd_packet(line1="", line2=""):
 
     global arduino
 
-    # Arduino не подключена —
-    # полностью выходим без Serial-вывода
+    # Arduino нет — полностью молчим
     if arduino is None:
         return
 
-    line1 = "" if line1 is None else str(line1)
-    line2 = "" if line2 is None else str(line2)
 
-    line1 = line1.replace("\r", " ")
-    line1 = line1.replace("\n", " ")
+    line1 = (
+        ""
+        if line1 is None
+        else str(line1)
+    )
 
-    line2 = line2.replace("\r", " ")
-    line2 = line2.replace("\n", " ")
+    line2 = (
+        ""
+        if line2 is None
+        else str(line2)
+    )
+
+
+    line1 = line1.replace(
+        "\r",
+        " "
+    )
+
+    line1 = line1.replace(
+        "\n",
+        " "
+    )
+
+
+    line2 = line2.replace(
+        "\r",
+        " "
+    )
+
+    line2 = line2.replace(
+        "\n",
+        " "
+    )
+
 
     try:
 
@@ -389,86 +359,145 @@ def send_lcd_packet(line1="", line2=""):
             + "\n"
         )
 
-        data = message.encode("utf-8")
 
-        arduino.write(data)
+        data = message.encode(
+            "utf-8"
+        )
+
+
+        arduino.write(
+            data
+        )
+
         arduino.flush()
 
-    except Exception as e:
 
-        # Если Arduino отключилась во время работы,
-        # перестаём пытаться отправлять данные.
+    except Exception:
+
         arduino = None
 
         logging.error(
             "Serial send error",
             exc_info=True
         )
+
+
 # ============================================================
-# ОТПРАВКА ТЕКСТА НА LCD
+# LCD WORKER
+#
+# Один поток отвечает за LCD.
+# Поэтому COM4 никогда не используется
+# одновременно несколькими потоками.
+# ============================================================
+
+def lcd_worker():
+
+    while True:
+
+        item = lcd_queue.get()
+
+
+        if item is None:
+
+            lcd_queue.task_done()
+
+            break
+
+
+        text, text2 = item
+
+
+        try:
+
+            # ------------------------------------------------
+            # Две готовые строки
+            # ------------------------------------------------
+
+            if text2 is not None:
+
+                if arduino is not None:
+
+                    send_lcd_packet(
+                        text,
+                        text2
+                    )
+
+
+            else:
+
+                # --------------------------------------------
+                # Обычный текст
+                # --------------------------------------------
+
+                if arduino is not None:
+
+                    pages = make_lcd_pages(
+                        text
+                    )
+
+
+                    for index, page in enumerate(pages):
+
+                        if arduino is None:
+                            break
+
+
+                        line1, line2 = page
+
+
+                        print(
+                            f"[LCD PAGE "
+                            f"{index + 1}/"
+                            f"{len(pages)}]"
+                        )
+
+
+                        send_lcd_packet(
+                            line1,
+                            line2
+                        )
+
+
+                        if (
+                            index + 1
+                            < len(pages)
+                        ):
+
+                            time.sleep(
+                                1.5
+                            )
+
+
+        except Exception:
+
+            logging.error(
+                "LCD worker error",
+                exc_info=True
+            )
+
+
+        finally:
+
+            lcd_queue.task_done()
+
+
+# ============================================================
+# ОТПРАВКА НА LCD
 # ============================================================
 
 def send_lcd(text="", text2=None):
 
-    # --------------------------------------------------------
-    # Прямая отправка двух строк
-    # --------------------------------------------------------
+    # Arduino нет — ничего не добавляем в очередь
+    if arduino is None:
+        return
 
-    if text2 is not None:
 
-        send_lcd_packet(
+    lcd_queue.put(
+        (
             text,
             text2
         )
-
-        return
-
-
-    if text is None:
-
-        return
-
-
-    pages = make_lcd_pages(
-        text
     )
-
-
-    if not pages:
-
-        send_lcd_packet(
-            "",
-            ""
-        )
-
-        return
-
-
-    # --------------------------------------------------------
-    # Отправляем страницы
-    # --------------------------------------------------------
-
-    for index, page in enumerate(pages):
-
-        line1, line2 = page
-
-
-        print(
-            f"[LCD PAGE {index + 1}/{len(pages)}]"
-        )
-
-
-        send_lcd_packet(
-            line1,
-            line2
-        )
-
-
-        if index + 1 < len(pages):
-
-            time.sleep(
-                1.5
-            )
 
 
 # ============================================================
@@ -514,7 +543,6 @@ def lcd_status(status):
 def extract_screen_text(text):
 
     if not text:
-
         return None
 
 
@@ -597,7 +625,6 @@ def is_clear_screen_command(text):
     for command in commands:
 
         if command in text:
-
             return True
 
 
@@ -653,7 +680,6 @@ def lcd_datetime():
 def process_command(text):
 
     if not text:
-
         return None
 
 
@@ -675,9 +701,11 @@ def process_command(text):
             f"[LCD COMMAND] -> {screen_text}"
         )
 
+
         send_lcd(
             screen_text
         )
+
 
         return "Вывожу на экран"
 
@@ -877,7 +905,7 @@ def process_command(text):
 
 
 # ============================================================
-# ОЖИДАНИЕ ДЖАРВИС
+# ОЖИДАНИЕ "ДЖАРВИС"
 # ============================================================
 
 def wait_activation():
@@ -887,7 +915,6 @@ def wait_activation():
         text = listen()
 
         if not text:
-
             continue
 
 
@@ -957,9 +984,12 @@ def voice_loop():
 
 
             if command is None:
-
                 continue
 
+
+            # ------------------------------------------------
+            # Просто "Джарвис"
+            # ------------------------------------------------
 
             if command == "":
 
@@ -969,11 +999,11 @@ def voice_loop():
                     "Слушаю"
                 )
 
+
                 command = listen()
 
 
                 if not command:
-
                     continue
 
 
@@ -981,6 +1011,10 @@ def voice_loop():
                 f"COMMAND: {command}"
             )
 
+
+            # ------------------------------------------------
+            # ОСТАНОВКА
+            # ------------------------------------------------
 
             if command in [
                 "стоп",
@@ -996,6 +1030,10 @@ def voice_loop():
 
                 break
 
+
+            # ------------------------------------------------
+            # ОБРАБОТКА
+            # ------------------------------------------------
 
             answer = process_command(
                 command
@@ -1013,8 +1051,10 @@ def voice_loop():
                 )
 
 
-                # Для команды "выведи на экран"
-                # текст уже отправлен на LCD.
+                # ------------------------------------------------
+                # LCD добавляется в очередь мгновенно.
+                # Голос НЕ ждёт LCD.
+                # ------------------------------------------------
 
                 if extract_screen_text(
                     command
@@ -1024,6 +1064,10 @@ def voice_loop():
                         answer
                     )
 
+
+                # ------------------------------------------------
+                # Голос сразу начинает говорить.
+                # ------------------------------------------------
 
                 speak(
                     answer
@@ -1083,6 +1127,10 @@ def main():
     global assistant_running
 
 
+    # --------------------------------------------------------
+    # Первоначальная настройка
+    # --------------------------------------------------------
+
     first_start_setup()
 
 
@@ -1093,11 +1141,35 @@ def main():
     """)
 
 
+    # --------------------------------------------------------
+    # Arduino
+    # --------------------------------------------------------
+
     connect_arduino()
 
 
+    # --------------------------------------------------------
+    # LCD worker
+    # --------------------------------------------------------
+
+    lcd_thread = threading.Thread(
+        target=lcd_worker,
+        daemon=True
+    )
+
+    lcd_thread.start()
+
+
+    # --------------------------------------------------------
+    # HUD
+    # --------------------------------------------------------
+
     open_hud()
 
+
+    # --------------------------------------------------------
+    # Очистка LCD
+    # --------------------------------------------------------
 
     send_lcd(
         "",
@@ -1105,10 +1177,18 @@ def main():
     )
 
 
+    # --------------------------------------------------------
+    # Голос
+    # --------------------------------------------------------
+
     speak(
         "Ассистент запущен"
     )
 
+
+    # --------------------------------------------------------
+    # Telegram
+    # --------------------------------------------------------
 
     tg_thread = threading.Thread(
         target=run_telegram_bot,
@@ -1127,8 +1207,25 @@ def main():
     time.sleep(2)
 
 
+    # --------------------------------------------------------
+    # Голосовой цикл
+    # --------------------------------------------------------
+
     voice_loop()
 
+
+    # --------------------------------------------------------
+    # Остановка LCD worker
+    # --------------------------------------------------------
+
+    lcd_queue.put(
+        None
+    )
+
+
+    # --------------------------------------------------------
+    # Закрытие Arduino
+    # --------------------------------------------------------
 
     if arduino:
 
@@ -1157,3 +1254,4 @@ def main():
 if __name__ == "__main__":
 
     main()
+
