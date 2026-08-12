@@ -237,7 +237,7 @@ def windows_command(text):
     # Опасные команды — возвращаем специальный маркер, а не выполняем
     if "выключи компьютер" in text or "выключи комп" in text:
         return "__SHUTDOWN_REQUEST__"
-    if "перезагрузи компьютер" in text or "перезагрузи комп" in text:
+    if "перезагрузить компьютер" in text or "перезагрузи комп" in text:
         return "__REBOOT_REQUEST__"
 
     return None
