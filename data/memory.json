@@ -8,22 +8,6 @@
             "content": "как дела"
         },
         {
-            "role": "user",
-            "content": "сегодня  как дела"
-        },
-        {
-            "role": "user",
-            "content": "как дела"
-        },
-        {
-            "role": "assistant",
-            "content": "Сегодня всё отлично, готов общаться!"
-        },
-        {
-            "role": "user",
-            "content": "как дела"
-        },
-        {
             "role": "assistant",
             "content": "Дела превосходно, спасибо!"
         },
@@ -82,6 +66,22 @@
         {
             "role": "assistant",
             "content": "Достаточно."
+        },
+        {
+            "role": "user",
+            "content": "начинаем работать"
+        },
+        {
+            "role": "assistant",
+            "content": "Работаем."
+        },
+        {
+            "role": "user",
+            "content": "а ли"
+        },
+        {
+            "role": "assistant",
+            "content": "Что «а ли»? Уточни, пожалуйста."
         }
     ]
 }

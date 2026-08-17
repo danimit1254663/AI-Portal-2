@@ -24682,3 +24682,119 @@ Traceback (most recent call last):
 serial.serialutil.SerialException: could not open port 'COM4': FileNotFoundError(2, '\u041d\u0435 \u0443\u0434\u0430\u0435\u0442\u0441\u044f \u043d\u0430\u0439\u0442\u0438 \u0443\u043a\u0430\u0437\u0430\u043d\u043d\u044b\u0439 \u0444\u0430\u0439\u043b.', None, 2)
 2026-08-17 13:03:54,578 INFO HTTP Request: POST https://ngw.devices.sberbank.ru:9443/api/v2/oauth "HTTP/1.1 200 OK"
 2026-08-17 13:03:54,827 INFO HTTP Request: POST https://gigachat.devices.sberbank.ru/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-08-17 13:09:03,375 CRITICAL \u041e\u0448\u0438\u0431\u043a\u0430 Telegram \u0431\u043e\u0442\u0430: 'utf-8' codec can't decode byte 0xff in position 0: invalid start byte
+Traceback (most recent call last):
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\main.py", line 1108, in run_telegram_bot
+    if ask_start():
+       ^^^^^^^^^^^
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\Telegram_bot.py", line 885, in ask_start
+    answer = input(
+             ^^^^^^
+  File "<frozen codecs>", line 322, in decode
+UnicodeDecodeError: 'utf-8' codec can't decode byte 0xff in position 0: invalid start byte
+2026-08-17 13:09:43,041 ERROR Arduino connection error
+Traceback (most recent call last):
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\main.py", line 274, in connect_arduino
+    arduino = serial.Serial(
+              ^^^^^^^^^^^^^^
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\venv\Lib\site-packages\serial\serialwin32.py", line 33, in __init__
+    super(Serial, self).__init__(*args, **kwargs)
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\venv\Lib\site-packages\serial\serialutil.py", line 244, in __init__
+    self.open()
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\venv\Lib\site-packages\serial\serialwin32.py", line 64, in open
+    raise SerialException("could not open port {!r}: {!r}".format(self.portstr, ctypes.WinError()))
+serial.serialutil.SerialException: could not open port 'COM4': FileNotFoundError(2, '\u041d\u0435 \u0443\u0434\u0430\u0435\u0442\u0441\u044f \u043d\u0430\u0439\u0442\u0438 \u0443\u043a\u0430\u0437\u0430\u043d\u043d\u044b\u0439 \u0444\u0430\u0439\u043b.', None, 2)
+2026-08-17 13:16:24,750 ERROR Arduino connection error
+Traceback (most recent call last):
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\main.py", line 274, in connect_arduino
+    arduino = serial.Serial(
+              ^^^^^^^^^^^^^^
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\venv\Lib\site-packages\serial\serialwin32.py", line 33, in __init__
+    super(Serial, self).__init__(*args, **kwargs)
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\venv\Lib\site-packages\serial\serialutil.py", line 244, in __init__
+    self.open()
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\venv\Lib\site-packages\serial\serialwin32.py", line 64, in open
+    raise SerialException("could not open port {!r}: {!r}".format(self.portstr, ctypes.WinError()))
+serial.serialutil.SerialException: could not open port 'COM4': FileNotFoundError(2, '\u041d\u0435 \u0443\u0434\u0430\u0435\u0442\u0441\u044f \u043d\u0430\u0439\u0442\u0438 \u0443\u043a\u0430\u0437\u0430\u043d\u043d\u044b\u0439 \u0444\u0430\u0439\u043b.', None, 2)
+2026-08-17 13:16:37,744 INFO HTTP Request: POST https://ngw.devices.sberbank.ru:9443/api/v2/oauth "HTTP/1.1 200 OK"
+2026-08-17 13:16:38,032 INFO HTTP Request: POST https://gigachat.devices.sberbank.ru/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-08-17 13:31:45,064 CRITICAL \u041e\u0448\u0438\u0431\u043a\u0430 Telegram \u0431\u043e\u0442\u0430: 'utf-8' codec can't decode byte 0xff in position 0: invalid start byte
+Traceback (most recent call last):
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\main.py", line 1108, in run_telegram_bot
+    if ask_start():
+       ^^^^^^^^^^^
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\Telegram_bot.py", line 885, in ask_start
+    answer = input(
+             ^^^^^^
+  File "<frozen codecs>", line 322, in decode
+UnicodeDecodeError: 'utf-8' codec can't decode byte 0xff in position 0: invalid start byte
+2026-08-17 13:31:55,073 ERROR Arduino connection error
+Traceback (most recent call last):
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\main.py", line 274, in connect_arduino
+    arduino = serial.Serial(
+              ^^^^^^^^^^^^^^
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\venv\Lib\site-packages\serial\serialwin32.py", line 33, in __init__
+    super(Serial, self).__init__(*args, **kwargs)
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\venv\Lib\site-packages\serial\serialutil.py", line 244, in __init__
+    self.open()
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\venv\Lib\site-packages\serial\serialwin32.py", line 64, in open
+    raise SerialException("could not open port {!r}: {!r}".format(self.portstr, ctypes.WinError()))
+serial.serialutil.SerialException: could not open port 'COM4': FileNotFoundError(2, '\u041d\u0435 \u0443\u0434\u0430\u0435\u0442\u0441\u044f \u043d\u0430\u0439\u0442\u0438 \u0443\u043a\u0430\u0437\u0430\u043d\u043d\u044b\u0439 \u0444\u0430\u0439\u043b.', None, 2)
+2026-08-17 13:36:20,569 CRITICAL \u041e\u0448\u0438\u0431\u043a\u0430 Telegram \u0431\u043e\u0442\u0430: 'utf-8' codec can't decode byte 0xff in position 0: invalid start byte
+Traceback (most recent call last):
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\main.py", line 1108, in run_telegram_bot
+    if ask_start():
+       ^^^^^^^^^^^
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\Telegram_bot.py", line 885, in ask_start
+    answer = input(
+             ^^^^^^
+  File "<frozen codecs>", line 322, in decode
+UnicodeDecodeError: 'utf-8' codec can't decode byte 0xff in position 0: invalid start byte
+2026-08-17 13:36:27,722 ERROR Arduino connection error
+Traceback (most recent call last):
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\main.py", line 274, in connect_arduino
+    arduino = serial.Serial(
+              ^^^^^^^^^^^^^^
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\venv\Lib\site-packages\serial\serialwin32.py", line 33, in __init__
+    super(Serial, self).__init__(*args, **kwargs)
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\venv\Lib\site-packages\serial\serialutil.py", line 244, in __init__
+    self.open()
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\venv\Lib\site-packages\serial\serialwin32.py", line 64, in open
+    raise SerialException("could not open port {!r}: {!r}".format(self.portstr, ctypes.WinError()))
+serial.serialutil.SerialException: could not open port 'COM4': FileNotFoundError(2, '\u041d\u0435 \u0443\u0434\u0430\u0435\u0442\u0441\u044f \u043d\u0430\u0439\u0442\u0438 \u0443\u043a\u0430\u0437\u0430\u043d\u043d\u044b\u0439 \u0444\u0430\u0439\u043b.', None, 2)
+2026-08-17 13:37:43,702 INFO HTTP Request: POST https://ngw.devices.sberbank.ru:9443/api/v2/oauth "HTTP/1.1 200 OK"
+2026-08-17 13:37:44,011 INFO HTTP Request: POST https://gigachat.devices.sberbank.ru/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-08-17 13:53:44,415 CRITICAL \u041e\u0448\u0438\u0431\u043a\u0430 Telegram \u0431\u043e\u0442\u0430: 'utf-8' codec can't decode byte 0xff in position 0: invalid start byte
+Traceback (most recent call last):
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\main.py", line 1108, in run_telegram_bot
+    if ask_start():
+       ^^^^^^^^^^^
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\Telegram_bot.py", line 885, in ask_start
+    answer = input(
+             ^^^^^^
+  File "<frozen codecs>", line 322, in decode
+UnicodeDecodeError: 'utf-8' codec can't decode byte 0xff in position 0: invalid start byte
+2026-08-17 13:53:52,041 ERROR Arduino connection error
+Traceback (most recent call last):
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\main.py", line 274, in connect_arduino
+    arduino = serial.Serial(
+              ^^^^^^^^^^^^^^
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\venv\Lib\site-packages\serial\serialwin32.py", line 33, in __init__
+    super(Serial, self).__init__(*args, **kwargs)
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\venv\Lib\site-packages\serial\serialutil.py", line 244, in __init__
+    self.open()
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\venv\Lib\site-packages\serial\serialwin32.py", line 64, in open
+    raise SerialException("could not open port {!r}: {!r}".format(self.portstr, ctypes.WinError()))
+serial.serialutil.SerialException: could not open port 'COM4': FileNotFoundError(2, '\u041d\u0435 \u0443\u0434\u0430\u0435\u0442\u0441\u044f \u043d\u0430\u0439\u0442\u0438 \u0443\u043a\u0430\u0437\u0430\u043d\u043d\u044b\u0439 \u0444\u0430\u0439\u043b.', None, 2)
+2026-08-17 14:03:26,674 ERROR Arduino connection error
+Traceback (most recent call last):
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\main.py", line 274, in connect_arduino
+    arduino = serial.Serial(
+              ^^^^^^^^^^^^^^
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\venv\Lib\site-packages\serial\serialwin32.py", line 33, in __init__
+    super(Serial, self).__init__(*args, **kwargs)
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\venv\Lib\site-packages\serial\serialutil.py", line 244, in __init__
+    self.open()
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\venv\Lib\site-packages\serial\serialwin32.py", line 64, in open
+    raise SerialException("could not open port {!r}: {!r}".format(self.portstr, ctypes.WinError()))
+serial.serialutil.SerialException: could not open port 'COM4': FileNotFoundError(2, '\u041d\u0435 \u0443\u0434\u0430\u0435\u0442\u0441\u044f \u043d\u0430\u0439\u0442\u0438 \u0443\u043a\u0430\u0437\u0430\u043d\u043d\u044b\u0439 \u0444\u0430\u0439\u043b.', None, 2)
