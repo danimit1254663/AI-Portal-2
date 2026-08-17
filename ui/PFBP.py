@@ -6,6 +6,7 @@ import tempfile
 import threading
 import time
 import re
+import base64
 from pathlib import Path
 from tkinter import filedialog, messagebox
 
@@ -15,6 +16,7 @@ from tkinter import filedialog, messagebox
 # ============================================================
 
 def install_package(package_name):
+
     try:
         subprocess.check_call([
             sys.executable,
@@ -23,6 +25,7 @@ def install_package(package_name):
             "install",
             package_name
         ])
+
         return True
 
     except Exception:
@@ -55,6 +58,7 @@ if not ensure_package(
     "customtkinter",
     "customtkinter"
 ):
+
     raise SystemExit(
         "Не удалось установить customtkinter."
     )
@@ -82,74 +86,104 @@ COMMANDS_DB = {
     # ========================================================
 
     "Вывод (print)": {
-        "template": "print({var1})",
+
+        "template":
+            "print({var1})",
+
         "vars": [
             "Текст или значение"
         ],
+
         "type": "python",
+
         "imports": []
     },
 
 
     "Ввод (input)": {
-        "template": "{var1} = input({var2})",
+
+        "template":
+            "{var1} = input({var2})",
+
         "vars": [
             "Имя переменной",
             "Текст подсказки"
         ],
+
         "type": "python",
+
         "imports": []
     },
 
 
     "Присваивание переменной": {
-        "template": "{var1} = {var2}",
+
+        "template":
+            "{var1} = {var2}",
+
         "vars": [
             "Имя переменной",
             "Значение"
         ],
+
         "type": "python",
+
         "imports": []
     },
 
 
     "Цикл for": {
-        "template": (
-            "for i in range({var1}):\n"
-            "    pass"
-        ),
+
+        "template":
+            (
+                "for i in range({var1}):\n"
+                "    pass"
+            ),
+
         "vars": [
             "Количество повторений"
         ],
+
         "type": "python",
+
         "imports": []
     },
 
 
     "Условие if": {
-        "template": (
-            "if {var1}:\n"
-            "    pass"
-        ),
+
+        "template":
+            (
+                "if {var1}:\n"
+                "    pass"
+            ),
+
         "vars": [
             "Условие"
         ],
+
         "type": "python",
+
         "imports": []
     },
 
 
     "Создать функцию": {
-        "template": (
-            "def {var1}({var2}):\n"
-            "    {var3}"
-        ),
+
+        "template":
+            (
+                "def {var1}({var2}):\n"
+                "    {var3}"
+            ),
+
         "vars": [
             "Имя функции",
             "Параметры",
             "Код функции"
         ],
+
         "type": "python",
+
         "imports": []
     },
 
@@ -159,20 +193,25 @@ COMMANDS_DB = {
     # ========================================================
 
     "Добавить кнопку": {
-        "template": (
-            "{var1} = ctk.CTkButton("
-            "frame, "
-            "text={var2}, "
-            "command={var3}"
-            ")\n"
-            "{var1}.pack(pady=5)"
-        ),
+
+        "template":
+            (
+                "{var1} = ctk.CTkButton("
+                "frame, "
+                "text={var2}, "
+                "command={var3}"
+                ")\n"
+                "{var1}.pack(pady=5)"
+            ),
+
         "vars": [
             "Имя переменной кнопки",
             "Текст кнопки",
             "Функция или None"
         ],
+
         "type": "gui",
+
         "imports": [
             "import customtkinter as ctk"
         ]
@@ -180,18 +219,23 @@ COMMANDS_DB = {
 
 
     "Добавить метку": {
-        "template": (
-            "{var1} = ctk.CTkLabel("
-            "frame, "
-            "text={var2}"
-            ")\n"
-            "{var1}.pack(pady=5)"
-        ),
+
+        "template":
+            (
+                "{var1} = ctk.CTkLabel("
+                "frame, "
+                "text={var2}"
+                ")\n"
+                "{var1}.pack(pady=5)"
+            ),
+
         "vars": [
             "Имя переменной",
             "Текст"
         ],
+
         "type": "gui",
+
         "imports": [
             "import customtkinter as ctk"
         ]
@@ -199,14 +243,19 @@ COMMANDS_DB = {
 
 
     "Добавить поле ввода": {
-        "template": (
-            "{var1} = ctk.CTkEntry(frame)\n"
-            "{var1}.pack(pady=5)"
-        ),
+
+        "template":
+            (
+                "{var1} = ctk.CTkEntry(frame)\n"
+                "{var1}.pack(pady=5)"
+            ),
+
         "vars": [
             "Имя переменной"
         ],
+
         "type": "gui",
+
         "imports": [
             "import customtkinter as ctk"
         ]
@@ -214,22 +263,27 @@ COMMANDS_DB = {
 
 
     "Добавить текстовое поле": {
-        "template": (
-            "{var1} = ctk.CTkTextbox("
-            "frame, "
-            "height={var2}"
-            ")\n"
-            "{var1}.pack("
-            "pady=5, "
-            "fill='both', "
-            "expand=True"
-            ")"
-        ),
+
+        "template":
+            (
+                "{var1} = ctk.CTkTextbox("
+                "frame, "
+                "height={var2}"
+                ")\n"
+                "{var1}.pack("
+                "pady=5, "
+                "fill='both', "
+                "expand=True"
+                ")"
+            ),
+
         "vars": [
             "Имя переменной",
             "Высота"
         ],
+
         "type": "gui",
+
         "imports": [
             "import customtkinter as ctk"
         ]
@@ -237,18 +291,23 @@ COMMANDS_DB = {
 
 
     "Добавить чекбокс": {
-        "template": (
-            "{var1} = ctk.CTkCheckBox("
-            "frame, "
-            "text={var2}"
-            ")\n"
-            "{var1}.pack(pady=5)"
-        ),
+
+        "template":
+            (
+                "{var1} = ctk.CTkCheckBox("
+                "frame, "
+                "text={var2}"
+                ")\n"
+                "{var1}.pack(pady=5)"
+            ),
+
         "vars": [
             "Имя переменной",
             "Текст"
         ],
+
         "type": "gui",
+
         "imports": [
             "import customtkinter as ctk"
         ]
@@ -256,18 +315,23 @@ COMMANDS_DB = {
 
 
     "Добавить ComboBox": {
-        "template": (
-            "{var1} = ctk.CTkComboBox("
-            "frame, "
-            "values={var2}"
-            ")\n"
-            "{var1}.pack(pady=5)"
-        ),
+
+        "template":
+            (
+                "{var1} = ctk.CTkComboBox("
+                "frame, "
+                "values={var2}"
+                ")\n"
+                "{var1}.pack(pady=5)"
+            ),
+
         "vars": [
             "Имя переменной",
             "Список значений"
         ],
+
         "type": "gui",
+
         "imports": [
             "import customtkinter as ctk"
         ]
@@ -279,34 +343,39 @@ COMMANDS_DB = {
     # ========================================================
 
     "Добавить изображение из файла в CustomTkinter": {
-        "template": (
-            "_img_path = {var2}\n"
-            "\n"
-            "_img = Image.open(_img_path)\n"
-            "\n"
-            "_img.thumbnail(({var3}, {var4}))\n"
-            "\n"
-            "{var1}_image = ctk.CTkImage(\n"
-            "    light_image=_img,\n"
-            "    dark_image=_img,\n"
-            "    size=_img.size\n"
-            ")\n"
-            "\n"
-            "{var1} = ctk.CTkLabel(\n"
-            "    frame,\n"
-            "    text='',\n"
-            "    image={var1}_image\n"
-            ")\n"
-            "\n"
-            "{var1}.pack(pady=10)"
-        ),
+
+        "template":
+            (
+                "_img_path = {var2}\n"
+                "\n"
+                "_img = Image.open(_img_path)\n"
+                "\n"
+                "_img.thumbnail(({var3}, {var4}))\n"
+                "\n"
+                "{var1}_image = ctk.CTkImage(\n"
+                "    light_image=_img,\n"
+                "    dark_image=_img,\n"
+                "    size=_img.size\n"
+                ")\n"
+                "\n"
+                "{var1} = ctk.CTkLabel(\n"
+                "    frame,\n"
+                "    text='',\n"
+                "    image={var1}_image\n"
+                ")\n"
+                "\n"
+                "{var1}.pack(pady=10)"
+            ),
+
         "vars": [
             "Имя переменной",
             "Путь к изображению",
             "Максимальная ширина",
             "Максимальная высота"
         ],
+
         "type": "gui",
+
         "imports": [
             "import customtkinter as ctk",
             "from PIL import Image"
@@ -319,47 +388,52 @@ COMMANDS_DB = {
     # ========================================================
 
     "Добавить изображение по URL в CustomTkinter": {
-        "template": (
-            "_response_{var1} = requests.get("
-            "{var2}, "
-            "timeout=30"
-            ")\n"
-            "\n"
-            "_response_{var1}.raise_for_status()\n"
-            "\n"
-            "_image_data_{var1} = BytesIO("
-            "_response_{var1}.content"
-            ")\n"
-            "\n"
-            "_img_{var1} = Image.open("
-            "_image_data_{var1}"
-            ").convert('RGBA')\n"
-            "\n"
-            "_img_{var1}.thumbnail("
-            "({var3}, {var4})"
-            ")\n"
-            "\n"
-            "{var1}_image = ctk.CTkImage(\n"
-            "    light_image=_img_{var1},\n"
-            "    dark_image=_img_{var1},\n"
-            "    size=_img_{var1}.size\n"
-            ")\n"
-            "\n"
-            "{var1} = ctk.CTkLabel(\n"
-            "    frame,\n"
-            "    text='',\n"
-            "    image={var1}_image\n"
-            ")\n"
-            "\n"
-            "{var1}.pack(pady=10)"
-        ),
+
+        "template":
+            (
+                "_response_{var1} = requests.get("
+                "{var2}, "
+                "timeout=30"
+                ")\n"
+                "\n"
+                "_response_{var1}.raise_for_status()\n"
+                "\n"
+                "_image_data_{var1} = BytesIO("
+                "_response_{var1}.content"
+                ")\n"
+                "\n"
+                "_img_{var1} = Image.open("
+                "_image_data_{var1}"
+                ").convert('RGBA')\n"
+                "\n"
+                "_img_{var1}.thumbnail("
+                "({var3}, {var4})"
+                ")\n"
+                "\n"
+                "{var1}_image = ctk.CTkImage(\n"
+                "    light_image=_img_{var1},\n"
+                "    dark_image=_img_{var1},\n"
+                "    size=_img_{var1}.size\n"
+                ")\n"
+                "\n"
+                "{var1} = ctk.CTkLabel(\n"
+                "    frame,\n"
+                "    text='',\n"
+                "    image={var1}_image\n"
+                ")\n"
+                "\n"
+                "{var1}.pack(pady=10)"
+            ),
+
         "vars": [
             "Имя переменной",
             "URL изображения",
             "Максимальная ширина",
             "Максимальная высота"
         ],
+
         "type": "gui",
+
         "imports": [
             "import customtkinter as ctk",
             "import requests",
@@ -374,22 +448,27 @@ COMMANDS_DB = {
     # ========================================================
 
     "Создать карту Folium": {
-        "template": (
-            "{var1} = folium.Map(\n"
-            "    location=[{var2}, {var3}],\n"
-            "    zoom_start={var4},\n"
-            "    control_scale=True\n"
-            ")\n"
-            "\n"
-            "_route_points = []"
-        ),
+
+        "template":
+            (
+                "{var1} = folium.Map(\n"
+                "    location=[{var2}, {var3}],\n"
+                "    zoom_start={var4},\n"
+                "    control_scale=True\n"
+                ")\n"
+                "\n"
+                "_route_points = []"
+            ),
+
         "vars": [
             "Имя карты",
             "Широта",
             "Долгота",
             "Масштаб"
         ],
+
         "type": "folium",
+
         "imports": [
             "import folium"
         ]
@@ -401,18 +480,21 @@ COMMANDS_DB = {
     # ========================================================
 
     "Добавить маркер Folium": {
-        "template": (
-            "_marker_{var2} = folium.Marker(\n"
-            "    location=[{var3}, {var4}],\n"
-            "    tooltip={var5},\n"
-            "    popup={var6}\n"
-            ")\n"
-            "\n"
-            "_marker_{var2}.add_to({var1})\n"
-            "\n"
-            "if {var7}:\n"
-            "    _route_points.append(({var3}, {var4}))"
-        ),
+
+        "template":
+            (
+                "_marker_{var2} = folium.Marker(\n"
+                "    location=[{var3}, {var4}],\n"
+                "    tooltip={var5},\n"
+                "    popup={var6}\n"
+                ")\n"
+                "\n"
+                "_marker_{var2}.add_to({var1})\n"
+                "\n"
+                "if {var7}:\n"
+                "    _route_points.append(({var3}, {var4}))"
+            ),
+
         "vars": [
             "Переменная карты",
             "Уникальное имя точки",
@@ -422,7 +504,9 @@ COMMANDS_DB = {
             "Текст popup",
             "Маршрутная точка (True/False)"
         ],
+
         "type": "folium",
+
         "imports": [
             "import folium"
         ]
@@ -430,129 +514,73 @@ COMMANDS_DB = {
 
 
     # ========================================================
-    # FOLIUM — ТОЧКА ПО ПОИСКУ
-    # ========================================================
-
-    "Добавить точку по поиску": {
-        "template": (
-            "print("
-            "'Ищем место: ', "
-            "{var3}"
-            ")\n"
-            "\n"
-            "try:\n"
-            "    _geocode_result_{var2} = ox.geocode("
-            "        {var3}"
-            "    )\n"
-            "\n"
-            "    _lat_{var2} = _geocode_result_{var2}[0]\n"
-            "    _lon_{var2} = _geocode_result_{var2}[1]\n"
-            "\n"
-            "    print(\n"
-            "        'Найдено: ',\n"
-            "        _lat_{var2},\n"
-            "        _lon_{var2}\n"
-            "    )\n"
-            "\n"
-            "    folium.Marker(\n"
-            "        location=[\n"
-            "            _lat_{var2},\n"
-            "            _lon_{var2}\n"
-            "        ],\n"
-            "        tooltip={var4},\n"
-            "        popup={var5}\n"
-            "    ).add_to({var1})\n"
-            "\n"
-            "    if {var6}:\n"
-            "        _route_points.append(\n"
-            "            (_lat_{var2}, _lon_{var2})\n"
-            "        )\n"
-            "\n"
-            "except Exception as _search_error_{var2}:\n"
-            "    print(\n"
-            "        'Ошибка поиска места:',\n"
-            "        _search_error_{var2}\n"
-            "    )"
-        ),
-        "vars": [
-            "Переменная карты",
-            "Уникальное имя точки",
-            "Адрес или название места",
-            "Название точки",
-            "Текст popup",
-            "Маршрутная точка (True/False)"
-        ],
-        "type": "folium",
-        "imports": [
-            "import folium",
-            "import osmnx as ox"
-        ]
-    },
-
-
-    # ========================================================
-    # FOLIUM — ФОТО ИЗ ФАЙЛА
+    # FOLIUM — ТОЧКА С ФОТО ИЗ ФАЙЛА
     # ========================================================
 
     "Добавить маркер с фото из файла": {
-        "template": (
-            "_img64_{var2} = image_to_base64({var5})\n"
-            "\n"
-            "_html_{var2} = f'''"
-            "<div style=\"width:320px;\">"
-            "<h3 style=\"text-align:center;\">"
-            "{var4}"
-            "</h3>"
-            "<img src=\"data:image/png;base64,"
-            "{_img64_%s}\" "
-            "width=\"300\" "
-            "style=\"display:block;"
-            "margin:auto;"
-            "border-radius:10px;\">"
-            "<p style=\"text-align:center;"
-            "font-size:15px;\">"
-            "{var6}"
-            "</p>"
-            "</div>"
-            "'''"
-            "\n"
-            "\n"
-            "_popup_{var2} = folium.Popup(\n"
-            "    IFrame(\n"
-            "        _html_{var2},\n"
-            "        width=340,\n"
-            "        height=350\n"
-            "    ),\n"
-            "    max_width=340\n"
-            ")\n"
-            "\n"
-            "_marker_{var2} = folium.Marker(\n"
-            "    location=[{var3}, {var4}],\n"
-            "    popup=_popup_{var2},\n"
-            "    tooltip={var4}\n"
-            ")\n"
-            "\n"
-            "_marker_{var2}.add_to({var1})\n"
-            "\n"
-            "if {var7}:\n"
-            "    _route_points.append(({var3}, {var4}))"
-        ),
+
+        "template":
+            (
+                "_img64_{var2} = image_to_base64({var5})\n"
+                "\n"
+                "_html_{var2} = f'''"
+                "<div style=\"width:320px;\">"
+                "<h3 style=\"text-align:center;\">"
+                "{var4}"
+                "</h3>"
+                "<img src=\"data:image/jpeg;base64,"
+                "{_img64_" + "{var2}" + "}\" "
+                "width=\"300\" "
+                "style=\"display:block;"
+                "margin:auto;"
+                "border-radius:10px;\">"
+                "<p style=\"text-align:center;"
+                "font-size:15px;\">"
+                "{var6}"
+                "</p>"
+                "</div>"
+                "'''"
+                "\n"
+                "\n"
+                "_popup_{var2} = folium.Popup(\n"
+                "    IFrame(\n"
+                "        _html_{var2},\n"
+                "        width=340,\n"
+                "        height=380\n"
+                "    ),\n"
+                "    max_width=340\n"
+                ")\n"
+                "\n"
+                "_marker_{var2} = folium.Marker(\n"
+                "    location=[{var3}, {var4}],\n"
+                "    popup=_popup_{var2},\n"
+                "    tooltip={var4}\n"
+                ")\n"
+                "\n"
+                "_marker_{var2}.add_to({var1})\n"
+                "\n"
+                "if {var7}:\n"
+                "    _route_points.append(({var3}, {var4}))"
+            ),
+
         "vars": [
             "Переменная карты",
             "Уникальное имя точки",
             "Широта",
-            "Долгота",
             "Название",
             "Путь к изображению",
             "Описание",
             "Маршрутная точка (True/False)"
         ],
+
         "type": "folium",
+
         "imports": [
             "import folium",
             "import base64",
             "from folium import IFrame"
         ],
+
         "helpers": [
             "image_to_base64"
         ]
@@ -560,63 +588,217 @@ COMMANDS_DB = {
 
 
     # ========================================================
-    # FOLIUM — ФОТО ПО URL
+    # FOLIUM — ТОЧКА С ФОТО URL
     # ========================================================
 
     "Добавить маркер с фото по URL": {
-        "template": (
-            "_html_{var2} = f'''"
-            "<div style=\"width:320px;\">"
-            "<h3 style=\"text-align:center;\">"
-            "{var4}"
-            "</h3>"
-            "<img src=\"{var5}\" "
-            "width=\"300\" "
-            "style=\"display:block;"
-            "margin:auto;"
-            "border-radius:10px;\">"
-            "<p style=\"text-align:center;"
-            "font-size:15px;\">"
-            "{var6}"
-            "</p>"
-            "</div>"
-            "'''"
-            "\n"
-            "\n"
-            "_popup_{var2} = folium.Popup(\n"
-            "    IFrame(\n"
-            "        _html_{var2},\n"
-            "        width=340,\n"
-            "        height=350\n"
-            "    ),\n"
-            "    max_width=340\n"
-            ")\n"
-            "\n"
-            "_marker_{var2} = folium.Marker(\n"
-            "    location=[{var3}, {var4}],\n"
-            "    popup=_popup_{var2},\n"
-            "    tooltip={var4}\n"
-            ")\n"
-            "\n"
-            "_marker_{var2}.add_to({var1})\n"
-            "\n"
-            "if {var7}:\n"
-            "    _route_points.append(({var3}, {var4}))"
-        ),
+
+        "template":
+            (
+                "_html_{var2} = f'''"
+                "<div style=\"width:320px;\">"
+                "<h3 style=\"text-align:center;\">"
+                "{var4}"
+                "</h3>"
+                "<img src=\"{var5}\" "
+                "width=\"300\" "
+                "style=\"display:block;"
+                "margin:auto;"
+                "border-radius:10px;\">"
+                "<p style=\"text-align:center;"
+                "font-size:15px;\">"
+                "{var6}"
+                "</p>"
+                "</div>"
+                "'''"
+                "\n"
+                "\n"
+                "_popup_{var2} = folium.Popup(\n"
+                "    IFrame(\n"
+                "        _html_{var2},\n"
+                "        width=340,\n"
+                "        height=380\n"
+                "    ),\n"
+                "    max_width=340\n"
+                ")\n"
+                "\n"
+                "_marker_{var2} = folium.Marker(\n"
+                "    location=[{var3}, {var4}],\n"
+                "    popup=_popup_{var2},\n"
+                "    tooltip={var4}\n"
+                ")\n"
+                "\n"
+                "_marker_{var2}.add_to({var1})\n"
+                "\n"
+                "if {var7}:\n"
+                "    _route_points.append(({var3}, {var4}))"
+            ),
+
         "vars": [
             "Переменная карты",
             "Уникальное имя точки",
             "Широта",
-            "Долгота",
             "Название",
             "URL изображения",
             "Описание",
             "Маршрутная точка (True/False)"
         ],
+
         "type": "folium",
+
         "imports": [
             "import folium",
             "from folium import IFrame"
+        ]
+    },
+
+
+    # ========================================================
+    # НОВОЕ — ПОИСК ТОЧКИ + ФОТО URL
+    # ========================================================
+
+    "Добавить точку по поиску с фото URL": {
+
+        "template":
+            (
+                "_search_result_{var2} = ox.geocode({var3})\n"
+                "_lat_{var2}, _lon_{var2} = _search_result_{var2}\n"
+                "\n"
+                "_html_{var2} = f'''"
+                "<div style=\"width:320px;\">"
+                "<h3 style=\"text-align:center;\">"
+                "{var4}"
+                "</h3>"
+                "<img src=\"{var5}\" "
+                "width=\"300\" "
+                "style=\"display:block;"
+                "margin:auto;"
+                "border-radius:10px;\">"
+                "<p style=\"text-align:center;"
+                "font-size:15px;\">"
+                "{var6}"
+                "</p>"
+                "</div>"
+                "'''"
+                "\n"
+                "_popup_{var2} = folium.Popup(\n"
+                "    IFrame(\n"
+                "        _html_{var2},\n"
+                "        width=340,\n"
+                "        height=380\n"
+                "    ),\n"
+                "    max_width=340\n"
+                ")\n"
+                "\n"
+                "_marker_{var2} = folium.Marker(\n"
+                "    location=[_lat_{var2}, _lon_{var2}],\n"
+                "    popup=_popup_{var2},\n"
+                "    tooltip={var4}\n"
+                ")\n"
+                "\n"
+                "_marker_{var2}.add_to({var1})\n"
+                "\n"
+                "if {var7}:\n"
+                "    _route_points.append(\n"
+                "        (_lat_{var2}, _lon_{var2})\n"
+                "    )"
+            ),
+
+        "vars": [
+            "Переменная карты",
+            "Уникальное имя точки",
+            "Поиск / адрес",
+            "Название",
+            "URL изображения",
+            "Описание",
+            "Маршрутная точка (True/False)"
+        ],
+
+        "type": "folium",
+
+        "imports": [
+            "import folium",
+            "import osmnx as ox",
+            "from folium import IFrame"
+        ]
+    },
+
+
+    # ========================================================
+    # НОВОЕ — ПОИСК ТОЧКИ + ЛОКАЛЬНОЕ ФОТО
+    # ========================================================
+
+    "Добавить точку по поиску с локальным фото": {
+
+        "template":
+            (
+                "_search_result_{var2} = ox.geocode({var3})\n"
+                "_lat_{var2}, _lon_{var2} = _search_result_{var2}\n"
+                "\n"
+                "_img64_{var2} = image_to_base64({var5})\n"
+                "\n"
+                "_html_{var2} = f'''"
+                "<div style=\"width:320px;\">"
+                "<h3 style=\"text-align:center;\">"
+                "{var4}"
+                "</h3>"
+                "<img src=\"data:image/jpeg;base64,"
+                "{_img64_" + "{var2}" + "}\" "
+                "width=\"300\" "
+                "style=\"display:block;"
+                "margin:auto;"
+                "border-radius:10px;\">"
+                "<p style=\"text-align:center;"
+                "font-size:15px;\">"
+                "{var6}"
+                "</p>"
+                "</div>"
+                "'''"
+                "\n"
+                "_popup_{var2} = folium.Popup(\n"
+                "    IFrame(\n"
+                "        _html_{var2},\n"
+                "        width=340,\n"
+                "        height=380\n"
+                "    ),\n"
+                "    max_width=340\n"
+                ")\n"
+                "\n"
+                "_marker_{var2} = folium.Marker(\n"
+                "    location=[_lat_{var2}, _lon_{var2}],\n"
+                "    popup=_popup_{var2},\n"
+                "    tooltip={var4}\n"
+                ")\n"
+                "\n"
+                "_marker_{var2}.add_to({var1})\n"
+                "\n"
+                "if {var7}:\n"
+                "    _route_points.append(\n"
+                "        (_lat_{var2}, _lon_{var2})\n"
+                "    )"
+            ),
+
+        "vars": [
+            "Переменная карты",
+            "Уникальное имя точки",
+            "Поиск / адрес",
+            "Название",
+            "Путь к изображению",
+            "Описание",
+            "Маршрутная точка (True/False)"
+        ],
+
+        "type": "folium",
+
+        "imports": [
+            "import folium",
+            "import base64",
+            "import osmnx as ox",
+            "from folium import IFrame"
+        ],
+
+        "helpers": [
+            "image_to_base64"
         ]
     },
 
@@ -626,14 +808,17 @@ COMMANDS_DB = {
     # ========================================================
 
     "Добавить линию Folium": {
-        "template": (
-            "folium.PolyLine(\n"
-            "    {var2},\n"
-            "    color={var3},\n"
-            "    weight={var4},\n"
-            "    opacity={var5}\n"
-            ").add_to({var1})"
-        ),
+
+        "template":
+            (
+                "folium.PolyLine(\n"
+                "    {var2},\n"
+                "    color={var3},\n"
+                "    weight={var4},\n"
+                "    opacity={var5}\n"
+                ").add_to({var1})"
+            ),
+
         "vars": [
             "Переменная карты",
             "Список координат",
@@ -641,7 +826,9 @@ COMMANDS_DB = {
             "Толщина",
             "Прозрачность"
         ],
+
         "type": "folium",
+
         "imports": [
             "import folium"
         ]
@@ -653,23 +840,26 @@ COMMANDS_DB = {
     # ========================================================
 
     "Добавить подпись расстояния": {
-        "template": (
-            "folium.Marker(\n"
-            "    location=[{var2}, {var3}],\n"
-            "    icon=folium.DivIcon(\n"
-            "        html=f'''"
-            "<div style=\""
-            "color:{var5};"
-            "font-size:{var6}px;"
-            "font-weight:bold;"
-            "white-space:nowrap;"
-            "\">"
-            "{var4}"
-            "</div>"
-            "'''"
-            "    )\n"
-            ").add_to({var1})"
-        ),
+
+        "template":
+            (
+                "folium.Marker(\n"
+                "    location=[{var2}, {var3}],\n"
+                "    icon=folium.DivIcon(\n"
+                "        html=f'''"
+                "<div style=\""
+                "color:{var5};"
+                "font-size:{var6}px;"
+                "font-weight:bold;"
+                "white-space:nowrap;"
+                "\">"
+                "{var4}"
+                "</div>"
+                "'''"
+                "    )\n"
+                ").add_to({var1})"
+            ),
+
         "vars": [
             "Переменная карты",
             "Широта",
@@ -678,7 +868,9 @@ COMMANDS_DB = {
             "Цвет",
             "Размер шрифта"
         ],
+
         "type": "folium",
+
         "imports": [
             "import folium"
         ]
@@ -690,12 +882,17 @@ COMMANDS_DB = {
     # ========================================================
 
     "Показать карту по границам": {
-        "template": "{var1}.fit_bounds({var2})",
+
+        "template":
+            "{var1}.fit_bounds({var2})",
+
         "vars": [
             "Переменная карты",
             "Список координат"
         ],
+
         "type": "folium",
+
         "imports": [
             "import folium"
         ]
@@ -703,77 +900,83 @@ COMMANDS_DB = {
 
 
     # ========================================================
-    # FOLIUM — OSRM МАРШРУТ
+    # НОВОЕ — МАРШРУТ ПО ВСЕМ ROUTE POINTS
     # ========================================================
 
-    "Соединить маршрутные точки OSRM": {
-        "template": (
-            "if len(_route_points) >= 2:\n"
-            "\n"
-            "    _coords_string = ';'.join(\n"
-            "        f\"{lon},{lat}\"\n"
-            "        for lat, lon in _route_points\n"
-            "    )\n"
-            "\n"
-            "    _url = (\n"
-            "        \"https://router.project-osrm.org/\"\n"
-            "        \"route/v1/driving/\"\n"
-            "        + _coords_string\n"
-            "        + \"?overview=full&geometries=geojson\"\n"
-            "    )\n"
-            "\n"
-            "    _response = requests.get(\n"
-            "        _url,\n"
-            "        timeout=30\n"
-            "    )\n"
-            "\n"
-            "    _response.raise_for_status()\n"
-            "\n"
-            "    _route_data = _response.json()\n"
-            "\n"
-            "    if _route_data.get('routes'):\n"
-            "\n"
-            "        _route = _route_data['routes'][0]\n"
-            "\n"
-            "        _route_distance_km = (\n"
-            "            _route['distance'] / 1000\n"
-            "        )\n"
-            "\n"
-            "        _route_coordinates = [\n"
-            "            [lat, lon]\n"
-            "            for lon, lat\n"
-            "            in _route['geometry']['coordinates']\n"
-            "        ]\n"
-            "\n"
-            "        folium.PolyLine(\n"
-            "            _route_coordinates,\n"
-            "            color='blue',\n"
-            "            weight=6,\n"
-            "            opacity=0.8,\n"
-            "            tooltip=(\n"
-            "                f'Маршрут: '\n"
-            "                f'{_route_distance_km:.2f} км'\n"
-            "            )\n"
-            "        ).add_to({var1})\n"
-            "\n"
-            "        print(\n"
-            "            f'Длина маршрута: '\n"
-            "            f'{_route_distance_km:.2f} км'\n"
-            "        )\n"
-            "\n"
-            "    else:\n"
-            "        print('OSRM не вернул маршрут.')\n"
-            "\n"
-            "else:\n"
-            "    print(\n"
-            "        'Для маршрута нужно минимум '\n"
-            "        '2 маршрутные точки.'\n"
-            "    )"
-        ),
+    "Построить маршрут OSRM по маршрутным точкам": {
+
+        "template":
+            (
+                "if len(_route_points) >= 2:\n"
+                "\n"
+                "    _coords_string = ';'.join(\n"
+                "        f\"{lon},{lat}\"\n"
+                "        for lat, lon in _route_points\n"
+                "    )\n"
+                "\n"
+                "    _url = (\n"
+                "        \"https://router.project-osrm.org/\"\n"
+                "        \"route/v1/driving/\"\n"
+                "        + _coords_string\n"
+                "        + \"?overview=full&geometries=geojson\"\n"
+                "    )\n"
+                "\n"
+                "    _response = requests.get(\n"
+                "        _url,\n"
+                "        timeout=30\n"
+                "    )\n"
+                "\n"
+                "    _response.raise_for_status()\n"
+                "\n"
+                "    _route_data = _response.json()\n"
+                "\n"
+                "    if _route_data.get('code') == 'Ok' and _route_data.get('routes'):\n"
+                "\n"
+                "        _route = _route_data['routes'][0]\n"
+                "\n"
+                "        _route_distance_km = (\n"
+                "            _route['distance'] / 1000\n"
+                "        )\n"
+                "\n"
+                "        _route_coordinates = [\n"
+                "            [lat, lon]\n"
+                "            for lon, lat\n"
+                "            in _route['geometry']['coordinates']\n"
+                "        ]\n"
+                "\n"
+                "        folium.PolyLine(\n"
+                "            _route_coordinates,\n"
+                "            color='blue',\n"
+                "            weight=6,\n"
+                "            opacity=0.8,\n"
+                "            tooltip=(\n"
+                "                f'Маршрут: '\n"
+                "                f'{_route_distance_km:.2f} км'\n"
+                "            )\n"
+                "        ).add_to({var1})\n"
+                "\n"
+                "        {var1}.fit_bounds(_route_coordinates)\n"
+                "\n"
+                "    else:\n"
+                "\n"
+                "        print(\n"
+                "            'OSRM не вернул маршрут.'\n"
+                "        )\n"
+                "\n"
+                "else:\n"
+                "\n"
+                "    print(\n"
+                "        'Для маршрута нужно минимум '\n"
+                "        '2 маршрутные точки.'\n"
+                "    )"
+            ),
+
         "vars": [
             "Переменная карты"
         ],
+
         "type": "folium",
+
         "imports": [
             "import folium",
             "import requests"
@@ -786,12 +989,19 @@ COMMANDS_DB = {
     # ========================================================
 
     "Экспортировать карту HTML": {
-        "template": "{var1}.save({var2})",
+
+        "template":
+            (
+                "{var1}.save({var2})"
+            ),
+
         "vars": [
             "Переменная карты",
             "Имя HTML-файла"
         ],
+
         "type": "folium",
+
         "imports": [
             "import folium"
         ]
@@ -838,7 +1048,7 @@ used_helpers = set()
 
 
 # ============================================================
-# ЭКРАНИРОВАНИЕ PYTHON-СТРОКИ
+# ЭКРАНИРОВАНИЕ PYTHON-СТРОК
 # ============================================================
 
 def python_string(value):
@@ -907,8 +1117,15 @@ def browse_image(entry):
     if not path:
         return
 
-    entry.delete(0, "end")
-    entry.insert(0, path)
+    entry.delete(
+        0,
+        "end"
+    )
+
+    entry.insert(
+        0,
+        path
+    )
 
 
 # ============================================================
@@ -917,7 +1134,10 @@ def browse_image(entry):
 
 def quote_value(value):
 
-    if value.startswith(("'", '"')):
+    if value.startswith(
+        ("'", '"')
+    ):
+
         return value
 
     return (
@@ -968,7 +1188,9 @@ def on_command_change(event=None):
             pady=5
         )
 
-        input_widgets.append(label)
+        input_widgets.append(
+            label
+        )
 
         # ----------------------------------------------------
         # Локальный файл изображения
@@ -977,25 +1199,19 @@ def on_command_change(event=None):
         is_image_file = (
 
             (
-                selected ==
-                "Добавить маркер с фото из файла"
-            )
-            and
-            (
                 "Путь к изображению"
                 in variable_name
             )
 
-        ) or (
+            and
 
             (
-                selected ==
-                "Добавить изображение из файла в CustomTkinter"
-            )
-            and
-            (
-                "Путь к изображению"
-                in variable_name
+                selected
+                in (
+                    "Добавить маркер с фото из файла",
+                    "Добавить изображение из файла в CustomTkinter",
+                    "Добавить точку по поиску с локальным фото"
+                )
             )
         )
 
@@ -1027,8 +1243,7 @@ def on_command_change(event=None):
                 container,
                 text="Обзор",
                 width=70,
-                command=lambda e=entry:
-                    browse_image(e)
+                command=lambda e=entry: browse_image(e)
             )
 
             browse_button.pack(
@@ -1036,8 +1251,13 @@ def on_command_change(event=None):
                 padx=(5, 0)
             )
 
-            input_widgets.append(container)
-            input_widgets.append(entry)
+            input_widgets.append(
+                container
+            )
+
+            input_widgets.append(
+                entry
+            )
 
         else:
 
@@ -1054,7 +1274,9 @@ def on_command_change(event=None):
                 pady=5
             )
 
-            input_widgets.append(entry)
+            input_widgets.append(
+                entry
+            )
 
 
 # ============================================================
@@ -1099,7 +1321,7 @@ def replace_template_variables(
 
 
 # ============================================================
-# BOOL
+# НОРМАЛИЗАЦИЯ BOOL
 # ============================================================
 
 def normalize_bool(value):
@@ -1129,6 +1351,28 @@ def normalize_bool(value):
 
     if value in false_values:
         return "False"
+
+    return value
+
+
+# ============================================================
+# БЕЗОПАСНОЕ ИМЯ ПЕРЕМЕННОЙ
+# ============================================================
+
+def safe_identifier(value):
+
+    value = re.sub(
+        r"\W+",
+        "_",
+        value,
+        flags=re.UNICODE
+    )
+
+    if not value:
+        value = "point"
+
+    if value[0].isdigit():
+        value = "_" + value
 
     return value
 
@@ -1195,7 +1439,6 @@ def add_command():
 
         values.append(value)
 
-
     # ========================================================
     # CUSTOMTKINTER
     # ========================================================
@@ -1223,22 +1466,19 @@ def add_command():
                 if x.strip()
             ]
 
-            values[1] = repr(items)
+            values[1] = repr(
+                items
+            )
 
 
-    if selected == (
-        "Добавить изображение по URL в CustomTkinter"
-    ):
+    if selected == "Добавить изображение по URL в CustomTkinter":
 
         values[1] = quote_value(
             values[1]
         )
 
 
-    if selected == (
-        "Добавить изображение из файла "
-        "в CustomTkinter"
-    ):
+    if selected == "Добавить изображение из файла в CustomTkinter":
 
         values[1] = quote_value(
             values[1]
@@ -1251,58 +1491,141 @@ def add_command():
 
     if selected == "Добавить маркер Folium":
 
-        values[4] = quote_value(values[4])
-        values[5] = quote_value(values[5])
-        values[6] = normalize_bool(values[6])
-
-
-    # ========================================================
-    # FOLIUM — ТОЧКА ПО ПОИСКУ
-    # ========================================================
-
-    if selected == "Добавить точку по поиску":
-
-        # Адрес
-        values[2] = quote_value(
-            values[2]
-        )
-
-        # Название
-        values[3] = quote_value(
-            values[3]
-        )
-
-        # Popup
         values[4] = quote_value(
             values[4]
         )
 
-        # True / False
-        values[5] = normalize_bool(
+        values[5] = quote_value(
             values[5]
+        )
+
+        values[6] = normalize_bool(
+            values[6]
+        )
+
+        values[1] = safe_identifier(
+            values[1]
         )
 
 
     # ========================================================
-    # FOLIUM — ФОТО
+    # FOLIUM — ФОТО ИЗ ФАЙЛА
     # ========================================================
 
     if selected == "Добавить маркер с фото из файла":
 
-        values[4] = quote_value(values[4])
-        values[5] = quote_value(values[5])
-        values[6] = normalize_bool(values[6])
+        values[3] = quote_value(
+            values[3]
+        )
 
+        values[4] = quote_value(
+            values[4]
+        )
 
-    if selected == "Добавить маркер с фото по URL":
+        values[5] = quote_value(
+            values[5]
+        )
 
-        values[4] = quote_value(values[4])
-        values[5] = quote_value(values[5])
-        values[6] = normalize_bool(values[6])
+        values[6] = normalize_bool(
+            values[6]
+        )
+
+        values[1] = safe_identifier(
+            values[1]
+        )
 
 
     # ========================================================
-    # ЭКСПОРТ
+    # FOLIUM — ФОТО URL
+    # ========================================================
+
+    if selected == "Добавить маркер с фото по URL":
+
+        values[3] = quote_value(
+            values[3]
+        )
+
+        values[4] = quote_value(
+            values[4]
+        )
+
+        values[5] = quote_value(
+            values[5]
+        )
+
+        values[6] = normalize_bool(
+            values[6]
+        )
+
+        values[1] = safe_identifier(
+            values[1]
+        )
+
+
+    # ========================================================
+    # НОВОЕ — ПОИСК + URL
+    # ========================================================
+
+    if selected == "Добавить точку по поиску с фото URL":
+
+        values[3] = quote_value(
+            values[3]
+        )
+
+        values[4] = quote_value(
+            values[4]
+        )
+
+        values[5] = quote_value(
+            values[5]
+        )
+
+        values[6] = normalize_bool(
+            values[6]
+        )
+
+        values[1] = safe_identifier(
+            values[1]
+        )
+
+        values[2] = quote_value(
+            values[2]
+        )
+
+
+    # ========================================================
+    # НОВОЕ — ПОИСК + ЛОКАЛЬНОЕ ФОТО
+    # ========================================================
+
+    if selected == "Добавить точку по поиску с локальным фото":
+
+        values[3] = quote_value(
+            values[3]
+        )
+
+        values[4] = quote_value(
+            values[4]
+        )
+
+        values[5] = quote_value(
+            values[5]
+        )
+
+        values[6] = normalize_bool(
+            values[6]
+        )
+
+        values[1] = safe_identifier(
+            values[1]
+        )
+
+        values[2] = quote_value(
+            values[2]
+        )
+
+
+    # ========================================================
+    # ЭКСПОРТ HTML
     # ========================================================
 
     if selected == "Экспортировать карту HTML":
@@ -1310,37 +1633,6 @@ def add_command():
         values[1] = quote_value(
             values[1]
         )
-
-
-    # ========================================================
-    # УНИКАЛЬНОЕ ИМЯ
-    # ========================================================
-
-    if selected in (
-        "Добавить маркер Folium",
-        "Добавить маркер с фото из файла",
-        "Добавить маркер с фото по URL",
-        "Добавить точку по поиску"
-    ):
-
-        # Для поиска имя находится в var2.
-        #
-        # Для обычной точки var2 тоже является
-        # уникальным именем.
-
-        safe_name = re.sub(
-            r"\W+",
-            "_",
-            values[1]
-        )
-
-        if not safe_name:
-            safe_name = "point"
-
-        if safe_name[0].isdigit():
-            safe_name = "_" + safe_name
-
-        values[1] = safe_name
 
 
     # ========================================================
@@ -1365,24 +1657,14 @@ def add_command():
         return
 
 
-    # --------------------------------------------------------
-    # Исправление технического имени изображения
-    # --------------------------------------------------------
-
-    if selected == "Добавить маркер с фото из файла":
-
-        generated = generated.replace(
-            "{_img64_%s}",
-            "_img64_" + values[1]
-        )
-
-
     textbox.insert(
         "end",
         generated + "\n\n"
     )
 
-    textbox.see("end")
+    textbox.see(
+        "end"
+    )
 
 
     added_command_types.append(
@@ -1398,7 +1680,9 @@ def add_command():
         []
     ):
 
-        used_imports.add(imp)
+        used_imports.add(
+            imp
+        )
 
 
     for helper in command.get(
@@ -1406,11 +1690,13 @@ def add_command():
         []
     ):
 
-        used_helpers.add(helper)
+        used_helpers.add(
+            helper
+        )
 
 
 # ============================================================
-# ОЧИСТКА КОДА
+# ОЧИСТКА
 # ============================================================
 
 def clear_code():
@@ -1421,7 +1707,9 @@ def clear_code():
     )
 
     added_command_types.clear()
+
     used_imports.clear()
+
     used_helpers.clear()
 
 
@@ -1432,7 +1720,6 @@ def clear_code():
 def install_required_for_code():
 
     required = []
-
 
     if "folium" in used_imports:
 
@@ -1448,16 +1735,6 @@ def install_required_for_code():
 
         required.append(
             ("requests", "requests")
-        )
-
-
-    if any(
-        "osmnx" in imp
-        for imp in used_imports
-    ):
-
-        required.append(
-            ("osmnx", "osmnx")
         )
 
 
@@ -1481,8 +1758,17 @@ def install_required_for_code():
         )
 
 
-    failed = []
+    if any(
+        "osmnx" in imp
+        for imp in used_imports
+    ):
 
+        required.append(
+            ("osmnx", "osmnx")
+        )
+
+
+    failed = []
 
     for package, module in required:
 
@@ -1494,7 +1780,9 @@ def install_required_for_code():
 
             if not install_package(package):
 
-                failed.append(package)
+                failed.append(
+                    package
+                )
 
 
     if failed:
@@ -1507,7 +1795,6 @@ def install_required_for_code():
         )
 
         return False
-
 
     return True
 
@@ -1570,23 +1857,31 @@ def generate_header(
 
         if imp in imports:
 
-            lines.append(imp)
+            lines.append(
+                imp
+            )
 
 
-    for imp in sorted(imports):
+    for imp in sorted(
+        imports
+    ):
 
         if imp not in preferred_order:
 
-            lines.append(imp)
+            lines.append(
+                imp
+            )
 
 
     lines.append("")
 
-    return "\n".join(lines)
+    return "\n".join(
+        lines
+    )
 
 
 # ============================================================
-# ПОЛНЫЙ СКРИПТ
+# FULL SCRIPT
 # ============================================================
 
 def generate_full_script(
@@ -1623,7 +1918,7 @@ def generate_full_script(
 
 
     # --------------------------------------------------------
-    # Автоопределение библиотек
+    # Автоматически определяем библиотеки по коду
     # --------------------------------------------------------
 
     if (
@@ -1681,11 +1976,10 @@ def generate_full_script(
 
 
     # --------------------------------------------------------
-    # Helpers
+    # Helper
     # --------------------------------------------------------
 
     helper_text = ""
-
 
     for helper_name in used_helpers:
 
@@ -1743,8 +2037,10 @@ def generate_full_script(
         )
 
 
-        safe_title = python_double_string(
-            window_title
+        safe_title = (
+            python_double_string(
+                window_title
+            )
         )
 
 
@@ -1782,7 +2078,7 @@ frame.pack(
 
 
     # --------------------------------------------------------
-    # Код конструктора
+    # Код пользователя
     # --------------------------------------------------------
 
     parts.append(
@@ -1799,7 +2095,7 @@ frame.pack(
 
 
     # --------------------------------------------------------
-    # HTML
+    # HTML export
     # --------------------------------------------------------
 
     if html_output:
@@ -1873,7 +2169,9 @@ root.mainloop()
         )
 
 
-    return "\n".join(parts)
+    return "\n".join(
+        parts
+    )
 
 
 # ============================================================
@@ -1883,6 +2181,7 @@ root.mainloop()
 def save_as_py():
 
     script = generate_full_script()
+
 
     if script is None:
         return
@@ -1895,6 +2194,7 @@ def save_as_py():
             "<generated>",
             "exec"
         )
+
 
     except SyntaxError as e:
 
@@ -1940,7 +2240,9 @@ def save_as_py():
             encoding="utf-8"
         ) as file:
 
-            file.write(script)
+            file.write(
+                script
+            )
 
 
         messagebox.showinfo(
@@ -1968,6 +2270,7 @@ def run_code():
 
     script = generate_full_script()
 
+
     if script is None:
         return
 
@@ -1979,6 +2282,7 @@ def run_code():
             "<generated>",
             "exec"
         )
+
 
     except SyntaxError as e:
 
@@ -2003,14 +2307,20 @@ def run_code():
         with tempfile.NamedTemporaryFile(
 
             mode="w",
+
             suffix=".py",
+
             prefix="constructor_",
+
             delete=False,
+
             encoding="utf-8"
 
         ) as temp:
 
-            temp.write(script)
+            temp.write(
+                script
+            )
 
             temp_path = temp.name
 
@@ -2024,9 +2334,11 @@ def run_code():
         def cleanup():
 
             try:
+
                 process.wait()
 
             except Exception:
+
                 pass
 
 
@@ -2049,10 +2361,13 @@ def run_code():
 
 
                 except Exception:
+
                     pass
 
 
-                time.sleep(0.5)
+                time.sleep(
+                    0.5
+                )
 
 
         threading.Thread(
@@ -2074,6 +2389,7 @@ def run_code():
                 )
 
             except Exception:
+
                 pass
 
 
@@ -2147,6 +2463,7 @@ def export_html():
             "exec"
         )
 
+
     except SyntaxError as e:
 
         messagebox.showerror(
@@ -2166,14 +2483,20 @@ def export_html():
         with tempfile.NamedTemporaryFile(
 
             mode="w",
+
             suffix=".py",
+
             prefix="folium_export_",
+
             delete=False,
+
             encoding="utf-8"
 
         ) as temp:
 
-            temp.write(script)
+            temp.write(
+                script
+            )
 
             temp_path = temp.name
 
@@ -2220,8 +2543,11 @@ def export_html():
                 else:
 
                     error_text = (
+
                         process.stderr
+
                         or process.stdout
+
                         or "Неизвестная ошибка"
                     )
 
@@ -2276,7 +2602,9 @@ def export_html():
 
                         except Exception:
 
-                            time.sleep(0.3)
+                            time.sleep(
+                                0.3
+                            )
 
 
         threading.Thread(
@@ -2298,6 +2626,7 @@ def export_html():
                 )
 
             except Exception:
+
                 pass
 
 
@@ -2477,7 +2806,7 @@ def refresh_combo():
 
 
 # ============================================================
-# КОНСТРУКТОР
+# ОТКРЫТИЕ КОНСТРУКТОРА
 # ============================================================
 
 def open_constructor(parent=None):
@@ -2490,6 +2819,10 @@ def open_constructor(parent=None):
     global size_entry
 
 
+    # --------------------------------------------------------
+    # Уже открыт
+    # --------------------------------------------------------
+
     if (
 
         constructor_window is not None
@@ -2499,11 +2832,17 @@ def open_constructor(parent=None):
     ):
 
         constructor_window.deiconify()
+
         constructor_window.lift()
+
         constructor_window.focus_force()
 
         return constructor_window
 
+
+    # --------------------------------------------------------
+    # Окно
+    # --------------------------------------------------------
 
     constructor_window = ctk.CTkToplevel(
         parent
@@ -2516,19 +2855,19 @@ def open_constructor(parent=None):
 
 
     constructor_window.geometry(
-        "950x900"
+        "1050x950"
     )
 
 
     constructor_window.minsize(
-        800,
-        700
+        850,
+        750
     )
 
 
-    # ========================================================
+    # --------------------------------------------------------
     # GRID
-    # ========================================================
+    # --------------------------------------------------------
 
     frame = ctk.CTkFrame(
         constructor_window
@@ -2555,9 +2894,9 @@ def open_constructor(parent=None):
     )
 
 
-    # ========================================================
+    # --------------------------------------------------------
     # ЗАГОЛОВОК
-    # ========================================================
+    # --------------------------------------------------------
 
     ctk.CTkLabel(
 
@@ -2582,91 +2921,125 @@ def open_constructor(parent=None):
     )
 
 
-    # ========================================================
-    # НАСТРОЙКИ
-    # ========================================================
+    # --------------------------------------------------------
+    # НАСТРОЙКИ ОКНА
+    # --------------------------------------------------------
 
     settings = ctk.CTkFrame(
+
         frame,
+
         fg_color="transparent"
     )
 
 
     settings.grid(
+
         row=1,
+
         column=0,
+
         columnspan=2,
+
         sticky="ew",
+
         pady=5
     )
 
 
     ctk.CTkLabel(
+
         settings,
+
         text="Название окна:"
     ).pack(
+
         side="left",
+
         padx=5
     )
 
 
     title_entry = ctk.CTkEntry(
+
         settings,
+
         width=180
     )
 
 
     title_entry.pack(
+
         side="left",
+
         padx=5
     )
 
 
     title_entry.insert(
+
         0,
+
         "Моё приложение"
     )
 
 
     ctk.CTkLabel(
+
         settings,
+
         text="Размер:"
     ).pack(
+
         side="left",
+
         padx=(20, 5)
     )
 
 
     size_entry = ctk.CTkEntry(
+
         settings,
+
         width=100
     )
 
 
     size_entry.pack(
+
         side="left",
+
         padx=5
     )
 
 
     size_entry.insert(
+
         0,
+
         "400x300"
     )
 
 
-    # ========================================================
+    # --------------------------------------------------------
     # КОМАНДА
-    # ========================================================
+    # --------------------------------------------------------
 
     ctk.CTkLabel(
+
         frame,
+
         text="Команда:"
     ).grid(
+
         row=2,
+
         column=0,
+
         sticky="e",
+
         padx=10,
+
         pady=5
     )
 
@@ -2679,17 +3052,22 @@ def open_constructor(parent=None):
             COMMANDS_DB.keys()
         ),
 
-        width=450,
+        width=550,
 
         command=on_command_change
     )
 
 
     combo.grid(
+
         row=2,
+
         column=1,
+
         sticky="w",
+
         padx=10,
+
         pady=5
     )
 
@@ -2697,6 +3075,7 @@ def open_constructor(parent=None):
     if COMMANDS_DB:
 
         combo.set(
+
             next(
                 iter(
                     COMMANDS_DB
@@ -2705,9 +3084,9 @@ def open_constructor(parent=None):
         )
 
 
-    # ========================================================
+    # --------------------------------------------------------
     # ДОБАВИТЬ
-    # ========================================================
+    # --------------------------------------------------------
 
     ctk.CTkButton(
 
@@ -2733,9 +3112,9 @@ def open_constructor(parent=None):
     )
 
 
-    # ========================================================
+    # --------------------------------------------------------
     # РЕДАКТОР
-    # ========================================================
+    # --------------------------------------------------------
 
     textbox = ctk.CTkTextbox(
 
@@ -2751,118 +3130,173 @@ def open_constructor(parent=None):
 
 
     textbox.grid(
+
         row=11,
+
         column=0,
+
         columnspan=2,
+
         sticky="nsew",
+
         padx=10,
+
         pady=10
     )
 
 
-    # ========================================================
+    # --------------------------------------------------------
     # КНОПКИ
-    # ========================================================
+    # --------------------------------------------------------
 
     buttons = ctk.CTkFrame(
+
         frame,
+
         fg_color="transparent"
     )
 
 
     buttons.grid(
+
         row=12,
+
         column=0,
+
         columnspan=2,
+
         pady=10
     )
 
 
     ctk.CTkButton(
+
         buttons,
+
         text="Открыть код",
+
         command=run_code,
+
         width=140
+
     ).pack(
+
         side="left",
+
         padx=4
     )
 
 
     ctk.CTkButton(
+
         buttons,
+
         text="Экспорт HTML",
+
         command=export_html,
+
         width=140
+
     ).pack(
+
         side="left",
+
         padx=4
     )
 
 
     ctk.CTkButton(
+
         buttons,
+
         text="Сохранить .py",
+
         command=save_as_py,
+
         width=140
+
     ).pack(
+
         side="left",
+
         padx=4
     )
 
 
     ctk.CTkButton(
+
         buttons,
+
         text="Очистить",
+
         command=clear_code,
+
         width=120
+
     ).pack(
+
         side="left",
+
         padx=4
     )
 
 
     ctk.CTkButton(
+
         buttons,
+
         text="Загрузить TXT",
+
         command=load_commands_from_file,
+
         width=130
+
     ).pack(
+
         side="left",
+
         padx=4
     )
 
 
-    # ========================================================
+    # --------------------------------------------------------
     # ЗАКРЫТИЕ
-    # ========================================================
+    # --------------------------------------------------------
 
     def close_constructor():
 
         global constructor_window
 
+
         try:
+
             constructor_window.destroy()
 
         except Exception:
+
             pass
+
 
         constructor_window = None
 
 
     constructor_window.protocol(
+
         "WM_DELETE_WINDOW",
+
         close_constructor
     )
 
 
-    # ========================================================
+    # --------------------------------------------------------
     # ИНИЦИАЛИЗАЦИЯ
-    # ========================================================
+    # --------------------------------------------------------
 
     on_command_change()
 
+
     constructor_window.lift()
+
     constructor_window.focus_force()
 
 
@@ -2911,7 +3345,9 @@ if __name__ == "__main__":
 
         root,
 
-        text="Python + CustomTkinter + Folium"
+        text=(
+            "Python + CustomTkinter + Folium"
+        )
 
     ).pack(
 
