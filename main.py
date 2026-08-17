@@ -10,7 +10,7 @@ import os
 import threading
 import queue
 import serial
-
+from ui.PFBP import open_constructor
 from datetime import datetime
 from dotenv import load_dotenv
 
@@ -751,7 +751,15 @@ def process_command(text):
         lcd_sleep()
 
         return "Перехожу в режим сна"
+    if (
+            "давай работать" in text
+            or "кодить" in text
+    ):
 
+        open_constructor()
+
+
+        return "начинаем"
 
     # ========================================================
     # ПРОБУЖДЕНИЕ
