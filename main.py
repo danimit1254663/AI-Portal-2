@@ -2,7 +2,7 @@
 # ============================================================
 # JARVIS - main.py
 # ============================================================
-
+from commands.geo import search
 import time
 import logging
 import traceback
@@ -764,7 +764,8 @@ def process_command(text):
     # ========================================================
     # ПРОБУЖДЕНИЕ
     # ========================================================
-
+    if ('где находится' in text ):
+        search(text)
     if "проснись" in text:
 
         state.microphone_enabled = True

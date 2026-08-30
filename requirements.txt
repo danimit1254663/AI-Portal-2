@@ -29,3 +29,5 @@ omegaconf==2.3.0
 openai
 telebot
 serial
+geopy
+folium

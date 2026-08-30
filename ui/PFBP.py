@@ -7,21 +7,13 @@ import threading
 import time
 import re
 from pathlib import Path
-from tkinter import filedialog, messagebox, simpledialog
+from tkinter import filedialog, messagebox
 
-
-# ============================================================
-# АВТОУСТАНОВКА БИБЛИОТЕК
-# ============================================================
 
 def install_package(package_name):
     try:
         subprocess.check_call([
-            sys.executable,
-            "-m",
-            "pip",
-            "install",
-            package_name
+            sys.executable, "-m", "pip", "install", package_name
         ])
         return True
     except Exception:
@@ -29,9 +21,7 @@ def install_package(package_name):
 
 
 def ensure_package(package_name, import_name=None):
-    if import_name is None:
-        import_name = package_name
-
+    import_name = import_name or package_name
     try:
         __import__(import_name)
         return True
@@ -40,17 +30,10 @@ def ensure_package(package_name, import_name=None):
 
 
 if not ensure_package("customtkinter", "customtkinter"):
-    raise SystemExit(
-        "Не удалось установить customtkinter."
-    )
-
+    raise SystemExit("Не удалось установить customtkinter.")
 
 import customtkinter as ctk
 
-
-# ============================================================
-# НАСТРОЙКИ
-# ============================================================
 
 ctk.set_appearance_mode("Dark")
 ctk.set_default_color_theme("blue")
@@ -62,35 +45,27 @@ ctk.set_default_color_theme("blue")
 
 COMMANDS_DB = {
 
-    # ========================================================
+    # --------------------------------------------------------
     # PYTHON
-    # ========================================================
+    # --------------------------------------------------------
 
     "Вывод (print)": {
         "template": "print({var1})",
-        "vars": [
-            "Текст или значение"
-        ],
+        "vars": ["Текст или значение"],
         "type": "python",
         "imports": []
     },
 
     "Ввод (input)": {
         "template": "{var1} = input({var2})",
-        "vars": [
-            "Имя переменной",
-            "Текст подсказки"
-        ],
+        "vars": ["Имя переменной", "Текст подсказки"],
         "type": "python",
         "imports": []
     },
 
     "Присваивание переменной": {
         "template": "{var1} = {var2}",
-        "vars": [
-            "Имя переменной",
-            "Значение"
-        ],
+        "vars": ["Имя переменной", "Значение"],
         "type": "python",
         "imports": []
     },
@@ -100,9 +75,7 @@ COMMANDS_DB = {
             "for i in range({var1}):\n"
             "    pass"
         ),
-        "vars": [
-            "Количество повторений"
-        ],
+        "vars": ["Количество повторений"],
         "type": "python",
         "imports": []
     },
@@ -112,9 +85,7 @@ COMMANDS_DB = {
             "if {var1}:\n"
             "    pass"
         ),
-        "vars": [
-            "Условие"
-        ],
+        "vars": ["Условие"],
         "type": "python",
         "imports": []
     },
@@ -133,16 +104,14 @@ COMMANDS_DB = {
         "imports": []
     },
 
-    # ========================================================
-    # CUSTOMTKINTER
-    # ========================================================
+    # --------------------------------------------------------
+    # GUI
+    # --------------------------------------------------------
 
     "Добавить кнопку": {
         "template": (
             "{var1} = ctk.CTkButton("
-            "frame, "
-            "text={var2}, "
-            "command={var3}"
+            "frame, text={var2}, command={var3}"
             ")\n"
             "{var1}.pack(pady=5)"
         ),
@@ -160,8 +129,7 @@ COMMANDS_DB = {
     "Добавить метку": {
         "template": (
             "{var1} = ctk.CTkLabel("
-            "frame, "
-            "text={var2}"
+            "frame, text={var2}"
             ")\n"
             "{var1}.pack(pady=5)"
         ),
@@ -192,13 +160,10 @@ COMMANDS_DB = {
     "Добавить текстовое поле": {
         "template": (
             "{var1} = ctk.CTkTextbox("
-            "frame, "
-            "height={var2}"
+            "frame, height={var2}"
             ")\n"
             "{var1}.pack("
-            "pady=5, "
-            "fill='both', "
-            "expand=True"
+            "pady=5, fill='both', expand=True"
             ")"
         ),
         "vars": [
@@ -214,8 +179,7 @@ COMMANDS_DB = {
     "Добавить чекбокс": {
         "template": (
             "{var1} = ctk.CTkCheckBox("
-            "frame, "
-            "text={var2}"
+            "frame, text={var2}"
             ")\n"
             "{var1}.pack(pady=5)"
         ),
@@ -232,8 +196,7 @@ COMMANDS_DB = {
     "Добавить ComboBox": {
         "template": (
             "{var1} = ctk.CTkComboBox("
-            "frame, "
-            "values={var2}"
+            "frame, values={var2}"
             ")\n"
             "{var1}.pack(pady=5)"
         ),
@@ -247,26 +210,16 @@ COMMANDS_DB = {
         ]
     },
 
-    # ========================================================
-    # CUSTOMTKINTER — ФОТО ИЗ ФАЙЛА
-    # ========================================================
-
     "Добавить изображение из файла": {
         "template": (
             "_img_path = {var2}\n"
             "_img = Image.open(_img_path).convert('RGBA')\n"
             "_img.thumbnail(({var3}, {var4}))\n"
-            "\n"
-            "{var1}_image = ctk.CTkImage(\n"
-            "    light_image=_img,\n"
-            "    dark_image=_img,\n"
-            "    size=_img.size\n"
+            "{var1}_image = ctk.CTkImage("
+            "light_image=_img, dark_image=_img, size=_img.size"
             ")\n"
-            "\n"
-            "{var1} = ctk.CTkLabel(\n"
-            "    frame,\n"
-            "    text='',\n"
-            "    image={var1}_image\n"
+            "{var1} = ctk.CTkLabel("
+            "frame, text='', image={var1}_image"
             ")\n"
             "{var1}.pack(pady=10)"
         ),
@@ -283,37 +236,26 @@ COMMANDS_DB = {
         ]
     },
 
-    # ========================================================
-    # CUSTOMTKINTER — ФОТО ПО URL
-    # ========================================================
-
     "Добавить изображение по URL": {
         "template": (
             "_response_{var1} = requests.get("
-            "{var2}, "
-            "timeout=30"
+            "{var2}, timeout=30"
             ")\n"
             "_response_{var1}.raise_for_status()\n"
-            "\n"
             "_image_data_{var1} = BytesIO("
             "_response_{var1}.content"
             ")\n"
-            "\n"
             "_img_{var1} = Image.open("
             "_image_data_{var1}"
             ").convert('RGBA')\n"
             "_img_{var1}.thumbnail(({var3}, {var4}))\n"
-            "\n"
-            "{var1}_image = ctk.CTkImage(\n"
-            "    light_image=_img_{var1},\n"
-            "    dark_image=_img_{var1},\n"
-            "    size=_img_{var1}.size\n"
+            "{var1}_image = ctk.CTkImage("
+            "light_image=_img_{var1}, "
+            "dark_image=_img_{var1}, "
+            "size=_img_{var1}.size"
             ")\n"
-            "\n"
-            "{var1} = ctk.CTkLabel(\n"
-            "    frame,\n"
-            "    text='',\n"
-            "    image={var1}_image\n"
+            "{var1} = ctk.CTkLabel("
+            "frame, text='', image={var1}_image"
             ")\n"
             "{var1}.pack(pady=10)"
         ),
@@ -333,16 +275,74 @@ COMMANDS_DB = {
     },
 
     # ========================================================
-    # FOLIUM — КАРТА
+    # FOLIUM
     # ========================================================
 
     "Создать карту": {
         "template": (
+            "# ==================================================\n"
+            "# КАРТА\n"
+            "# ==================================================\n"
+            "\n"
             "{var1} = folium.Map(\n"
             "    location=[{var2}, {var3}],\n"
             "    zoom_start={var4},\n"
-            "    control_scale=True\n"
+            "    control_scale=True,\n"
+            "    attribution_control=False\n"
             ")\n"
+            "\n"
+            "# Создаём собственный attribution-контрол.\n"
+            "# Стандартный Leaflet prefix с украинским флагом\n"
+            "# НЕ используется.\n"
+            "\n"
+            "_attribution_{var1} = folium.Element(\n"
+            "    '''\n"
+            "    <script>\n"
+            "    (function() {\n"
+            "        function setupAttribution() {\n"
+            "            var mapObject = window.{var1};\n"
+            "\n"
+            "            if (!mapObject || !window.L) {\n"
+            "                return;\n"
+            "            }\n"
+            "\n"
+            "            if (mapObject.attributionControl) {\n"
+            "                return;\n"
+            "            }\n"
+            "\n"
+            "            var attribution = L.control.attribution({\n"
+            "                position: 'bottomright'\n"
+            "            }).addTo(mapObject);\n"
+            "\n"
+            "            attribution.setPrefix(\n"
+            "                '<a href=\"https://leafletjs.com/\" '\n"
+            "                'title=\"A JavaScript library for interactive maps\">'\n"
+            "                + 'Leaflet'</n"
+            "                + '</a>'\n"
+            "            );\n"
+            "\n"
+            "            attribution.addAttribution(\n"
+            "                '&copy; '\n"
+            "                + '<a href=\"https://www.openstreetmap.org/copyright\">'\n"
+            "                + 'OpenStreetMap contributors'\n"
+            "                + '</a>'\n"
+            "            );\n"
+            "        }\n"
+            "\n"
+            "        if (document.readyState === 'loading') {\n"
+            "            document.addEventListener(\n"
+            "                'DOMContentLoaded',\n"
+            "                setupAttribution\n"
+            "            );\n"
+            "        } else {\n"
+            "            setupAttribution();\n"
+            "        }\n"
+            "    })();\n"
+            "    </script>\n"
+            "    '''\n"
+            ")\n"
+            "\n"
+            "_attribution_{var1}.add_to({var1})\n"
             "\n"
             "_route_points = []"
         ),
@@ -358,16 +358,16 @@ COMMANDS_DB = {
         ]
     },
 
-    # ========================================================
-    # FOLIUM — ОБЫЧНЫЙ МАРКЕР
-    # ========================================================
+    # --------------------------------------------------------
+    # МАРКЕР
+    # --------------------------------------------------------
 
     "Добавить маркер": {
         "template": (
-            "_marker_{var2} = folium.Marker(\n"
-            "    location=[{var3}, {var4}],\n"
-            "    tooltip={var5},\n"
-            "    popup={var6}\n"
+            "_marker_{var2} = folium.Marker("
+            "location=[{var3}, {var4}], "
+            "tooltip={var5}, "
+            "popup={var6}"
             ")\n"
             "_marker_{var2}.add_to({var1})\n"
             "\n"
@@ -389,38 +389,32 @@ COMMANDS_DB = {
         ]
     },
 
-    # ========================================================
-    # FOLIUM — МАРКЕР + ЛОКАЛЬНОЕ ФОТО
-    # ========================================================
+    # --------------------------------------------------------
+    # МАРКЕР С ФОТО
+    # --------------------------------------------------------
 
     "Добавить маркер с фото из файла": {
         "template": (
-            "_img_uri_{var2} = image_to_data_uri({var6})\n"
+            "_img64_{var2} = image_to_base64({var6})\n"
             "\n"
             "_html_{var2} = (\n"
             "    '<div style=\"width:320px;\">'\n"
-            "    '<h3 style=\"text-align:center;\">' +\n"
-            "    str({var5}) +\n"
+            "    '<h3 style=\"text-align:center;\">'\n"
+            "    + str({var5}) +\n"
             "    '</h3>'\n"
-            "    '<img src=\"' +\n"
-            "    _img_uri_{var2} +\n"
+            "    '<img src=\"data:image/jpeg;base64,'\n"
+            "    + _img64_{var2} +\n"
             "    '\" width=\"300\" '\n"
-            "    'style=\"display:block;'\n"
-            "    'margin:auto;'\n"
+            "    'style=\"display:block;margin:auto;'\n"
             "    'border-radius:10px;\">'\n"
-            "    '<p style=\"text-align:center;'\n"
-            "    'font-size:15px;\">' +\n"
-            "    str({var7}) +\n"
+            "    '<p style=\"text-align:center;font-size:15px;\">'\n"
+            "    + str({var7}) +\n"
             "    '</p>'\n"
             "    '</div>'\n"
             ")\n"
             "\n"
             "_popup_{var2} = folium.Popup(\n"
-            "    IFrame(\n"
-            "        _html_{var2},\n"
-            "        width=340,\n"
-            "        height=380\n"
-            "    ),\n"
+            "    IFrame(_html_{var2}, width=340, height=380),\n"
             "    max_width=340\n"
             ")\n"
             "\n"
@@ -449,44 +443,32 @@ COMMANDS_DB = {
         "imports": [
             "import folium",
             "import base64",
-            "import mimetypes",
             "from folium import IFrame"
         ],
         "helpers": [
-            "image_to_data_uri"
+            "image_to_base64"
         ]
     },
-
-    # ========================================================
-    # FOLIUM — МАРКЕР + URL ФОТО
-    # ========================================================
 
     "Добавить маркер с фото по URL": {
         "template": (
             "_html_{var2} = (\n"
             "    '<div style=\"width:320px;\">'\n"
-            "    '<h3 style=\"text-align:center;\">' +\n"
-            "    str({var5}) +\n"
+            "    '<h3 style=\"text-align:center;\">'\n"
+            "    + str({var5}) +\n"
             "    '</h3>'\n"
-            "    '<img src=\"' +\n"
-            "    str({var6}) +\n"
-            "    '\" width=\"300\" '\n"
-            "    'style=\"display:block;'\n"
-            "    'margin:auto;'\n"
+            "    '<img src=\"' + str({var6}) + '\" '\n"
+            "    'width=\"300\" '\n"
+            "    'style=\"display:block;margin:auto;'\n"
             "    'border-radius:10px;\">'\n"
-            "    '<p style=\"text-align:center;'\n"
-            "    'font-size:15px;\">' +\n"
-            "    str({var7}) +\n"
+            "    '<p style=\"text-align:center;font-size:15px;\">'\n"
+            "    + str({var7}) +\n"
             "    '</p>'\n"
             "    '</div>'\n"
             ")\n"
             "\n"
             "_popup_{var2} = folium.Popup(\n"
-            "    IFrame(\n"
-            "        _html_{var2},\n"
-            "        width=340,\n"
-            "        height=380\n"
-            "    ),\n"
+            "    IFrame(_html_{var2}, width=340, height=380),\n"
             "    max_width=340\n"
             ")\n"
             "\n"
@@ -518,54 +500,91 @@ COMMANDS_DB = {
         ]
     },
 
-    # ========================================================
-    # ПОИСК + URL ФОТО
-    # ========================================================
+    # --------------------------------------------------------
+    # ПОИСК
+    # --------------------------------------------------------
+
+    "Добавить точку по поиску": {
+        "template": (
+            "try:\n"
+            "    _search_{var2} = ox.geocode({var3})\n"
+            "except Exception as _err_{var2}:\n"
+            "    raise RuntimeError(\n"
+            "        'Не удалось найти точку: '\n"
+            "        + str(_err_{var2})\n"
+            "    )\n"
+            "\n"
+            "if not _search_{var2}:\n"
+            "    raise ValueError(\n"
+            "        'Поиск не вернул координаты: '\n"
+            "        + str({var3})\n"
+            "    )\n"
+            "\n"
+            "_lat_{var2} = float(_search_{var2}[0])\n"
+            "_lon_{var2} = float(_search_{var2}[1])\n"
+            "\n"
+            "_marker_{var2} = folium.Marker(\n"
+            "    location=[_lat_{var2}, _lon_{var2}],\n"
+            "    tooltip={var4},\n"
+            "    popup={var5}\n"
+            ")\n"
+            "\n"
+            "_marker_{var2}.add_to({var1})\n"
+            "\n"
+            "if {var6}:\n"
+            "    _route_points.append((_lat_{var2}, _lon_{var2}))"
+        ),
+        "vars": [
+            "Переменная карты",
+            "Уникальное имя точки",
+            "Поиск / адрес",
+            "Название",
+            "Текст popup",
+            "Маршрутная точка (True/False)"
+        ],
+        "type": "folium",
+        "imports": [
+            "import folium",
+            "import osmnx as ox"
+        ]
+    },
 
     "Добавить точку по поиску с фото URL": {
         "template": (
             "try:\n"
-            "    _search_result_{var2} = ox.geocode({var3})\n"
-            "except Exception as _search_error_{var2}:\n"
+            "    _search_{var2} = ox.geocode({var3})\n"
+            "except Exception as _err_{var2}:\n"
             "    raise RuntimeError(\n"
-            "        'Не удалось найти точку ' +\n"
-            "        str({var3}) +\n"
-            "        ': ' +\n"
-            "        str(_search_error_{var2})\n"
+            "        'Не удалось найти точку: '\n"
+            "        + str(_err_{var2})\n"
             "    )\n"
             "\n"
-            "if not _search_result_{var2}:\n"
-            "    raise RuntimeError(\n"
-            "        'Точка не найдена: ' + str({var3})\n"
+            "if not _search_{var2}:\n"
+            "    raise ValueError(\n"
+            "        'Поиск не вернул координаты: '\n"
+            "        + str({var3})\n"
             "    )\n"
             "\n"
-            "_lat_{var2} = float(_search_result_{var2}[0])\n"
-            "_lon_{var2} = float(_search_result_{var2}[1])\n"
+            "_lat_{var2} = float(_search_{var2}[0])\n"
+            "_lon_{var2} = float(_search_{var2}[1])\n"
             "\n"
             "_html_{var2} = (\n"
             "    '<div style=\"width:320px;\">'\n"
-            "    '<h3 style=\"text-align:center;\">' +\n"
-            "    str({var4}) +\n"
+            "    '<h3 style=\"text-align:center;\">'\n"
+            "    + str({var4}) +\n"
             "    '</h3>'\n"
-            "    '<img src=\"' +\n"
-            "    str({var5}) +\n"
-            "    '\" width=\"300\" '\n"
-            "    'style=\"display:block;'\n"
-            "    'margin:auto;'\n"
+            "    '<img src=\"' + str({var5}) + '\" '\n"
+            "    'width=\"300\" '\n"
+            "    'style=\"display:block;margin:auto;'\n"
             "    'border-radius:10px;\">'\n"
-            "    '<p style=\"text-align:center;'\n"
-            "    'font-size:15px;\">' +\n"
-            "    str({var6}) +\n"
+            "    '<p style=\"text-align:center;font-size:15px;\">'\n"
+            "    + str({var6}) +\n"
             "    '</p>'\n"
             "    '</div>'\n"
             ")\n"
             "\n"
             "_popup_{var2} = folium.Popup(\n"
-            "    IFrame(\n"
-            "        _html_{var2},\n"
-            "        width=340,\n"
-            "        height=380\n"
-            "    ),\n"
+            "    IFrame(_html_{var2}, width=340, height=380),\n"
             "    max_width=340\n"
             ")\n"
             "\n"
@@ -578,9 +597,7 @@ COMMANDS_DB = {
             "_marker_{var2}.add_to({var1})\n"
             "\n"
             "if {var7}:\n"
-            "    _route_points.append(\n"
-            "        (_lat_{var2}, _lon_{var2})\n"
-            "    )"
+            "    _route_points.append((_lat_{var2}, _lon_{var2}))"
         ),
         "vars": [
             "Переменная карты",
@@ -599,56 +616,45 @@ COMMANDS_DB = {
         ]
     },
 
-    # ========================================================
-    # ПОИСК + ЛОКАЛЬНОЕ ФОТО
-    # ========================================================
-
     "Добавить точку по поиску с локальным фото": {
         "template": (
             "try:\n"
-            "    _search_result_{var2} = ox.geocode({var3})\n"
-            "except Exception as _search_error_{var2}:\n"
+            "    _search_{var2} = ox.geocode({var3})\n"
+            "except Exception as _err_{var2}:\n"
             "    raise RuntimeError(\n"
-            "        'Не удалось найти точку ' +\n"
-            "        str({var3}) +\n"
-            "        ': ' +\n"
-            "        str(_search_error_{var2})\n"
+            "        'Не удалось найти точку: '\n"
+            "        + str(_err_{var2})\n"
             "    )\n"
             "\n"
-            "if not _search_result_{var2}:\n"
-            "    raise RuntimeError(\n"
-            "        'Точка не найдена: ' + str({var3})\n"
+            "if not _search_{var2}:\n"
+            "    raise ValueError(\n"
+            "        'Поиск не вернул координаты: '\n"
+            "        + str({var3})\n"
             "    )\n"
             "\n"
-            "_lat_{var2} = float(_search_result_{var2}[0])\n"
-            "_lon_{var2} = float(_search_result_{var2}[1])\n"
+            "_lat_{var2} = float(_search_{var2}[0])\n"
+            "_lon_{var2} = float(_search_{var2}[1])\n"
             "\n"
-            "_img_uri_{var2} = image_to_data_uri({var5})\n"
+            "_img64_{var2} = image_to_base64({var5})\n"
             "\n"
             "_html_{var2} = (\n"
             "    '<div style=\"width:320px;\">'\n"
-            "    '<h3 style=\"text-align:center;\">' +\n"
-            "    str({var4}) +\n"
+            "    '<h3 style=\"text-align:center;\">'\n"
+            "    + str({var4}) +\n"
             "    '</h3>'\n"
-            "    '<img src=\"' +\n"
-            "    _img_uri_{var2} +\n"
+            "    '<img src=\"data:image/jpeg;base64,'\n"
+            "    + _img64_{var2} +\n"
             "    '\" width=\"300\" '\n"
-            "    'style=\"display:block;'\n"
-            "    'margin:auto;'\n"
+            "    'style=\"display:block;margin:auto;'\n"
             "    'border-radius:10px;\">'\n"
-            "    '<p style=\"text-align:center;'\n"
-            "    'font-size:15px;\">' +\n"
-            "    str({var6}) +\n"
+            "    '<p style=\"text-align:center;font-size:15px;\">'\n"
+            "    + str({var6}) +\n"
             "    '</p>'\n"
             "    '</div>'\n"
             ")\n"
             "\n"
             "_popup_{var2} = folium.Popup(\n"
-            "    IFrame(\n"
-            "        _html_{var2},\n"
-            "        width=340,\n"
-            "        height=380\n"
-            "    ),\n"
+            "    IFrame(_html_{var2}, width=340, height=380),\n"
             "    max_width=340\n"
             ")\n"
             "\n"
@@ -661,9 +667,7 @@ COMMANDS_DB = {
             "_marker_{var2}.add_to({var1})\n"
             "\n"
             "if {var7}:\n"
-            "    _route_points.append(\n"
-            "        (_lat_{var2}, _lon_{var2})\n"
-            "    )"
+            "    _route_points.append((_lat_{var2}, _lon_{var2}))"
         ),
         "vars": [
             "Переменная карты",
@@ -678,36 +682,17 @@ COMMANDS_DB = {
         "imports": [
             "import folium",
             "import base64",
-            "import mimetypes",
             "import osmnx as ox",
             "from folium import IFrame"
         ],
         "helpers": [
-            "image_to_data_uri"
+            "image_to_base64"
         ]
     },
 
-    # ========================================================
-    # ЭКСПОРТ HTML
-    # ========================================================
-
-    "Экспорт HTML": {
-        "template": (
-            "{var1}.save({var2})"
-        ),
-        "vars": [
-            "Переменная карты",
-            "Имя HTML-файла"
-        ],
-        "type": "folium",
-        "imports": [
-            "import folium"
-        ]
-    },
-
-    # ========================================================
+    # --------------------------------------------------------
     # ЛИНИЯ
-    # ========================================================
+    # --------------------------------------------------------
 
     "Добавить линию": {
         "template": (
@@ -731,25 +716,25 @@ COMMANDS_DB = {
         ]
     },
 
-    # ========================================================
+    # --------------------------------------------------------
     # ПОДПИСЬ
-    # ========================================================
+    # --------------------------------------------------------
 
     "Добавить подпись": {
         "template": (
             "folium.Marker(\n"
             "    location=[{var2}, {var3}],\n"
             "    icon=folium.DivIcon(\n"
-            "        html=f'''"
-            "<div style=\""
-            "color:{var5};"
-            "font-size:{var6}px;"
-            "font-weight:bold;"
-            "white-space:nowrap;"
-            "\">"
-            "{var4}"
-            "</div>"
-            "'''"
+            "        html=(\n"
+            "            '<div style=\"color:'\n"
+            "            + str({var5})\n"
+            "            + ';font-size:'\n"
+            "            + str({var6})\n"
+            "            + 'px;font-weight:bold;'\n"
+            "            + 'white-space:nowrap;\">'\n"
+            "            + str({var4})\n"
+            "            + '</div>'\n"
+            "        )\n"
             "    )\n"
             ").add_to({var1})"
         ),
@@ -767,9 +752,9 @@ COMMANDS_DB = {
         ]
     },
 
-    # ========================================================
+    # --------------------------------------------------------
     # ГРАНИЦЫ
-    # ========================================================
+    # --------------------------------------------------------
 
     "Показать карту по границам": {
         "template": (
@@ -785,109 +770,89 @@ COMMANDS_DB = {
         ]
     },
 
-    # ========================================================
+    # --------------------------------------------------------
     # МАРШРУТ
-    # ========================================================
+    # --------------------------------------------------------
 
     "Построить маршрут по маршрутным точкам": {
         "template": (
             "if len(_route_points) >= 2:\n"
-            "\n"
-            "    _coords_string = ';'.join(\n"
+            "    _coords = ';'.join(\n"
             "        f'{lon},{lat}'\n"
             "        for lat, lon in _route_points\n"
             "    )\n"
             "\n"
-            "    _url = (\n"
-            "        'https://router.project-osrm.org/'\n"
-            "        'route/v1/driving/'\n"
-            "        + _coords_string\n"
+            "    _route_url = (\n"
+            "        'https://router.project-osrm.org/route/v1/driving/'\n"
+            "        + _coords\n"
             "        + '?overview=full&geometries=geojson'\n"
             "    )\n"
             "\n"
-            "    _response = requests.get(\n"
-            "        _url,\n"
+            "    _route_response = requests.get(\n"
+            "        _route_url,\n"
             "        timeout=30\n"
             "    )\n"
-            "    _response.raise_for_status()\n"
-            "\n"
-            "    _route_data = _response.json()\n"
+            "    _route_response.raise_for_status()\n"
+            "    _route_data = _route_response.json()\n"
             "\n"
             "    if _route_data.get('routes'):\n"
-            "\n"
             "        _route = _route_data['routes'][0]\n"
+            "        _distance_km = _route['distance'] / 1000\n"
+            "        _duration_min = _route['duration'] / 60\n"
             "\n"
-            "        _route_distance_km = (\n"
-            "            _route['distance'] / 1000\n"
-            "        )\n"
-            "\n"
-            "        _route_duration_min = (\n"
-            "            _route['duration'] / 60\n"
-            "        )\n"
-            "\n"
-            "        _route_coordinates = [\n"
+            "        _route_coords = [\n"
             "            [lat, lon]\n"
-            "            for lon, lat in\n"
-            "            _route['geometry']['coordinates']\n"
+            "            for lon, lat\n"
+            "            in _route['geometry']['coordinates']\n"
             "        ]\n"
             "\n"
             "        folium.PolyLine(\n"
-            "            _route_coordinates,\n"
+            "            _route_coords,\n"
             "            color='blue',\n"
             "            weight=6,\n"
             "            opacity=0.8,\n"
             "            tooltip=(\n"
-            "                f'Маршрут: '\n"
-            "                f'{_route_distance_km:.2f} км | '\n"
-            "                f'{_route_duration_min:.0f} мин.'\n"
+            "                f'Маршрут: {_distance_km:.2f} км | '\n"
+            "                f'{_duration_min:.0f} мин.'\n"
             "            )\n"
             "        ).add_to({var1})\n"
             "\n"
-            "        if _route_coordinates:\n"
+            "        if _route_coords:\n"
+            "            _middle = _route_coords[\n"
+            "                len(_route_coords) // 2\n"
+            "            ]\n"
             "\n"
-            "            _route_middle_index = (\n"
-            "                len(_route_coordinates) // 2\n"
+            "            _info = (\n"
+            "                '<div style=\"'\n"
+            "                'background:white;'\n"
+            "                'padding:10px 16px;'\n"
+            "                'border:2px solid #333;'\n"
+            "                'border-radius:10px;'\n"
+            "                'font-size:15px;'\n"
+            "                'font-weight:bold;'\n"
+            "                'white-space:nowrap;'\n"
+            "                'box-shadow:0 2px 8px rgba(0,0,0,.3);'\n"
+            "                'text-align:center;'\n"
+            "                'transform:translate(-50%,-50%);\">'\n"
+            "                '🚗 Маршрут<br>'\n"
+            "                '📏 ' + f'{_distance_km:.2f}' + ' км<br>'\n"
+            "                '⏱ ' + f'{_duration_min:.0f}' + ' мин.'\n"
+            "                '</div>'\n"
             "            )\n"
-            "\n"
-            "            _route_middle = (\n"
-            "                _route_coordinates[_route_middle_index]\n"
-            "            )\n"
-            "\n"
-            "            _route_info_html = f'''"
-            "            <div style=\""
-            "                background:white;"
-            "                padding:10px 16px;"
-            "                border:2px solid #333;"
-            "                border-radius:10px;"
-            "                font-size:15px;"
-            "                font-weight:bold;"
-            "                white-space:nowrap;"
-            "                box-shadow:0 2px 8px rgba(0,0,0,0.3);"
-            "                text-align:center;"
-            "                transform:translate(-50%,-50%);"
-            "            \">"
-            "                🚗 Маршрут<br>"
-            "                📏 {_route_distance_km:.2f} км<br>"
-            "                ⏱ {_route_duration_min:.0f} мин."
-            "            </div>"
-            "            '''\n"
             "\n"
             "            folium.Marker(\n"
-            "                location=_route_middle,\n"
+            "                location=_middle,\n"
             "                icon=folium.DivIcon(\n"
-            "                    html=_route_info_html,\n"
+            "                    html=_info,\n"
             "                    icon_size=(180, 80),\n"
             "                    icon_anchor=(90, 40)\n"
             "                )\n"
             "            ).add_to({var1})\n"
-            "\n"
             "    else:\n"
             "        print('OSRM не вернул маршрут.')\n"
-            "\n"
             "else:\n"
             "    print(\n"
-            "        'Для маршрута нужно минимум '\n"
-            "        '2 маршрутные точки.'\n"
+            "        'Для маршрута нужно минимум 2 маршрутные точки.'\n"
             "    )"
         ),
         "vars": [
@@ -898,45 +863,40 @@ COMMANDS_DB = {
             "import folium",
             "import requests"
         ]
+    },
+
+    # --------------------------------------------------------
+    # ЭКСПОРТ
+    # --------------------------------------------------------
+
+    "Экспорт HTML": {
+        "template": (
+            "{var1}.save({var2})"
+        ),
+        "vars": [
+            "Переменная карты",
+            "Имя HTML-файла"
+        ],
+        "type": "folium",
+        "imports": [
+            "import folium"
+        ]
     }
 }
 
 
 # ============================================================
-# HELPERS
+# HELPER-ФУНКЦИИ
 # ============================================================
 
 HELPERS = {
 
-    "image_to_data_uri": '''
-def image_to_data_uri(path):
-    import base64
-    import mimetypes
-
-    path = str(path)
-
-    mime_type, _ = mimetypes.guess_type(path)
-
-    if not mime_type:
-        mime_type = "image/jpeg"
-
-    with open(path, "rb") as img:
-        encoded = base64.b64encode(
-            img.read()
-        ).decode("utf-8")
-
-    return "data:" + mime_type + ";base64," + encoded
-''',
-
-    "image_to_base64": '''
-def image_to_base64(path):
-    import base64
-
-    with open(path, "rb") as img:
-        return base64.b64encode(
-            img.read()
-        ).decode("utf-8")
-'''
+    "image_to_base64": (
+        "def image_to_base64(path):\n"
+        "    import base64\n"
+        "    with open(path, 'rb') as img:\n"
+        "        return base64.b64encode(img.read()).decode('ascii')\n"
+    )
 }
 
 
@@ -945,7 +905,6 @@ def image_to_base64(path):
 # ============================================================
 
 constructor_window = None
-
 frame = None
 combo = None
 textbox = None
@@ -955,13 +914,12 @@ size_entry = None
 input_widgets = []
 
 added_command_types = []
-
 used_imports = set()
 used_helpers = set()
 
 
 # ============================================================
-# PYTHON STRING
+# РАБОТА СО СТРОКАМИ
 # ============================================================
 
 def python_string(value):
@@ -991,8 +949,74 @@ def quote_value(value):
     return "'" + python_string(value) + "'"
 
 
+def normalize_bool(value):
+    value = value.strip().lower()
+
+    if value in {
+        "true",
+        "1",
+        "да",
+        "yes",
+        "y",
+        "on"
+    }:
+        return "True"
+
+    if value in {
+        "false",
+        "0",
+        "нет",
+        "no",
+        "n",
+        "off"
+    }:
+        return "False"
+
+    return value
+
+
+def safe_identifier(value):
+    value = re.sub(
+        r"\W+",
+        "_",
+        value,
+        flags=re.UNICODE
+    )
+
+    if not value:
+        value = "point"
+
+    if value[0].isdigit():
+        value = "_" + value
+
+    return value
+
+
+def replace_template_variables(template, values):
+    result = template
+
+    for i, value in enumerate(values, 1):
+        result = result.replace(
+            f"{{var{i}}}",
+            value
+        )
+
+    unresolved = re.findall(
+        r"\{var\d+\}",
+        result
+    )
+
+    if unresolved:
+        raise ValueError(
+            "Незаменённые переменные: "
+            + ", ".join(sorted(set(unresolved)))
+        )
+
+    return result
+
+
 # ============================================================
-# ОЧИСТКА ПОЛЕЙ
+# GUI КОНСТРУКТОРА
 # ============================================================
 
 def clear_input_area():
@@ -1004,10 +1028,6 @@ def clear_input_area():
 
     input_widgets.clear()
 
-
-# ============================================================
-# ИЗОБРАЖЕНИЕ
-# ============================================================
 
 def browse_image(entry):
     path = filedialog.askopenfilename(
@@ -1025,19 +1045,12 @@ def browse_image(entry):
         ]
     )
 
-    if not path:
-        return
+    if path:
+        entry.delete(0, "end")
+        entry.insert(0, path)
 
-    entry.delete(0, "end")
-    entry.insert(0, path)
-
-
-# ============================================================
-# ИЗМЕНЕНИЕ КОМАНДЫ
-# ============================================================
 
 def on_command_change(event=None):
-
     clear_input_area()
 
     selected = combo.get()
@@ -1047,9 +1060,9 @@ def on_command_change(event=None):
 
     command = COMMANDS_DB[selected]
 
-    variables = command.get("vars", [])
-
-    for index, variable_name in enumerate(variables):
+    for index, variable_name in enumerate(
+        command.get("vars", [])
+    ):
 
         row = 4 + index
 
@@ -1070,16 +1083,16 @@ def on_command_change(event=None):
 
         input_widgets.append(label)
 
-        is_image_file = (
+        image_field = (
             "Путь к изображению" in variable_name
-            and selected in (
+            and selected in {
                 "Добавить маркер с фото из файла",
                 "Добавить изображение из файла",
                 "Добавить точку по поиску с локальным фото"
-            )
+            }
         )
 
-        if is_image_file:
+        if image_field:
 
             container = ctk.CTkFrame(
                 frame,
@@ -1101,20 +1114,22 @@ def on_command_change(event=None):
 
             entry.pack(side="left")
 
-            browse_button = ctk.CTkButton(
+            button = ctk.CTkButton(
                 container,
                 text="Обзор...",
                 width=80,
                 command=lambda e=entry: browse_image(e)
             )
 
-            browse_button.pack(
+            button.pack(
                 side="left",
                 padx=(5, 0)
             )
 
-            input_widgets.append(container)
-            input_widgets.append(entry)
+            input_widgets.extend([
+                container,
+                entry
+            ])
 
         else:
 
@@ -1135,266 +1150,164 @@ def on_command_change(event=None):
 
 
 # ============================================================
-# ЗАМЕНА ПЕРЕМЕННЫХ
-# ============================================================
-
-def replace_template_variables(template, values):
-
-    result = template
-
-    for index, value in enumerate(values, start=1):
-
-        result = result.replace(
-            f"{{var{index}}}",
-            value
-        )
-
-    unresolved = re.findall(
-        r"\{var\d+\}",
-        result
-    )
-
-    if unresolved:
-        raise ValueError(
-            "В шаблоне остались незаменённые переменные:\n\n"
-            + "\n".join(sorted(set(unresolved)))
-        )
-
-    return result
-
-
-# ============================================================
-# BOOL
-# ============================================================
-
-def normalize_bool(value):
-
-    value = value.strip().lower()
-
-    true_values = {
-        "true",
-        "1",
-        "да",
-        "yes",
-        "y",
-        "on"
-    }
-
-    false_values = {
-        "false",
-        "0",
-        "нет",
-        "no",
-        "n",
-        "off"
-    }
-
-    if value in true_values:
-        return "True"
-
-    if value in false_values:
-        return "False"
-
-    return value
-
-
-# ============================================================
-# IDENTIFIER
-# ============================================================
-
-def safe_identifier(value):
-
-    value = re.sub(
-        r"\W+",
-        "_",
-        value,
-        flags=re.UNICODE
-    )
-
-    if not value:
-        value = "point"
-
-    if value[0].isdigit():
-        value = "_" + value
-
-    return value
-
-
-# ============================================================
-# ДОБАВЛЕНИЕ КОМАНДЫ
+# ДОБАВЛЕНИЕ КОМАНД
 # ============================================================
 
 def add_command():
-
     selected = combo.get()
 
     if selected not in COMMANDS_DB:
-
         messagebox.showwarning(
             "Внимание",
             "Выберите команду.",
             parent=constructor_window
         )
-
         return
 
     command = COMMANDS_DB[selected]
 
     entries = [
-        widget
-        for widget in input_widgets
-        if isinstance(widget, ctk.CTkEntry)
+        w for w in input_widgets
+        if isinstance(w, ctk.CTkEntry)
     ]
 
-    variables = command.get("vars", [])
-
-    if len(entries) != len(variables):
-
+    if len(entries) != len(
+        command.get("vars", [])
+    ):
         messagebox.showerror(
             "Ошибка",
             "Количество полей не совпадает.",
             parent=constructor_window
         )
-
         return
 
-    values = []
+    values = [
+        e.get().strip()
+        for e in entries
+    ]
 
-    for entry in entries:
-
-        value = entry.get().strip()
-
-        if not value:
-
-            messagebox.showwarning(
-                "Внимание",
-                "Заполните все поля.",
-                parent=constructor_window
-            )
-
-            return
-
-        values.append(value)
+    if any(not v for v in values):
+        messagebox.showwarning(
+            "Внимание",
+            "Заполните все поля.",
+            parent=constructor_window
+        )
+        return
 
     # --------------------------------------------------------
     # GUI
     # --------------------------------------------------------
 
-    if selected in (
+    if selected in {
         "Добавить кнопку",
         "Добавить метку",
         "Добавить чекбокс"
-    ):
+    }:
         values[1] = quote_value(values[1])
 
     if selected == "Добавить ComboBox":
-
-        raw = values[1]
-
-        if not raw.startswith("["):
-
-            items = [
+        if not values[1].startswith("["):
+            values[1] = repr([
                 x.strip()
-                for x in raw.split(",")
+                for x in values[1].split(",")
                 if x.strip()
-            ]
+            ])
 
-            values[1] = repr(items)
-
-    if selected == "Добавить изображение по URL":
-        values[1] = quote_value(values[1])
-
-    if selected == "Добавить изображение из файла":
+    if selected in {
+        "Добавить изображение по URL",
+        "Добавить изображение из файла"
+    }:
         values[1] = quote_value(values[1])
 
     # --------------------------------------------------------
-    # Обычный маркер
+    # МАРКЕР
     # --------------------------------------------------------
 
     if selected == "Добавить маркер":
 
+        values[1] = safe_identifier(values[1])
         values[4] = quote_value(values[4])
         values[5] = quote_value(values[5])
         values[6] = normalize_bool(values[6])
-        values[1] = safe_identifier(values[1])
 
     # --------------------------------------------------------
-    # Маркер + локальное фото
+    # МАРКЕР С ЛОКАЛЬНЫМ ФОТО
     # --------------------------------------------------------
 
     if selected == "Добавить маркер с фото из файла":
 
+        values[1] = safe_identifier(values[1])
         values[4] = quote_value(values[4])
         values[5] = quote_value(values[5])
         values[6] = quote_value(values[6])
         values[7] = normalize_bool(values[7])
-        values[1] = safe_identifier(values[1])
 
     # --------------------------------------------------------
-    # Маркер + URL фото
+    # МАРКЕР С URL ФОТО
     # --------------------------------------------------------
 
     if selected == "Добавить маркер с фото по URL":
 
+        values[1] = safe_identifier(values[1])
         values[4] = quote_value(values[4])
         values[5] = quote_value(values[5])
         values[6] = quote_value(values[6])
         values[7] = normalize_bool(values[7])
-        values[1] = safe_identifier(values[1])
 
     # --------------------------------------------------------
-    # Поиск + URL фото
+    # ПОИСК
     # --------------------------------------------------------
+
+    if selected == "Добавить точку по поиску":
+
+        values[1] = safe_identifier(values[1])
+        values[2] = quote_value(values[2])
+        values[3] = quote_value(values[3])
+        values[4] = quote_value(values[4])
+        values[5] = normalize_bool(values[5])
 
     if selected == "Добавить точку по поиску с фото URL":
 
+        values[1] = safe_identifier(values[1])
         values[2] = quote_value(values[2])
         values[3] = quote_value(values[3])
         values[4] = quote_value(values[4])
         values[5] = quote_value(values[5])
         values[6] = normalize_bool(values[6])
-        values[1] = safe_identifier(values[1])
-
-    # --------------------------------------------------------
-    # Поиск + локальное фото
-    # --------------------------------------------------------
 
     if selected == "Добавить точку по поиску с локальным фото":
 
+        values[1] = safe_identifier(values[1])
         values[2] = quote_value(values[2])
         values[3] = quote_value(values[3])
         values[4] = quote_value(values[4])
         values[5] = quote_value(values[5])
         values[6] = normalize_bool(values[6])
-        values[1] = safe_identifier(values[1])
 
     # --------------------------------------------------------
-    # Экспорт HTML
-    # --------------------------------------------------------
-
-    if selected == "Экспорт HTML":
-
-        values[1] = quote_value(values[1])
-
-    # --------------------------------------------------------
-    # Линия
+    # ЛИНИЯ
     # --------------------------------------------------------
 
     if selected == "Добавить линию":
-
         values[2] = quote_value(values[2])
 
     # --------------------------------------------------------
-    # Подпись
+    # ПОДПИСЬ
     # --------------------------------------------------------
 
     if selected == "Добавить подпись":
-
         values[3] = quote_value(values[3])
         values[4] = quote_value(values[4])
 
     # --------------------------------------------------------
-    # Генерация
+    # ЭКСПОРТ
+    # --------------------------------------------------------
+
+    if selected == "Экспорт HTML":
+        values[1] = quote_value(values[1])
+
+    # --------------------------------------------------------
+    # ГЕНЕРАЦИЯ
     # --------------------------------------------------------
 
     try:
@@ -1425,21 +1338,20 @@ def add_command():
         command.get("type", "python")
     )
 
-    for imp in command.get("imports", []):
+    used_imports.update(
+        command.get("imports", [])
+    )
 
-        used_imports.add(imp)
-
-    for helper in command.get("helpers", []):
-
-        used_helpers.add(helper)
+    used_helpers.update(
+        command.get("helpers", [])
+    )
 
 
 # ============================================================
-# ОЧИСТИТЬ КОД
+# ОЧИСТКА КОДА
 # ============================================================
 
 def clear_code():
-
     textbox.delete(
         "1.0",
         "end"
@@ -1451,7 +1363,7 @@ def clear_code():
 
 
 # ============================================================
-# ОТКРЫТЬ PYTHON
+# ОТКРЫТИЕ PYTHON
 # ============================================================
 
 def open_py_file():
@@ -1460,14 +1372,8 @@ def open_py_file():
         parent=constructor_window,
         title="Открыть Python-файл",
         filetypes=[
-            (
-                "Python",
-                "*.py"
-            ),
-            (
-                "Все файлы",
-                "*.*"
-            )
+            ("Python", "*.py"),
+            ("Все файлы", "*.*")
         ]
     )
 
@@ -1476,35 +1382,22 @@ def open_py_file():
 
     try:
 
-        with open(
-            path,
-            "r",
-            encoding="utf-8-sig"
-        ) as file:
-
-            code = file.read()
-
-    except UnicodeDecodeError:
-
         try:
+            with open(
+                path,
+                "r",
+                encoding="utf-8-sig"
+            ) as f:
+                code = f.read()
+
+        except UnicodeDecodeError:
 
             with open(
                 path,
                 "r",
                 encoding="cp1251"
-            ) as file:
-
-                code = file.read()
-
-        except Exception as e:
-
-            messagebox.showerror(
-                "Ошибка открытия",
-                str(e),
-                parent=constructor_window
-            )
-
-            return
+            ) as f:
+                code = f.read()
 
     except Exception as e:
 
@@ -1526,42 +1419,67 @@ def open_py_file():
         code
     )
 
-    textbox.see("1.0")
-
     used_imports.clear()
     used_helpers.clear()
     added_command_types.clear()
 
-    if "folium" in code:
-        used_imports.add("import folium")
-        added_command_types.append("folium")
+    checks = [
 
-    if "requests" in code:
-        used_imports.add("import requests")
+        (
+            "folium",
+            "import folium"
+        ),
 
-    if "osmnx" in code or "ox." in code:
-        used_imports.add("import osmnx as ox")
+        (
+            "requests",
+            "import requests"
+        ),
 
-    if "base64" in code:
-        used_imports.add("import base64")
+        (
+            "osmnx",
+            "import osmnx as ox"
+        ),
 
-    if "mimetypes" in code:
-        used_imports.add("import mimetypes")
+        (
+            "base64",
+            "import base64"
+        ),
 
-    if "BytesIO(" in code:
-        used_imports.add("from io import BytesIO")
+        (
+            "BytesIO(",
+            "from io import BytesIO"
+        ),
 
-    if "Image.open" in code:
-        used_imports.add("from PIL import Image")
+        (
+            "Image.",
+            "from PIL import Image"
+        ),
 
-    if "IFrame(" in code:
-        used_imports.add("from folium import IFrame")
+        (
+            "IFrame(",
+            "from folium import IFrame"
+        )
+    ]
+
+    for needle, imp in checks:
+
+        if needle in code:
+            used_imports.add(imp)
 
     if "image_to_base64(" in code:
-        used_helpers.add("image_to_base64")
+        used_helpers.add(
+            "image_to_base64"
+        )
 
-    if "image_to_data_uri(" in code:
-        used_helpers.add("image_to_data_uri")
+    if "ctk." in code:
+        added_command_types.append(
+            "gui"
+        )
+
+    if "folium" in code:
+        added_command_types.append(
+            "folium"
+        )
 
     messagebox.showinfo(
         "Файл открыт",
@@ -1571,48 +1489,45 @@ def open_py_file():
 
 
 # ============================================================
-# ПРОВЕРКА БИБЛИОТЕК
+# УСТАНОВКА БИБЛИОТЕК
 # ============================================================
 
 def install_required_for_code():
 
     required = []
 
-    if any(
-        "folium" in imp
-        for imp in used_imports
-    ):
+    if "folium" in used_imports:
         required.append(
             ("folium", "folium")
         )
 
     if any(
-        "requests" in imp
-        for imp in used_imports
+        "requests" in x
+        for x in used_imports
     ):
         required.append(
             ("requests", "requests")
         )
 
     if any(
-        "customtkinter" in imp
-        for imp in used_imports
+        "customtkinter" in x
+        for x in used_imports
     ):
         required.append(
             ("customtkinter", "customtkinter")
         )
 
     if any(
-        "PIL" in imp
-        for imp in used_imports
+        "PIL" in x
+        for x in used_imports
     ):
         required.append(
             ("Pillow", "PIL")
         )
 
     if any(
-        "osmnx" in imp
-        for imp in used_imports
+        "osmnx" in x
+        for x in used_imports
     ):
         required.append(
             ("osmnx", "osmnx")
@@ -1623,7 +1538,6 @@ def install_required_for_code():
     for package, module in required:
 
         try:
-
             __import__(module)
 
         except ImportError:
@@ -1649,10 +1563,7 @@ def install_required_for_code():
 # HEADER
 # ============================================================
 
-def generate_header(
-    has_gui,
-    has_folium
-):
+def generate_header(has_gui, has_folium):
 
     imports = set(used_imports)
 
@@ -1666,12 +1577,7 @@ def generate_header(
             "import folium"
         )
 
-    lines = [
-        "# -*- coding: utf-8 -*-",
-        ""
-    ]
-
-    preferred_order = [
+    order = [
 
         "import customtkinter as ctk",
 
@@ -1683,8 +1589,6 @@ def generate_header(
 
         "import base64",
 
-        "import mimetypes",
-
         "from io import BytesIO",
 
         "from PIL import Image",
@@ -1692,26 +1596,29 @@ def generate_header(
         "from folium import IFrame"
     ]
 
-    for imp in preferred_order:
+    lines = [
+        "# -*- coding: utf-8 -*-",
+        ""
+    ]
+
+    for imp in order:
 
         if imp in imports:
             lines.append(imp)
 
     for imp in sorted(imports):
 
-        if imp not in preferred_order:
+        if imp not in order:
             lines.append(imp)
 
-    lines.append("")
-
-    return "\n".join(lines)
+    return "\n".join(lines) + "\n"
 
 
 # ============================================================
 # ПОЛНЫЙ СКРИПТ
 # ============================================================
 
-def generate_full_script():
+def generate_full_script(include_gui=True):
 
     user_code = textbox.get(
         "1.0",
@@ -1729,18 +1636,19 @@ def generate_full_script():
         return None
 
     has_gui = (
-        "gui" in added_command_types
-        or "ctk." in user_code
+        (
+            "gui" in added_command_types
+            or "ctk." in user_code
+        )
+        and include_gui
     )
 
     has_folium = (
-        "folium" in added_command_types
-        or "folium." in user_code
+        "folium" in user_code
+        or "folium" in added_command_types
     )
 
-    # --------------------------------------------------------
-    # Автоматические импорты
-    # --------------------------------------------------------
+    # Автоматически определяем импорты.
 
     if "requests." in user_code:
         used_imports.add(
@@ -1752,14 +1660,12 @@ def generate_full_script():
             "import osmnx as ox"
         )
 
-    if "base64." in user_code:
+    if (
+        "base64." in user_code
+        or "image_to_base64(" in user_code
+    ):
         used_imports.add(
             "import base64"
-        )
-
-    if "mimetypes." in user_code:
-        used_imports.add(
-            "import mimetypes"
         )
 
     if "BytesIO(" in user_code:
@@ -1782,49 +1688,26 @@ def generate_full_script():
             "image_to_base64"
         )
 
-    if "image_to_data_uri(" in user_code:
-        used_helpers.add(
-            "image_to_data_uri"
-        )
-
-    # --------------------------------------------------------
-    # Helpers
-    # --------------------------------------------------------
-
-    helper_text = ""
-
-    for helper_name in used_helpers:
-
-        helper_text += (
-            HELPERS[helper_name]
-            + "\n"
-        )
-
-    # --------------------------------------------------------
-    # Header
-    # --------------------------------------------------------
-
-    header = generate_header(
-        has_gui,
-        has_folium
-    )
-
     parts = [
-        header
+        generate_header(
+            has_gui,
+            has_folium
+        )
     ]
 
     # --------------------------------------------------------
-    # Helpers
+    # HELPERS
     # --------------------------------------------------------
 
-    if helper_text:
+    if used_helpers:
 
         parts.append(
-
-            "# ============================================================\n"
-            "# ВСПОМОГАТЕЛЬНЫЕ ФУНКЦИИ\n"
-            "# ============================================================\n\n"
-            + helper_text
+            "# ВСПОМОГАТЕЛЬНЫЕ ФУНКЦИИ\n\n"
+            + "\n".join(
+                HELPERS[x]
+                for x in used_helpers
+                if x in HELPERS
+            )
         )
 
     # --------------------------------------------------------
@@ -1833,90 +1716,54 @@ def generate_full_script():
 
     if has_gui:
 
-        window_title = (
+        title = python_double_string(
             title_entry.get().strip()
             or "Моё приложение"
         )
 
-        window_size = (
+        size = python_double_string(
             size_entry.get().strip()
             or "400x300"
         )
 
-        safe_title = python_double_string(
-            window_title
-        )
-
         parts.append(
-
-            f'''
-# ============================================================
-# ГЛАВНОЕ ОКНО
-# ============================================================
-
-ctk.set_appearance_mode("Dark")
-ctk.set_default_color_theme("blue")
-
-root = ctk.CTk()
-
-root.title("{safe_title}")
-
-root.geometry("{window_size}")
-
-
-# ============================================================
-# ОСНОВНОЙ FRAME
-# ============================================================
-
-frame = ctk.CTkFrame(root)
-
-frame.pack(
-    padx=20,
-    pady=20,
-    fill="both",
-    expand=True
-)
-'''
+            '# ГЛАВНОЕ ОКНО\n\n'
+            'ctk.set_appearance_mode("Dark")\n'
+            'ctk.set_default_color_theme("blue")\n'
+            'root = ctk.CTk()\n'
+            f'root.title("{title}")\n'
+            f'root.geometry("{size}")\n'
+            'frame = ctk.CTkFrame(root)\n'
+            'frame.pack('
+            'padx=20, pady=20, '
+            'fill="both", expand=True'
+            ')\n'
         )
 
     # --------------------------------------------------------
-    # Код пользователя
+    # USER CODE
     # --------------------------------------------------------
 
     parts.append(
-
-        '''
-# ============================================================
-# КОД, СОЗДАННЫЙ В КОНСТРУКТОРЕ
-# ============================================================
-
-'''
+        "# КОД КОНСТРУКТОРА\n\n"
         + user_code
         + "\n"
     )
 
     # --------------------------------------------------------
-    # Mainloop
+    # MAINLOOP
     # --------------------------------------------------------
 
     if has_gui:
-
         parts.append(
-
-            '''
-# ============================================================
-# ЗАПУСК
-# ============================================================
-
-root.mainloop()
-'''
+            "root.mainloop()\n"
         )
 
     return "\n".join(parts)
 
 
 # ============================================================
-# СОХРАНИТЬ PY
+# СОХРАНЕНИЕ PYTHON
 # ============================================================
 
 def save_as_py():
@@ -1927,7 +1774,6 @@ def save_as_py():
         return
 
     try:
-
         compile(
             script,
             "<generated>",
@@ -1938,33 +1784,19 @@ def save_as_py():
 
         messagebox.showerror(
             "Ошибка синтаксиса",
-            (
-                f"{e}\n\n"
-                f"Строка: {e.lineno}\n"
-                f"Текст: {e.text or ''}"
-            ),
+            str(e),
             parent=constructor_window
         )
 
         return
 
     path = filedialog.asksaveasfilename(
-
         parent=constructor_window,
-
         title="Сохранить Python-файл",
-
         defaultextension=".py",
-
         filetypes=[
-            (
-                "Python",
-                "*.py"
-            ),
-            (
-                "Все файлы",
-                "*.*"
-            )
+            ("Python", "*.py"),
+            ("Все файлы", "*.*")
         ]
     )
 
@@ -1977,9 +1809,8 @@ def save_as_py():
             path,
             "w",
             encoding="utf-8"
-        ) as file:
-
-            file.write(script)
+        ) as f:
+            f.write(script)
 
         messagebox.showinfo(
             "Готово",
@@ -2003,12 +1834,12 @@ def save_as_py():
 
 def export_html():
 
-    code = textbox.get(
+    user_code = textbox.get(
         "1.0",
         "end"
     ).strip()
 
-    if not code:
+    if not user_code:
 
         messagebox.showwarning(
             "Внимание",
@@ -2018,222 +1849,161 @@ def export_html():
 
         return
 
-    # Ищем наиболее очевидную переменную Folium-карты.
-    map_variables = re.findall(
-        r"([A-Za-z_]\w*)\s*=\s*folium\.Map\s*\(",
-        code
+    maps = re.findall(
+        r"^\s*([A-Za-z_]\w*)\s*=\s*folium\.Map\s*\(",
+        user_code,
+        re.MULTILINE
     )
 
-    if not map_variables:
+    if not maps:
 
-        messagebox.showwarning(
-            "Карта не найдена",
-            (
-                "В коде не найдена конструкция:\n\n"
-                "имя_карты = folium.Map(...)"
-            ),
+        messagebox.showerror(
+            "Экспорт HTML",
+            "Не найдена карта вида "
+            "my_map = folium.Map(...).",
             parent=constructor_window
         )
 
         return
 
-    if len(map_variables) == 1:
-
-        map_variable = map_variables[0]
-
-    else:
-
-        map_variable = simpledialog.askstring(
-            "Переменная карты",
-            "Введите имя карты:\n\n"
-            + "\n".join(map_variables),
-            initialvalue=map_variables[-1],
-            parent=constructor_window
-        )
-
-        if not map_variable:
-            return
+    map_name = maps[-1]
 
     path = filedialog.asksaveasfilename(
         parent=constructor_window,
-        title="Экспорт карты в HTML",
+        title="Экспортировать карту в HTML",
         defaultextension=".html",
         filetypes=[
-            (
-                "HTML",
-                "*.html"
-            ),
-            (
-                "Все файлы",
-                "*.*"
-            )
+            ("HTML", "*.html"),
+            ("Все файлы", "*.*")
         ]
     )
 
     if not path:
         return
 
-    # Добавляем сохранение непосредственно
-    # в создаваемый Python-код.
-    export_line = (
-        "\n\n"
-        "# ============================================================\n"
-        "# ЭКСПОРТ HTML\n"
-        "# ============================================================\n\n"
-        f"{map_variable}.save({quote_value(path)})\n"
+    old_text = textbox.get(
+        "1.0",
+        "end"
     )
 
-    # Не добавляем второй экспорт при повторном нажатии.
-    textbox.insert(
-        "end",
-        export_line
+    old_types = list(
+        added_command_types
     )
-
-    textbox.see("end")
-
-    script = generate_full_script()
-
-    if script is None:
-        return
 
     try:
 
-        compile(
-            script,
-            "<generated>",
-            "exec"
+        added_command_types[:] = [
+            x
+            for x in added_command_types
+            if x != "gui"
+        ]
+
+        textbox.insert(
+            "end",
+            "\n"
+            + map_name
+            + ".save("
+            + quote_value(path)
+            + ")\n"
         )
 
-    except SyntaxError as e:
-
-        messagebox.showerror(
-            "Ошибка синтаксиса",
-            (
-                f"{e}\n\n"
-                f"Строка: {e.lineno}\n"
-                f"Текст: {e.text or ''}"
-            ),
-            parent=constructor_window
+        script = generate_full_script(
+            include_gui=False
         )
 
-        return
+        if script is None:
+            return
 
-    if not install_required_for_code():
-        return
+        try:
 
-    temp_path = None
+            compile(
+                script,
+                "<export>",
+                "exec"
+            )
 
-    try:
+        except SyntaxError as e:
+
+            messagebox.showerror(
+                "Ошибка синтаксиса",
+                str(e),
+                parent=constructor_window
+            )
+
+            return
+
+        if not install_required_for_code():
+            return
 
         with tempfile.NamedTemporaryFile(
             mode="w",
             suffix=".py",
-            prefix="html_export_",
+            prefix="export_",
             delete=False,
             encoding="utf-8"
-        ) as temp:
+        ) as f:
 
-            temp.write(script)
-            temp_path = temp.name
+            f.write(script)
+            temp_path = f.name
 
-        process = subprocess.Popen([
-            sys.executable,
-            temp_path
-        ])
+        result = subprocess.run(
+            [
+                sys.executable,
+                temp_path
+            ],
+            capture_output=True,
+            text=True,
+            encoding="utf-8",
+            errors="replace"
+        )
 
-        def wait_and_cleanup():
+        try:
+            Path(temp_path).unlink(
+                missing_ok=True
+            )
+        except Exception:
+            pass
 
-            try:
-                return_code = process.wait()
+        if result.returncode != 0:
 
-                if return_code == 0:
+            messagebox.showerror(
+                "Ошибка экспорта",
+                (
+                    result.stderr
+                    or result.stdout
+                    or "Неизвестная ошибка"
+                ).strip(),
+                parent=constructor_window
+            )
 
-                    constructor_window.after(
-                        0,
-                        lambda: messagebox.showinfo(
-                            "HTML экспортирован",
-                            "Карта сохранена:\n\n" + path,
-                            parent=constructor_window
-                        )
-                    )
+            return
 
-                else:
-
-                    constructor_window.after(
-                        0,
-                        lambda: messagebox.showerror(
-                            "Ошибка экспорта",
-                            (
-                                "Python завершился с кодом "
-                                + str(return_code)
-                            ),
-                            parent=constructor_window
-                        )
-                    )
-
-            except Exception as e:
-
-                constructor_window.after(
-                    0,
-                    lambda: messagebox.showerror(
-                        "Ошибка экспорта",
-                        str(e),
-                        parent=constructor_window
-                    )
-                )
-
-            finally:
-
-                if temp_path:
-
-                    for _ in range(20):
-
-                        try:
-
-                            Path(
-                                temp_path
-                            ).unlink(
-                                missing_ok=True
-                            )
-
-                            if not Path(
-                                temp_path
-                            ).exists():
-
-                                break
-
-                        except Exception:
-                            pass
-
-                        time.sleep(0.2)
-
-        threading.Thread(
-            target=wait_and_cleanup,
-            daemon=True
-        ).start()
-
-    except Exception as e:
-
-        if temp_path:
-
-            try:
-                Path(
-                    temp_path
-                ).unlink(
-                    missing_ok=True
-                )
-            except Exception:
-                pass
-
-        messagebox.showerror(
-            "Ошибка экспорта",
-            str(e),
+        messagebox.showinfo(
+            "Готово",
+            "HTML сохранён:\n\n"
+            + path,
             parent=constructor_window
         )
 
+    finally:
+
+        textbox.delete(
+            "1.0",
+            "end"
+        )
+
+        textbox.insert(
+            "1.0",
+            old_text
+        )
+
+        textbox.see("end")
+
+        added_command_types[:] = old_types
+
 
 # ============================================================
-# ЗАПУСК PYTHON
+# ЗАПУСК КОДА
 # ============================================================
 
 def run_code():
@@ -2255,11 +2025,7 @@ def run_code():
 
         messagebox.showerror(
             "Ошибка синтаксиса",
-            (
-                f"{e}\n\n"
-                f"Строка: {e.lineno}\n"
-                f"Текст: {e.text or ''}"
-            ),
+            str(e),
             parent=constructor_window
         )
 
@@ -2278,10 +2044,10 @@ def run_code():
             prefix="constructor_",
             delete=False,
             encoding="utf-8"
-        ) as temp:
+        ) as f:
 
-            temp.write(script)
-            temp_path = temp.name
+            f.write(script)
+            temp_path = f.name
 
         process = subprocess.Popen([
             sys.executable,
@@ -2299,16 +2065,13 @@ def run_code():
 
                 try:
 
-                    Path(
-                        temp_path
-                    ).unlink(
+                    Path(temp_path).unlink(
                         missing_ok=True
                     )
 
                     if not Path(
                         temp_path
                     ).exists():
-
                         break
 
                 except Exception:
@@ -2326,9 +2089,7 @@ def run_code():
         if temp_path:
 
             try:
-                Path(
-                    temp_path
-                ).unlink(
+                Path(temp_path).unlink(
                     missing_ok=True
                 )
             except Exception:
@@ -2342,26 +2103,17 @@ def run_code():
 
 
 # ============================================================
-# ЗАГРУЗКА КОМАНД ИЗ TXT
+# ЗАГРУЗКА КОМАНД
 # ============================================================
 
 def load_commands_from_file():
 
     path = filedialog.askopenfilename(
-
         parent=constructor_window,
-
         title="Выберите TXT-файл",
-
         filetypes=[
-            (
-                "TXT",
-                "*.txt"
-            ),
-            (
-                "Все файлы",
-                "*.*"
-            )
+            ("TXT", "*.txt"),
+            ("Все файлы", "*.*")
         ]
     )
 
@@ -2376,16 +2128,16 @@ def load_commands_from_file():
             path,
             "r",
             encoding="utf-8-sig"
-        ) as file:
+        ) as f:
 
-            for line in file:
+            for line in f:
 
                 line = line.strip()
 
-                if not line:
-                    continue
-
-                if line.startswith("#"):
+                if (
+                    not line
+                    or line.startswith("#")
+                ):
                     continue
 
                 parts = line.split(
@@ -2396,29 +2148,23 @@ def load_commands_from_file():
                 if len(parts) < 3:
                     continue
 
-                name = parts[0].strip()
-                template = parts[1].strip()
-                vars_text = parts[2].strip()
+                name, template, vars_text = parts[:3]
 
                 command_type = (
                     parts[3].strip()
-                    if len(parts) >= 4
+                    if len(parts) > 3
                     else "python"
                 )
 
-                variables = []
-
-                if vars_text:
-
-                    variables = [
+                COMMANDS_DB[
+                    name.strip()
+                ] = {
+                    "template": template.strip(),
+                    "vars": [
                         x.strip()
                         for x in vars_text.split(",")
                         if x.strip()
-                    ]
-
-                COMMANDS_DB[name] = {
-                    "template": template,
-                    "vars": variables,
+                    ],
                     "type": command_type,
                     "imports": []
                 }
@@ -2443,7 +2189,7 @@ def load_commands_from_file():
 
 
 # ============================================================
-# ОБНОВЛЕНИЕ COMBOBOX
+# COMBOBOX
 # ============================================================
 
 def refresh_combo():
@@ -2466,7 +2212,7 @@ def refresh_combo():
 
 
 # ============================================================
-# ОТКРЫТИЕ КОНСТРУКТОРА
+# ОКНО КОНСТРУКТОРА
 # ============================================================
 
 def open_constructor(parent=None):
@@ -2506,10 +2252,6 @@ def open_constructor(parent=None):
         750
     )
 
-    # --------------------------------------------------------
-    # FRAME
-    # --------------------------------------------------------
-
     frame = ctk.CTkFrame(
         constructor_window
     )
@@ -2531,10 +2273,6 @@ def open_constructor(parent=None):
         weight=1
     )
 
-    # --------------------------------------------------------
-    # ЗАГОЛОВОК
-    # --------------------------------------------------------
-
     ctk.CTkLabel(
         frame,
         text="Конструктор кода",
@@ -2550,7 +2288,7 @@ def open_constructor(parent=None):
     )
 
     # --------------------------------------------------------
-    # НАСТРОЙКИ
+    # НАСТРОЙКИ ОКНА
     # --------------------------------------------------------
 
     settings = ctk.CTkFrame(
@@ -2644,13 +2382,9 @@ def open_constructor(parent=None):
         pady=5
     )
 
-    if COMMANDS_DB:
-
-        combo.set(
-            next(
-                iter(COMMANDS_DB)
-            )
-        )
+    combo.set(
+        next(iter(COMMANDS_DB))
+    )
 
     # --------------------------------------------------------
     # ДОБАВИТЬ
@@ -2676,10 +2410,7 @@ def open_constructor(parent=None):
     textbox = ctk.CTkTextbox(
         frame,
         wrap="none",
-        font=(
-            "Consolas",
-            14
-        )
+        font=("Consolas", 14)
     )
 
     textbox.grid(
@@ -2707,65 +2438,56 @@ def open_constructor(parent=None):
         pady=10
     )
 
-    ctk.CTkButton(
-        buttons,
-        text="Запустить код",
-        command=run_code,
-        width=140
-    ).pack(
-        side="left",
-        padx=4
-    )
+    button_list = [
 
-    ctk.CTkButton(
-        buttons,
-        text="Экспорт HTML",
-        command=export_html,
-        width=140
-    ).pack(
-        side="left",
-        padx=4
-    )
+        (
+            "Запустить код",
+            run_code,
+            140
+        ),
 
-    ctk.CTkButton(
-        buttons,
-        text="Открыть .py",
-        command=open_py_file,
-        width=130
-    ).pack(
-        side="left",
-        padx=4
-    )
+        (
+            "Экспорт HTML",
+            export_html,
+            140
+        ),
 
-    ctk.CTkButton(
-        buttons,
-        text="Сохранить .py",
-        command=save_as_py,
-        width=140
-    ).pack(
-        side="left",
-        padx=4
-    )
+        (
+            "Открыть .py",
+            open_py_file,
+            130
+        ),
 
-    ctk.CTkButton(
-        buttons,
-        text="Очистить код",
-        command=clear_code,
-        width=130
-    ).pack(
-        side="left",
-        padx=4
-    )
+        (
+            "Сохранить .py",
+            save_as_py,
+            140
+        ),
 
-    ctk.CTkButton(
-        buttons,
-        text="Загрузить команды",
-        command=load_commands_from_file,
-        width=160
-    ).pack(
-        side="left",
-        padx=4
-    )
+        (
+            "Очистить код",
+            clear_code,
+            130
+        ),
+
+        (
+            "Загрузить команды",
+            load_commands_from_file,
+            160
+        )
+    ]
+
+    for text, command, width in button_list:
+
+        ctk.CTkButton(
+            buttons,
+            text=text,
+            command=command,
+            width=width
+        ).pack(
+            side="left",
+            padx=4
+        )
 
     # --------------------------------------------------------
     # ЗАКРЫТИЕ
@@ -2787,10 +2509,6 @@ def open_constructor(parent=None):
         close_constructor
     )
 
-    # --------------------------------------------------------
-    # ИНИЦИАЛИЗАЦИЯ
-    # --------------------------------------------------------
-
     on_command_change()
 
     constructor_window.lift()
@@ -2800,7 +2518,7 @@ def open_constructor(parent=None):
 
 
 # ============================================================
-# САМОСТОЯТЕЛЬНЫЙ ЗАПУСК
+# MAIN
 # ============================================================
 
 if __name__ == "__main__":

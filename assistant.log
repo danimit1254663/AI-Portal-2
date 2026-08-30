@@ -24798,3 +24798,400 @@ Traceback (most recent call last):
   File "C:\Users\Admin\PycharmProjects\AI-Portal-2\venv\Lib\site-packages\serial\serialwin32.py", line 64, in open
     raise SerialException("could not open port {!r}: {!r}".format(self.portstr, ctypes.WinError()))
 serial.serialutil.SerialException: could not open port 'COM4': FileNotFoundError(2, '\u041d\u0435 \u0443\u0434\u0430\u0435\u0442\u0441\u044f \u043d\u0430\u0439\u0442\u0438 \u0443\u043a\u0430\u0437\u0430\u043d\u043d\u044b\u0439 \u0444\u0430\u0439\u043b.', None, 2)
+2026-08-17 14:13:48,887 CRITICAL \u041e\u0448\u0438\u0431\u043a\u0430 Telegram \u0431\u043e\u0442\u0430: 'utf-8' codec can't decode byte 0xff in position 0: invalid start byte
+Traceback (most recent call last):
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\main.py", line 1108, in run_telegram_bot
+    if ask_start():
+       ^^^^^^^^^^^
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\Telegram_bot.py", line 885, in ask_start
+    answer = input(
+             ^^^^^^
+  File "<frozen codecs>", line 322, in decode
+UnicodeDecodeError: 'utf-8' codec can't decode byte 0xff in position 0: invalid start byte
+2026-08-17 14:13:55,413 ERROR Arduino connection error
+Traceback (most recent call last):
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\main.py", line 274, in connect_arduino
+    arduino = serial.Serial(
+              ^^^^^^^^^^^^^^
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\venv\Lib\site-packages\serial\serialwin32.py", line 33, in __init__
+    super(Serial, self).__init__(*args, **kwargs)
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\venv\Lib\site-packages\serial\serialutil.py", line 244, in __init__
+    self.open()
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\venv\Lib\site-packages\serial\serialwin32.py", line 64, in open
+    raise SerialException("could not open port {!r}: {!r}".format(self.portstr, ctypes.WinError()))
+serial.serialutil.SerialException: could not open port 'COM4': FileNotFoundError(2, '\u041d\u0435 \u0443\u0434\u0430\u0435\u0442\u0441\u044f \u043d\u0430\u0439\u0442\u0438 \u0443\u043a\u0430\u0437\u0430\u043d\u043d\u044b\u0439 \u0444\u0430\u0439\u043b.', None, 2)
+2026-08-17 14:19:32,179 CRITICAL \u041e\u0448\u0438\u0431\u043a\u0430 Telegram \u0431\u043e\u0442\u0430: 'utf-8' codec can't decode byte 0xff in position 0: invalid start byte
+Traceback (most recent call last):
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\main.py", line 1108, in run_telegram_bot
+    if ask_start():
+       ^^^^^^^^^^^
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\Telegram_bot.py", line 885, in ask_start
+    answer = input(
+             ^^^^^^
+  File "<frozen codecs>", line 322, in decode
+UnicodeDecodeError: 'utf-8' codec can't decode byte 0xff in position 0: invalid start byte
+2026-08-17 14:19:39,413 ERROR Arduino connection error
+Traceback (most recent call last):
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\main.py", line 274, in connect_arduino
+    arduino = serial.Serial(
+              ^^^^^^^^^^^^^^
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\venv\Lib\site-packages\serial\serialwin32.py", line 33, in __init__
+    super(Serial, self).__init__(*args, **kwargs)
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\venv\Lib\site-packages\serial\serialutil.py", line 244, in __init__
+    self.open()
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\venv\Lib\site-packages\serial\serialwin32.py", line 64, in open
+    raise SerialException("could not open port {!r}: {!r}".format(self.portstr, ctypes.WinError()))
+serial.serialutil.SerialException: could not open port 'COM4': FileNotFoundError(2, '\u041d\u0435 \u0443\u0434\u0430\u0435\u0442\u0441\u044f \u043d\u0430\u0439\u0442\u0438 \u0443\u043a\u0430\u0437\u0430\u043d\u043d\u044b\u0439 \u0444\u0430\u0439\u043b.', None, 2)
+2026-08-17 14:23:48,174 CRITICAL \u041e\u0448\u0438\u0431\u043a\u0430 Telegram \u0431\u043e\u0442\u0430: 'utf-8' codec can't decode byte 0xff in position 0: invalid start byte
+Traceback (most recent call last):
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\main.py", line 1108, in run_telegram_bot
+    if ask_start():
+       ^^^^^^^^^^^
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\Telegram_bot.py", line 885, in ask_start
+    answer = input(
+             ^^^^^^
+  File "<frozen codecs>", line 322, in decode
+UnicodeDecodeError: 'utf-8' codec can't decode byte 0xff in position 0: invalid start byte
+2026-08-17 14:23:55,003 ERROR Arduino connection error
+Traceback (most recent call last):
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\main.py", line 274, in connect_arduino
+    arduino = serial.Serial(
+              ^^^^^^^^^^^^^^
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\venv\Lib\site-packages\serial\serialwin32.py", line 33, in __init__
+    super(Serial, self).__init__(*args, **kwargs)
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\venv\Lib\site-packages\serial\serialutil.py", line 244, in __init__
+    self.open()
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\venv\Lib\site-packages\serial\serialwin32.py", line 64, in open
+    raise SerialException("could not open port {!r}: {!r}".format(self.portstr, ctypes.WinError()))
+serial.serialutil.SerialException: could not open port 'COM4': FileNotFoundError(2, '\u041d\u0435 \u0443\u0434\u0430\u0435\u0442\u0441\u044f \u043d\u0430\u0439\u0442\u0438 \u0443\u043a\u0430\u0437\u0430\u043d\u043d\u044b\u0439 \u0444\u0430\u0439\u043b.', None, 2)
+2026-08-17 16:40:42,876 INFO Arduino connected: COM4
+2026-08-17 16:40:42,986 ERROR Serial send error
+Traceback (most recent call last):
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\main.py", line 368, in send_lcd_packet
+    arduino.write(
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\venv\Lib\site-packages\serial\serialwin32.py", line 317, in write
+    raise SerialException("WriteFile failed ({!r})".format(ctypes.WinError()))
+serial.serialutil.SerialException: WriteFile failed (PermissionError(13, '\u0423\u0441\u0442\u0440\u043e\u0439\u0441\u0442\u0432\u043e \u043d\u0435 \u043e\u043f\u043e\u0437\u043d\u0430\u0435\u0442 \u043a\u043e\u043c\u0430\u043d\u0434\u0443.', None, 22))
+2026-08-17 16:41:50,033 INFO HTTP Request: POST https://ngw.devices.sberbank.ru:9443/api/v2/oauth "HTTP/1.1 200 OK"
+2026-08-17 16:41:50,352 INFO HTTP Request: POST https://gigachat.devices.sberbank.ru/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-08-17 16:42:03,877 INFO HTTP Request: POST https://gigachat.devices.sberbank.ru/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-08-17 16:42:26,021 CRITICAL \u041e\u0448\u0438\u0431\u043a\u0430 Telegram \u0431\u043e\u0442\u0430: 'utf-8' codec can't decode byte 0xff in position 0: invalid start byte
+Traceback (most recent call last):
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\main.py", line 1108, in run_telegram_bot
+    if ask_start():
+       ^^^^^^^^^^^
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\Telegram_bot.py", line 885, in ask_start
+    answer = input(
+             ^^^^^^
+  File "<frozen codecs>", line 322, in decode
+UnicodeDecodeError: 'utf-8' codec can't decode byte 0xff in position 0: invalid start byte
+2026-08-17 16:42:32,751 INFO Arduino connected: COM4
+2026-08-17 16:42:32,844 ERROR Serial send error
+Traceback (most recent call last):
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\main.py", line 368, in send_lcd_packet
+    arduino.write(
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\venv\Lib\site-packages\serial\serialwin32.py", line 317, in write
+    raise SerialException("WriteFile failed ({!r})".format(ctypes.WinError()))
+serial.serialutil.SerialException: WriteFile failed (PermissionError(13, '\u0423\u0441\u0442\u0440\u043e\u0439\u0441\u0442\u0432\u043e \u043d\u0435 \u043e\u043f\u043e\u0437\u043d\u0430\u0435\u0442 \u043a\u043e\u043c\u0430\u043d\u0434\u0443.', None, 22))
+2026-08-17 16:43:26,985 CRITICAL \u041e\u0448\u0438\u0431\u043a\u0430 Telegram \u0431\u043e\u0442\u0430: 'utf-8' codec can't decode byte 0xff in position 0: invalid start byte
+Traceback (most recent call last):
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\main.py", line 1108, in run_telegram_bot
+    if ask_start():
+       ^^^^^^^^^^^
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\Telegram_bot.py", line 885, in ask_start
+    answer = input(
+             ^^^^^^
+  File "<frozen codecs>", line 322, in decode
+UnicodeDecodeError: 'utf-8' codec can't decode byte 0xff in position 0: invalid start byte
+2026-08-17 16:43:34,290 ERROR Arduino connection error
+Traceback (most recent call last):
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\main.py", line 274, in connect_arduino
+    arduino = serial.Serial(
+              ^^^^^^^^^^^^^^
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\venv\Lib\site-packages\serial\serialwin32.py", line 33, in __init__
+    super(Serial, self).__init__(*args, **kwargs)
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\venv\Lib\site-packages\serial\serialutil.py", line 244, in __init__
+    self.open()
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\venv\Lib\site-packages\serial\serialwin32.py", line 64, in open
+    raise SerialException("could not open port {!r}: {!r}".format(self.portstr, ctypes.WinError()))
+serial.serialutil.SerialException: could not open port 'COM4': FileNotFoundError(2, '\u041d\u0435 \u0443\u0434\u0430\u0435\u0442\u0441\u044f \u043d\u0430\u0439\u0442\u0438 \u0443\u043a\u0430\u0437\u0430\u043d\u043d\u044b\u0439 \u0444\u0430\u0439\u043b.', None, 2)
+2026-08-17 16:44:10,560 CRITICAL \u041e\u0448\u0438\u0431\u043a\u0430 Telegram \u0431\u043e\u0442\u0430: 'utf-8' codec can't decode byte 0xff in position 0: invalid start byte
+Traceback (most recent call last):
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\main.py", line 1108, in run_telegram_bot
+    if ask_start():
+       ^^^^^^^^^^^
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\Telegram_bot.py", line 885, in ask_start
+    answer = input(
+             ^^^^^^
+  File "<frozen codecs>", line 322, in decode
+UnicodeDecodeError: 'utf-8' codec can't decode byte 0xff in position 0: invalid start byte
+2026-08-17 16:44:17,370 INFO Arduino connected: COM4
+2026-08-17 16:46:01,595 INFO HTTP Request: POST https://ngw.devices.sberbank.ru:9443/api/v2/oauth "HTTP/1.1 200 OK"
+2026-08-17 16:46:01,857 INFO HTTP Request: POST https://gigachat.devices.sberbank.ru/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-08-17 16:48:03,578 INFO HTTP Request: POST https://gigachat.devices.sberbank.ru/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-08-26 00:02:29,610 ERROR Arduino connection error
+Traceback (most recent call last):
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\main.py", line 274, in connect_arduino
+    arduino = serial.Serial(
+              ^^^^^^^^^^^^^^
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\venv\Lib\site-packages\serial\serialwin32.py", line 33, in __init__
+    super(Serial, self).__init__(*args, **kwargs)
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\venv\Lib\site-packages\serial\serialutil.py", line 244, in __init__
+    self.open()
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\venv\Lib\site-packages\serial\serialwin32.py", line 64, in open
+    raise SerialException("could not open port {!r}: {!r}".format(self.portstr, ctypes.WinError()))
+serial.serialutil.SerialException: could not open port 'COM4': FileNotFoundError(2, '\u041d\u0435 \u0443\u0434\u0430\u0435\u0442\u0441\u044f \u043d\u0430\u0439\u0442\u0438 \u0443\u043a\u0430\u0437\u0430\u043d\u043d\u044b\u0439 \u0444\u0430\u0439\u043b.', None, 2)
+2026-08-26 00:02:53,586 ERROR Voice Loop Error: name 'geo' is not defined
+Traceback (most recent call last):
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\main.py", line 1047, in voice_loop
+    answer = process_command(
+             ^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\main.py", line 768, in process_command
+    geo.search()
+    ^^^
+NameError: name 'geo' is not defined
+2026-08-26 00:03:10,373 CRITICAL \u041e\u0448\u0438\u0431\u043a\u0430 Telegram \u0431\u043e\u0442\u0430: 'utf-8' codec can't decode byte 0xff in position 0: invalid start byte
+Traceback (most recent call last):
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\main.py", line 1109, in run_telegram_bot
+    if ask_start():
+       ^^^^^^^^^^^
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\Telegram_bot.py", line 885, in ask_start
+    answer = input(
+             ^^^^^^
+  File "<frozen codecs>", line 322, in decode
+UnicodeDecodeError: 'utf-8' codec can't decode byte 0xff in position 0: invalid start byte
+2026-08-26 00:03:14,901 ERROR Arduino connection error
+Traceback (most recent call last):
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\main.py", line 274, in connect_arduino
+    arduino = serial.Serial(
+              ^^^^^^^^^^^^^^
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\venv\Lib\site-packages\serial\serialwin32.py", line 33, in __init__
+    super(Serial, self).__init__(*args, **kwargs)
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\venv\Lib\site-packages\serial\serialutil.py", line 244, in __init__
+    self.open()
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\venv\Lib\site-packages\serial\serialwin32.py", line 64, in open
+    raise SerialException("could not open port {!r}: {!r}".format(self.portstr, ctypes.WinError()))
+serial.serialutil.SerialException: could not open port 'COM4': FileNotFoundError(2, '\u041d\u0435 \u0443\u0434\u0430\u0435\u0442\u0441\u044f \u043d\u0430\u0439\u0442\u0438 \u0443\u043a\u0430\u0437\u0430\u043d\u043d\u044b\u0439 \u0444\u0430\u0439\u043b.', None, 2)
+2026-08-26 00:03:22,888 CRITICAL \u041e\u0448\u0438\u0431\u043a\u0430 Telegram \u0431\u043e\u0442\u0430: 'utf-8' codec can't decode byte 0xff in position 0: invalid start byte
+Traceback (most recent call last):
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\main.py", line 1109, in run_telegram_bot
+    if ask_start():
+       ^^^^^^^^^^^
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\Telegram_bot.py", line 885, in ask_start
+    answer = input(
+             ^^^^^^
+  File "<frozen codecs>", line 322, in decode
+UnicodeDecodeError: 'utf-8' codec can't decode byte 0xff in position 0: invalid start byte
+2026-08-26 00:03:29,688 ERROR Arduino connection error
+Traceback (most recent call last):
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\main.py", line 274, in connect_arduino
+    arduino = serial.Serial(
+              ^^^^^^^^^^^^^^
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\venv\Lib\site-packages\serial\serialwin32.py", line 33, in __init__
+    super(Serial, self).__init__(*args, **kwargs)
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\venv\Lib\site-packages\serial\serialutil.py", line 244, in __init__
+    self.open()
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\venv\Lib\site-packages\serial\serialwin32.py", line 64, in open
+    raise SerialException("could not open port {!r}: {!r}".format(self.portstr, ctypes.WinError()))
+serial.serialutil.SerialException: could not open port 'COM4': FileNotFoundError(2, '\u041d\u0435 \u0443\u0434\u0430\u0435\u0442\u0441\u044f \u043d\u0430\u0439\u0442\u0438 \u0443\u043a\u0430\u0437\u0430\u043d\u043d\u044b\u0439 \u0444\u0430\u0439\u043b.', None, 2)
+2026-08-26 00:03:45,350 INFO HTTP Request: POST https://ngw.devices.sberbank.ru:9443/api/v2/oauth "HTTP/1.1 200 OK"
+2026-08-26 00:03:45,686 INFO HTTP Request: POST https://gigachat.devices.sberbank.ru/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-08-26 00:06:30,758 CRITICAL \u041e\u0448\u0438\u0431\u043a\u0430 Telegram \u0431\u043e\u0442\u0430: 'utf-8' codec can't decode byte 0xff in position 0: invalid start byte
+Traceback (most recent call last):
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\main.py", line 1109, in run_telegram_bot
+    if ask_start():
+       ^^^^^^^^^^^
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\Telegram_bot.py", line 885, in ask_start
+    answer = input(
+             ^^^^^^
+  File "<frozen codecs>", line 322, in decode
+UnicodeDecodeError: 'utf-8' codec can't decode byte 0xff in position 0: invalid start byte
+2026-08-26 00:09:39,486 ERROR Arduino connection error
+Traceback (most recent call last):
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\main.py", line 274, in connect_arduino
+    arduino = serial.Serial(
+              ^^^^^^^^^^^^^^
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\venv\Lib\site-packages\serial\serialwin32.py", line 33, in __init__
+    super(Serial, self).__init__(*args, **kwargs)
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\venv\Lib\site-packages\serial\serialutil.py", line 244, in __init__
+    self.open()
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\venv\Lib\site-packages\serial\serialwin32.py", line 64, in open
+    raise SerialException("could not open port {!r}: {!r}".format(self.portstr, ctypes.WinError()))
+serial.serialutil.SerialException: could not open port 'COM4': FileNotFoundError(2, '\u041d\u0435 \u0443\u0434\u0430\u0435\u0442\u0441\u044f \u043d\u0430\u0439\u0442\u0438 \u0443\u043a\u0430\u0437\u0430\u043d\u043d\u044b\u0439 \u0444\u0430\u0439\u043b.', None, 2)
+2026-08-26 00:10:33,196 WARNING Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /search?q=%D0%B3%D0%B4%D0%B5+%D0%BD%D0%B0%D1%85%D0%BE%D0%B4%D0%B8%D1%82%D1%81%D1%8F+%D0%B5%D0%BA%D0%B0%D1%82%D0%B5%D1%80%D0%B8%D0%BD%D0%B1%D1%83%D1%80%D0%B3&format=json&limit=1
+2026-08-26 00:10:34,335 WARNING Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)")': /search?q=%D0%B3%D0%B4%D0%B5+%D0%BD%D0%B0%D1%85%D0%BE%D0%B4%D0%B8%D1%82%D1%81%D1%8F+%D0%B5%D0%BA%D0%B0%D1%82%D0%B5%D1%80%D0%B8%D0%BD%D0%B1%D1%83%D1%80%D0%B3&format=json&limit=1
+2026-08-26 00:10:35,503 ERROR Voice Loop Error: HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Max retries exceeded with url: /search?q=%D0%B3%D0%B4%D0%B5+%D0%BD%D0%B0%D1%85%D0%BE%D0%B4%D0%B8%D1%82%D1%81%D1%8F+%D0%B5%D0%BA%D0%B0%D1%82%D0%B5%D1%80%D0%B8%D0%BD%D0%B1%D1%83%D1%80%D0%B3&format=json&limit=1 (Caused by ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)"))
+Traceback (most recent call last):
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\venv\Lib\site-packages\urllib3\connectionpool.py", line 534, in _make_request
+    response = conn.getresponse()
+               ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\venv\Lib\site-packages\urllib3\connection.py", line 571, in getresponse
+    httplib_response = super().getresponse()
+                       ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python311\Lib\http\client.py", line 1374, in getresponse
+    response.begin()
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python311\Lib\http\client.py", line 318, in begin
+    version, status, reason = self._read_status()
+                              ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python311\Lib\http\client.py", line 279, in _read_status
+    line = str(self.fp.readline(_MAXLINE + 1), "iso-8859-1")
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python311\Lib\socket.py", line 705, in readinto
+    return self._sock.recv_into(b)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python311\Lib\ssl.py", line 1278, in recv_into
+    return self.read(nbytes, buffer)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\AppData\Local\Programs\Python\Python311\Lib\ssl.py", line 1134, in read
+    return self._sslobj.read(len, buffer)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TimeoutError: The read operation timed out
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\venv\Lib\site-packages\urllib3\connectionpool.py", line 788, in urlopen
+    response = self._make_request(
+               ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\venv\Lib\site-packages\urllib3\connectionpool.py", line 536, in _make_request
+    self._raise_timeout(err=e, url=url, timeout_value=read_timeout)
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\venv\Lib\site-packages\urllib3\connectionpool.py", line 367, in _raise_timeout
+    raise ReadTimeoutError(
+urllib3.exceptions.ReadTimeoutError: HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\venv\Lib\site-packages\requests\adapters.py", line 667, in send
+    resp = conn.urlopen(
+           ^^^^^^^^^^^^^
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\venv\Lib\site-packages\urllib3\connectionpool.py", line 872, in urlopen
+    return self.urlopen(
+           ^^^^^^^^^^^^^
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\venv\Lib\site-packages\urllib3\connectionpool.py", line 872, in urlopen
+    return self.urlopen(
+           ^^^^^^^^^^^^^
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\venv\Lib\site-packages\urllib3\connectionpool.py", line 842, in urlopen
+    retries = retries.increment(
+              ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\venv\Lib\site-packages\urllib3\util\retry.py", line 543, in increment
+    raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Max retries exceeded with url: /search?q=%D0%B3%D0%B4%D0%B5+%D0%BD%D0%B0%D1%85%D0%BE%D0%B4%D0%B8%D1%82%D1%81%D1%8F+%D0%B5%D0%BA%D0%B0%D1%82%D0%B5%D1%80%D0%B8%D0%BD%D0%B1%D1%83%D1%80%D0%B3&format=json&limit=1 (Caused by ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)"))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\venv\Lib\site-packages\geopy\adapters.py", line 482, in _request
+    resp = self.session.get(url, timeout=timeout, headers=headers)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\venv\Lib\site-packages\requests\sessions.py", line 602, in get
+    return self.request("GET", url, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\venv\Lib\site-packages\requests\sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\venv\Lib\site-packages\requests\sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\venv\Lib\site-packages\requests\adapters.py", line 700, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Max retries exceeded with url: /search?q=%D0%B3%D0%B4%D0%B5+%D0%BD%D0%B0%D1%85%D0%BE%D0%B4%D0%B8%D1%82%D1%81%D1%8F+%D0%B5%D0%BA%D0%B0%D1%82%D0%B5%D1%80%D0%B8%D0%BD%D0%B1%D1%83%D1%80%D0%B3&format=json&limit=1 (Caused by ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)"))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\main.py", line 1047, in voice_loop
+    answer = process_command(
+             ^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\main.py", line 768, in process_command
+    search(text)
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\commands\geo.py", line 19, in search
+    location = geolocator.geocode(address)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\venv\Lib\site-packages\geopy\geocoders\nominatim.py", line 297, in geocode
+    return self._call_geocoder(url, callback, timeout=timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\venv\Lib\site-packages\geopy\geocoders\base.py", line 367, in _call_geocoder
+    result = self.adapter.get_json(url, timeout=timeout, headers=req_headers)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\venv\Lib\site-packages\geopy\adapters.py", line 472, in get_json
+    resp = self._request(url, timeout=timeout, headers=headers)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\venv\Lib\site-packages\geopy\adapters.py", line 494, in _request
+    raise GeocoderUnavailable(message)
+geopy.exc.GeocoderUnavailable: HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Max retries exceeded with url: /search?q=%D0%B3%D0%B4%D0%B5+%D0%BD%D0%B0%D1%85%D0%BE%D0%B4%D0%B8%D1%82%D1%81%D1%8F+%D0%B5%D0%BA%D0%B0%D1%82%D0%B5%D1%80%D0%B8%D0%BD%D0%B1%D1%83%D1%80%D0%B3&format=json&limit=1 (Caused by ReadTimeoutError("HTTPSConnectionPool(host='nominatim.openstreetmap.org', port=443): Read timed out. (read timeout=1)"))
+2026-08-26 00:11:17,181 CRITICAL \u041e\u0448\u0438\u0431\u043a\u0430 Telegram \u0431\u043e\u0442\u0430: 'utf-8' codec can't decode byte 0xff in position 0: invalid start byte
+Traceback (most recent call last):
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\main.py", line 1109, in run_telegram_bot
+    if ask_start():
+       ^^^^^^^^^^^
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\Telegram_bot.py", line 885, in ask_start
+    answer = input(
+             ^^^^^^
+  File "<frozen codecs>", line 322, in decode
+UnicodeDecodeError: 'utf-8' codec can't decode byte 0xff in position 0: invalid start byte
+2026-08-26 00:11:21,862 ERROR Arduino connection error
+Traceback (most recent call last):
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\main.py", line 274, in connect_arduino
+    arduino = serial.Serial(
+              ^^^^^^^^^^^^^^
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\venv\Lib\site-packages\serial\serialwin32.py", line 33, in __init__
+    super(Serial, self).__init__(*args, **kwargs)
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\venv\Lib\site-packages\serial\serialutil.py", line 244, in __init__
+    self.open()
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\venv\Lib\site-packages\serial\serialwin32.py", line 64, in open
+    raise SerialException("could not open port {!r}: {!r}".format(self.portstr, ctypes.WinError()))
+serial.serialutil.SerialException: could not open port 'COM4': FileNotFoundError(2, '\u041d\u0435 \u0443\u0434\u0430\u0435\u0442\u0441\u044f \u043d\u0430\u0439\u0442\u0438 \u0443\u043a\u0430\u0437\u0430\u043d\u043d\u044b\u0439 \u0444\u0430\u0439\u043b.', None, 2)
+2026-08-26 00:11:39,171 INFO HTTP Request: POST https://ngw.devices.sberbank.ru:9443/api/v2/oauth "HTTP/1.1 200 OK"
+2026-08-26 00:11:39,524 INFO HTTP Request: POST https://gigachat.devices.sberbank.ru/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-08-26 00:12:03,294 INFO HTTP Request: POST https://gigachat.devices.sberbank.ru/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-08-26 00:12:31,745 INFO HTTP Request: POST https://gigachat.devices.sberbank.ru/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-08-26 00:12:58,358 INFO HTTP Request: POST https://gigachat.devices.sberbank.ru/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-08-26 00:13:36,549 ERROR Voice Loop Error: \u041d\u0435 \u0443\u0434\u0430\u043b\u043e\u0441\u044c \u043d\u0430\u0439\u0442\u0438 \u043c\u0435\u0441\u0442\u043e: \u043c\u0435\u043c\u043e\u0440\u0438\u0430\u043b \u0440\u043e\u0434\u0438\u043d\u0430-\u043c\u0430\u0442\u044c \u0437\u043e\u0432\u0451\u0442
+Traceback (most recent call last):
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\main.py", line 1047, in voice_loop
+    answer = process_command(
+             ^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\main.py", line 768, in process_command
+    search(text)
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\commands\geo.py", line 33, in search
+    raise ValueError(f"\u041d\u0435 \u0443\u0434\u0430\u043b\u043e\u0441\u044c \u043d\u0430\u0439\u0442\u0438 \u043c\u0435\u0441\u0442\u043e: {cleaned_query}")
+ValueError: \u041d\u0435 \u0443\u0434\u0430\u043b\u043e\u0441\u044c \u043d\u0430\u0439\u0442\u0438 \u043c\u0435\u0441\u0442\u043e: \u043c\u0435\u043c\u043e\u0440\u0438\u0430\u043b \u0440\u043e\u0434\u0438\u043d\u0430-\u043c\u0430\u0442\u044c \u0437\u043e\u0432\u0451\u0442
+2026-08-26 00:17:49,062 INFO HTTP Request: POST https://gigachat.devices.sberbank.ru/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-08-29 01:30:03,910 ERROR Arduino connection error
+Traceback (most recent call last):
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\main.py", line 274, in connect_arduino
+    arduino = serial.Serial(
+              ^^^^^^^^^^^^^^
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\venv\Lib\site-packages\serial\serialwin32.py", line 33, in __init__
+    super(Serial, self).__init__(*args, **kwargs)
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\venv\Lib\site-packages\serial\serialutil.py", line 244, in __init__
+    self.open()
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\venv\Lib\site-packages\serial\serialwin32.py", line 64, in open
+    raise SerialException("could not open port {!r}: {!r}".format(self.portstr, ctypes.WinError()))
+serial.serialutil.SerialException: could not open port 'COM4': FileNotFoundError(2, '\u041d\u0435 \u0443\u0434\u0430\u0435\u0442\u0441\u044f \u043d\u0430\u0439\u0442\u0438 \u0443\u043a\u0430\u0437\u0430\u043d\u043d\u044b\u0439 \u0444\u0430\u0439\u043b.', None, 2)
+2026-08-29 01:30:36,160 INFO HTTP Request: POST https://ngw.devices.sberbank.ru:9443/api/v2/oauth "HTTP/1.1 200 OK"
+2026-08-29 01:30:36,566 INFO HTTP Request: POST https://gigachat.devices.sberbank.ru/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-08-29 01:30:48,849 ERROR Voice Loop Error: \u041d\u0435 \u0443\u0434\u0430\u043b\u043e\u0441\u044c \u043d\u0430\u0439\u0442\u0438 \u043c\u0435\u0441\u0442\u043e: \u0441\u0442\u0430\u0442\u0443\u044e \u0441\u0432\u043e\u0431\u043e\u0434\u044b
+Traceback (most recent call last):
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\main.py", line 1047, in voice_loop
+    answer = process_command(
+             ^^^^^^^^^^^^^^^^
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\main.py", line 768, in process_command
+    search(text)
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\commands\geo.py", line 33, in search
+    raise ValueError(f"\u041d\u0435 \u0443\u0434\u0430\u043b\u043e\u0441\u044c \u043d\u0430\u0439\u0442\u0438 \u043c\u0435\u0441\u0442\u043e: {cleaned_query}")
+ValueError: \u041d\u0435 \u0443\u0434\u0430\u043b\u043e\u0441\u044c \u043d\u0430\u0439\u0442\u0438 \u043c\u0435\u0441\u0442\u043e: \u0441\u0442\u0430\u0442\u0443\u044e \u0441\u0432\u043e\u0431\u043e\u0434\u044b
+2026-08-29 01:31:00,083 INFO HTTP Request: POST https://gigachat.devices.sberbank.ru/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-08-29 01:33:01,472 INFO HTTP Request: POST https://gigachat.devices.sberbank.ru/api/v1/chat/completions "HTTP/1.1 200 OK"
+2026-08-29 01:33:11,185 CRITICAL \u041e\u0448\u0438\u0431\u043a\u0430 Telegram \u0431\u043e\u0442\u0430: 'utf-8' codec can't decode byte 0xff in position 0: invalid start byte
+Traceback (most recent call last):
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\main.py", line 1109, in run_telegram_bot
+    if ask_start():
+       ^^^^^^^^^^^
+  File "C:\Users\Admin\PycharmProjects\AI-Portal-2\Telegram_bot.py", line 885, in ask_start
+    answer = input(
+             ^^^^^^
+  File "<frozen codecs>", line 322, in decode
+UnicodeDecodeError: 'utf-8' codec can't decode byte 0xff in position 0: invalid start byte
